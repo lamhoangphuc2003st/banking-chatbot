@@ -3,14 +3,19 @@ import json
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from bm25_index import BM25Index
+from app.retrieval.bm25_index import BM25Index
 
 
 EMBEDDING_MODEL = "bkai-foundation-models/vietnamese-bi-encoder"
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHUNKS_PATH = os.path.join(BASE_DIR, "data/vietcombank_chunks.json")
-FAISS_PATH = os.path.join(BASE_DIR, "data/faiss_index.bin")
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    )
+)
+
+CHUNKS_PATH = os.path.join(BASE_DIR, "data", "vietcombank_chunks.json")
+FAISS_PATH = os.path.join(BASE_DIR, "data", "faiss_index.bin")
 
 
 class HybridRetriever:

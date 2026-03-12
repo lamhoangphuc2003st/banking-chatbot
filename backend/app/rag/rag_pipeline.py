@@ -9,10 +9,10 @@ from typing import List, Dict
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from hybrid_retriever import HybridRetriever
-from reranker import Reranker
-from query_rewriter import rewrite_query
-from multi_query import generate_queries
+from app.rag.hybrid_retriever import HybridRetriever
+from app.rag.reranker import Reranker
+from app.rag.query_rewriter import rewrite_query
+from app.rag.multi_query import generate_queries
 
 load_dotenv()
 
@@ -22,7 +22,14 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 # Logging setup
 # -----------------------------
 
-os.makedirs("logs", exist_ok=True)
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    )
+)
+
+LOG_DIR = os.path.join(BASE_DIR, "app", "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
 
 logger = logging.getLogger(__name__)
 logger.propagate = False
@@ -36,7 +43,7 @@ console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(formatter)
 
 file_handler = RotatingFileHandler(
-    "logs/rag.log",
+    os.path.join(LOG_DIR, "rag.log"),
     maxBytes=5 * 1024 * 1024,
     backupCount=3,
     encoding="utf-8"
@@ -176,7 +183,11 @@ class RAGPipeline:
     # -----------------------------
     def load_products(self):
 
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        base_dir = os.path.dirname(
+            os.path.dirname(
+                os.path.dirname(os.path.abspath(__file__))
+            )
+        )
 
         data_path = os.path.join(
             base_dir,

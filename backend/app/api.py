@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from source.rag_pipeline import RAGPipeline
+from app.rag.rag_pipeline import RAGPipeline
 
 
 # -----------------------------
@@ -38,7 +38,8 @@ app = FastAPI(title="Vietcombank RAG Chatbot")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000"
+    "http://localhost:3000",
+    "https://your-frontend.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
