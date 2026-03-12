@@ -9,3 +9,14 @@
 2026-03-12 22:40:33,786 - INFO - app.rag.rag_pipeline - Starting retrieval
 2026-03-12 22:40:35,607 - INFO - app.rag.rag_pipeline - Retrieved docs: 4
 2026-03-12 22:40:45,982 - INFO - app.rag.rag_pipeline - RAG latency: 18.77s
+2026-03-12 23:48:28,137 - INFO - app.rag.rag_pipeline - Initializing RAGPipeline
+2026-03-12 23:48:41,493 - INFO - app.rag.rag_pipeline - Loaded 26 products
+2026-03-12 23:48:41,494 - INFO - app.rag.rag_pipeline - User request: Điều kiện vay mua ô tô
+2026-03-12 23:48:45,388 - INFO - app.rag.rag_pipeline - Rewritten query: Các điều kiện cần có để vay mua ô tô tại ngân hàng Vietcombank là gì?
+2026-03-12 23:48:46,964 - INFO - app.rag.rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 23:48:46,965 - INFO - app.rag.rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 23:48:50,067 - INFO - app.rag.rag_pipeline - Multi queries: ['Tôi cần biết những yêu cầu để vay mua ô tô tại ngân hàng Vietcombank.']
+2026-03-12 23:48:50,070 - INFO - app.rag.rag_pipeline - Final search queries: ['Các điều kiện cần có để vay mua ô tô tại ngân hàng Vietcombank là gì?', 'Tôi cần biết những yêu cầu để vay mua ô tô tại ngân hàng Vietcombank.', 'Các điều kiện cần có để vay mua ô tô tại ngân hàng Vietcombank là gì? Vay mua ô tô']
+2026-03-12 23:48:50,071 - INFO - app.rag.rag_pipeline - Starting retrieval
+2026-03-12 23:48:51,848 - INFO - app.rag.rag_pipeline - Retrieved docs: 4
+2026-03-12 23:49:00,557 - INFO - app.rag.rag_pipeline - RAG latency: 16.68s

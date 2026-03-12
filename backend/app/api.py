@@ -21,9 +21,19 @@ logger = logging.getLogger(__name__)
 
 
 # -----------------------------
-# Init RAG
+# Lazy Init RAG
 # -----------------------------
-pipeline = RAGPipeline()
+pipeline = None
+
+
+def get_pipeline():
+    global pipeline
+
+    if pipeline is None:
+        logger.info("Initializing RAGPipeline...")
+        pipeline = RAGPipeline()
+
+    return pipeline
 
 
 # -----------------------------
@@ -38,8 +48,8 @@ app = FastAPI(title="Vietcombank RAG Chatbot")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-    "http://localhost:3000",
-    "https://your-frontend.vercel.app"
+        "http://localhost:3000",
+        "https://your-frontend.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -99,7 +109,9 @@ def chat(req: ChatRequest):
 
     start = time.time()
 
-    answer = pipeline.ask(last_user_message, history)
+    pipeline_instance = get_pipeline()
+
+    answer = pipeline_instance.ask(last_user_message, history)
 
     latency = time.time() - start
 
