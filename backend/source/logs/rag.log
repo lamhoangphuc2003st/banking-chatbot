@@ -1,0 +1,1392 @@
+2026-03-08 12:27:06,695 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:28:46,365 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 12:28:46,365 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 12:28:50,291 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 12:28:51,956 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 12:28:51,958 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 12:29:08,265 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 12:29:08,268 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 12:29:13,595 - INFO - rag_pipeline - RAG latency: 27.23s
+2026-03-08 12:30:58,383 - INFO - rag_pipeline - Intent classified by LLM: out_of_scope
+2026-03-08 12:30:58,384 - INFO - rag_pipeline - Intent: out_of_scope
+2026-03-08 12:30:58,385 - WARNING - rag_pipeline - Out of scope request blocked
+2026-03-08 12:31:49,287 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 12:31:49,288 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 12:31:52,864 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 12:31:54,723 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 12:31:54,725 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 12:32:00,197 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 12:32:00,199 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 12:32:01,806 - INFO - rag_pipeline - RAG latency: 12.52s
+2026-03-08 12:33:30,670 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 12:33:30,671 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 12:33:33,730 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 12:33:34,197 - INFO - rag_pipeline - Documents after merge/filter: 29
+2026-03-08 12:33:34,197 - INFO - rag_pipeline - Retrieved docs count: 29
+2026-03-08 12:33:47,622 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 12:33:47,623 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 12:33:49,567 - INFO - rag_pipeline - RAG latency: 18.90s
+2026-03-08 12:35:42,617 - INFO - rag_pipeline - Intent classified by LLM: loan_calculation
+2026-03-08 12:35:42,617 - INFO - rag_pipeline - Intent: loan_calculation
+2026-03-08 12:35:42,621 - WARNING - rag_pipeline - Loan query missing numbers
+2026-03-08 12:37:14,937 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:37:33,465 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:37:42,977 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:37:52,719 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:38:01,592 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:38:45,206 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:39:38,934 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:41:17,672 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:42:17,393 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 12:42:17,394 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 12:42:20,724 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 12:42:22,106 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 12:42:22,107 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 12:42:28,295 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 12:42:28,296 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 12:42:31,322 - INFO - rag_pipeline - RAG latency: 13.93s
+2026-03-08 12:46:34,768 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 12:47:05,736 - INFO - rag_pipeline - New user request: Tôi muốn mua nhà nhưng chỉ có số tiền tương đương 30% giá trị căn nhà, tôi có thể vay ngân hàng được không?
+2026-03-08 12:47:06,929 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 12:47:06,929 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 12:47:06,930 - INFO - rag_pipeline - User query: Tôi muốn mua nhà nhưng chỉ có số tiền tương đương 30% giá trị căn nhà, tôi có thể vay ngân hàng được không?
+2026-03-08 12:47:10,566 - INFO - rag_pipeline - Final search queries: ['Tôi có thể vay ngân hàng Vietcombank để mua nhà khi chỉ có 30% giá trị căn nhà không?', '1. Tôi có thể nhận được khoản vay từ ngân hàng Vietcombank để mua nhà nếu tôi chỉ có 30% giá trị căn nhà không?', '2. Ngân hàng Vietcombank có cho phép vay mua nhà với số tiền chỉ bằng 30% giá trị căn nhà không?', '3. Với 30% giá trị căn nhà, tôi có đủ điều kiện để vay ngân hàng Vietcombank mua nhà không?', 'Tôi có thể vay ngân hàng Vietcombank để mua nhà khi chỉ có 30% giá trị căn nhà không? Vay mua nhà dự án', 'Tôi có thể vay ngân hàng Vietcombank để mua nhà khi chỉ có 30% giá trị căn nhà không? Vay mua nhà ở, đất ở']
+2026-03-08 12:47:10,568 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 12:47:11,071 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 12:47:11,072 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 12:47:16,432 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 12:47:16,433 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 12:47:18,690 - INFO - rag_pipeline - RAG latency: 11.76s
+2026-03-08 12:50:11,232 - INFO - rag_pipeline - New user request: Tôi muốn mua nhà nhưng vốn hiện có khoảng 30% giá trị căn nhà, tôi có thể vay ngân hàng số tiền còn lại không?
+2026-03-08 12:50:11,910 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 12:50:11,911 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 12:50:11,911 - INFO - rag_pipeline - User query: Tôi muốn mua nhà nhưng vốn hiện có khoảng 30% giá trị căn nhà, tôi có thể vay ngân hàng số tiền còn lại không?
+2026-03-08 12:50:15,084 - INFO - rag_pipeline - Final search queries: ['Tôi có khoảng 30% giá trị căn nhà để mua, liệu tôi có thể vay ngân hàng Vietcombank số tiền còn lại không?', '1. Với 30% giá trị căn nhà đã có, tôi có đủ điều kiện để vay ngân hàng Vietcombank số tiền còn lại không?', '2. Tôi đã có 30% giá trị căn nhà, ngân hàng Vietcombank có cho phép tôi vay số tiền còn lại không?', '3. Nếu tôi có 30% giá trị căn nhà, liệu ngân hàng Vietcombank có hỗ trợ vay vốn cho phần còn lại không?', 'Tôi có khoảng 30% giá trị căn nhà để mua, liệu tôi có thể vay ngân hàng Vietcombank số tiền còn lại không? Vay mua nhà dự án', 'Tôi có khoảng 30% giá trị căn nhà để mua, liệu tôi có thể vay ngân hàng Vietcombank số tiền còn lại không? Vay mua nhà ở, đất ở']
+2026-03-08 12:50:15,085 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 12:50:15,555 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 12:50:15,555 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 12:50:21,022 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 12:50:21,022 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 12:50:24,069 - INFO - rag_pipeline - RAG latency: 12.16s
+2026-03-08 12:51:34,776 - INFO - rag_pipeline - New user request: Thẻ tín nào nào của ngân hàng VCB có thể hoàn tiền khi mua sẳm
+2026-03-08 12:51:35,500 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 12:51:35,500 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 12:51:35,501 - INFO - rag_pipeline - User query: Thẻ tín nào nào của ngân hàng VCB có thể hoàn tiền khi mua sẳm
+2026-03-08 12:51:38,439 - INFO - rag_pipeline - Final search queries: ['Thẻ tín dụng nào của ngân hàng Vietcombank có chương trình hoàn tiền khi mua sắm?', 'Ngân hàng Vietcombank có thẻ tín dụng nào cung cấp chương trình hoàn tiền khi mua sắm?', 'Tôi muốn biết thẻ tín dụng nào của Vietcombank có ưu đãi hoàn tiền cho các giao dịch mua sắm?', 'Có thẻ tín dụng nào của ngân hàng Vietcombank có chính sách hoàn tiền khi sử dụng để mua sắm không?', 'Thẻ tín dụng nào của ngân hàng Vietcombank có chương trình hoàn tiền khi mua sắm? credit_card']
+2026-03-08 12:51:38,441 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 12:51:38,826 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 12:51:38,827 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 12:51:54,091 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 12:51:54,092 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 12:51:57,909 - INFO - rag_pipeline - RAG latency: 22.41s
+2026-03-08 13:01:07,643 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 13:02:31,861 - INFO - rag_pipeline - New user request: Thẻ tín nào nào của ngân hàng VCB có thể hoàn tiền khi mua sẳm
+2026-03-08 13:02:33,177 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:02:33,178 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:02:33,178 - INFO - rag_pipeline - User query: Thẻ tín nào nào của ngân hàng VCB có thể hoàn tiền khi mua sẳm
+2026-03-08 13:02:36,247 - INFO - rag_pipeline - Final search queries: ['Thẻ tín dụng nào của ngân hàng Vietcombank có chương trình hoàn tiền khi mua sắm?', 'Ngân hàng Vietcombank có thẻ tín dụng nào cung cấp chương trình hoàn tiền khi mua sắm?', 'Tôi muốn biết thẻ tín dụng của Vietcombank nào có ưu đãi hoàn tiền cho giao dịch mua sắm?', 'Có những loại thẻ tín dụng nào của ngân hàng Vietcombank có chương trình hoàn tiền khi chi tiêu?', 'Thẻ tín dụng nào của ngân hàng Vietcombank có chương trình hoàn tiền khi mua sắm? credit_card']
+2026-03-08 13:02:36,249 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:02:37,576 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 13:02:37,576 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 13:02:52,415 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:02:52,415 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:02:57,330 - INFO - rag_pipeline - RAG latency: 24.15s
+2026-03-08 13:04:29,536 - INFO - rag_pipeline - New user request: Tôi muốn mua nhà nhưng chỉ có số tiền tương đương 30% giá trị căn nhà, tôi có thể vay ngân hàng được không?
+2026-03-08 13:04:30,256 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:04:30,257 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:04:30,257 - INFO - rag_pipeline - User query: Tôi muốn mua nhà nhưng chỉ có số tiền tương đương 30% giá trị căn nhà, tôi có thể vay ngân hàng được không?
+2026-03-08 13:04:33,280 - INFO - rag_pipeline - Final search queries: ['Tôi muốn biết liệu tôi có thể vay ngân hàng Vietcombank nếu tôi chỉ có số tiền tương đương 30% giá trị căn nhà mà tôi muốn mua không?', 'Tôi có thể vay ngân hàng Vietcombank với số tiền chỉ bằng 30% giá trị căn nhà tôi muốn mua không?', 'Liệu tôi có đủ điều kiện để vay ngân hàng Vietcombank nếu tôi chỉ có 30% giá trị căn nhà?', 'Ngân hàng Vietcombank có cho phép tôi vay khi tôi chỉ có 30% số tiền cần thiết để mua nhà không?', 'Tôi muốn biết liệu tôi có thể vay ngân hàng Vietcombank nếu tôi chỉ có số tiền tương đương 30% giá trị căn nhà mà tôi muốn mua không? Vay mua nhà dự án', 'Tôi muốn biết liệu tôi có thể vay ngân hàng Vietcombank nếu tôi chỉ có số tiền tương đương 30% giá trị căn nhà mà tôi muốn mua không? Vay mua nhà ở, đất ở']
+2026-03-08 13:04:33,281 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:04:33,799 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 13:04:33,800 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 13:04:39,115 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:04:39,116 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:04:41,121 - INFO - rag_pipeline - RAG latency: 10.86s
+2026-03-08 13:06:41,321 - INFO - rag_pipeline - New user request: Hiện tại VCB có các gói vay nhu cầu bất động sản nào
+2026-03-08 13:06:42,091 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:06:42,092 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:06:42,093 - INFO - rag_pipeline - User query: Hiện tại VCB có các gói vay nhu cầu bất động sản nào
+2026-03-08 13:06:44,362 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank hiện có những gói vay nào dành cho nhu cầu bất động sản?', 'Ngân hàng Vietcombank cung cấp những gói vay nào cho lĩnh vực bất động sản?', 'Tôi có thể tìm hiểu về các gói vay bất động sản của ngân hàng Vietcombank không?', 'Những sản phẩm vay bất động sản nào đang được ngân hàng Vietcombank triển khai?', 'Ngân hàng Vietcombank hiện có những gói vay nào dành cho nhu cầu bất động sản? Vay mua nhà dự án', 'Ngân hàng Vietcombank hiện có những gói vay nào dành cho nhu cầu bất động sản? Vay mua nhà ở, đất ở']
+2026-03-08 13:06:44,364 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:06:44,834 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 13:06:44,834 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 13:06:50,235 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:06:50,235 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:06:53,854 - INFO - rag_pipeline - RAG latency: 11.76s
+2026-03-08 13:08:41,189 - INFO - rag_pipeline - New user request: Tôi nghe nói VCB cũng có gói vay xây sửa nhà ở và gói vay Nhà Mới Thành Đạt đúng không?
+2026-03-08 13:08:41,826 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:08:41,827 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:08:41,828 - INFO - rag_pipeline - User query: Tôi nghe nói VCB cũng có gói vay xây sửa nhà ở và gói vay Nhà Mới Thành Đạt đúng không?
+2026-03-08 13:08:45,260 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có cung cấp gói vay xây sửa nhà ở và gói vay Nhà Mới Thành Đạt hay không?', 'Ngân hàng Vietcombank có hỗ trợ gói vay xây dựng và sửa chữa nhà ở cũng như gói vay Nhà Mới Thành Đạt không?', 'Tôi muốn biết liệu Vietcombank có cung cấp gói vay cho việc xây sửa nhà và gói vay Nhà Mới Thành Đạt hay không?', 'Có phải ngân hàng Vietcombank có các gói vay xây sửa nhà ở và gói vay Nhà Mới Thành Đạt không?', 'Ngân hàng Vietcombank có cung cấp gói vay xây sửa nhà ở và gói vay Nhà Mới Thành Đạt hay không? Vay mua nhà dự án', 'Ngân hàng Vietcombank có cung cấp gói vay xây sửa nhà ở và gói vay Nhà Mới Thành Đạt hay không? Vay mua nhà ở, đất ở']
+2026-03-08 13:08:45,261 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:08:45,756 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 13:08:45,756 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 13:08:51,034 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:08:51,034 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:08:52,673 - INFO - rag_pipeline - RAG latency: 10.85s
+2026-03-08 13:09:29,604 - INFO - rag_pipeline - New user request: VCB có gói vay xây sửa nhà ở không
+2026-03-08 13:09:30,264 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:09:30,265 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:09:30,265 - INFO - rag_pipeline - User query: VCB có gói vay xây sửa nhà ở không
+2026-03-08 13:09:32,781 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có cung cấp gói vay xây sửa nhà ở hay không?', 'Vietcombank có các gói vay nào cho việc xây dựng và sửa chữa nhà ở không?', 'Tôi có thể vay tiền từ Vietcombank để xây hoặc sửa nhà không?', 'Gói vay xây dựng và sửa chữa nhà ở của ngân hàng Vietcombank có sẵn không?', 'Ngân hàng Vietcombank có cung cấp gói vay xây sửa nhà ở hay không? Vay mua nhà dự án', 'Ngân hàng Vietcombank có cung cấp gói vay xây sửa nhà ở hay không? Vay mua nhà ở, đất ở']
+2026-03-08 13:09:32,790 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:09:33,270 - INFO - rag_pipeline - Documents after merge/filter: 11
+2026-03-08 13:09:33,271 - INFO - rag_pipeline - Retrieved docs count: 11
+2026-03-08 13:09:38,964 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:09:38,965 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:09:40,069 - INFO - rag_pipeline - RAG latency: 9.80s
+2026-03-08 13:10:29,639 - INFO - rag_pipeline - New user request: Tôi muốn mở thẻ để đi du lịch nước ngoài
+2026-03-08 13:10:30,309 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:10:30,310 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:10:30,311 - INFO - rag_pipeline - User query: Tôi muốn mở thẻ để đi du lịch nước ngoài
+2026-03-08 13:10:33,944 - INFO - rag_pipeline - Final search queries: ['Bạn có thể cho tôi biết thông tin về việc mở thẻ để đi du lịch nước ngoài tại Vietcombank không?', '1. Tôi muốn biết quy trình mở thẻ du lịch tại Vietcombank, bạn có thể cung cấp thông tin không?', '2. Bạn có thể hướng dẫn tôi về cách mở thẻ để sử dụng khi đi du lịch nước ngoài tại Vietcombank không?', '3. Xin cho tôi biết các thông tin cần thiết để mở thẻ du lịch tại Vietcombank được không?', 'Bạn có thể cho tôi biết thông tin về việc mở thẻ để đi du lịch nước ngoài tại Vietcombank không? credit_card']
+2026-03-08 13:10:33,946 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:10:34,367 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 13:10:34,367 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 13:10:48,310 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:10:48,310 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:10:53,414 - INFO - rag_pipeline - RAG latency: 23.10s
+2026-03-08 13:11:31,754 - INFO - rag_pipeline - New user request: Điều kiện là gì?
+2026-03-08 13:11:32,561 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:11:32,561 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:11:32,562 - INFO - rag_pipeline - User query: Điều kiện là gì?
+2026-03-08 13:11:34,649 - INFO - rag_pipeline - Final search queries: ['Điều kiện để mở thẻ Vietcombank Mastercard® World là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Mastercard® World.', 'Xin cho biết yêu cầu để đăng ký thẻ Vietcombank Mastercard® World.', 'Điều kiện nào cần có để tôi có thể mở thẻ Vietcombank Mastercard® World?', 'Điều kiện để mở thẻ Vietcombank Mastercard® World là gì? credit_card']
+2026-03-08 13:11:34,651 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:11:35,054 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 13:11:35,055 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 13:11:49,968 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:11:49,969 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:11:53,069 - INFO - rag_pipeline - RAG latency: 20.51s
+2026-03-08 13:13:05,658 - INFO - rag_pipeline - New user request: Điều kiện vay mua ô tô
+2026-03-08 13:13:06,233 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:13:06,234 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:13:06,235 - INFO - rag_pipeline - User query: Điều kiện vay mua ô tô
+2026-03-08 13:13:08,837 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì?', 'Tôi cần biết điều kiện vay mua ô tô tại ngân hàng Vietcombank.', 'Ngân hàng Vietcombank có những yêu cầu gì để vay mua ô tô?', 'Vay mua ô tô tại Vietcombank cần đáp ứng những điều kiện nào?']
+2026-03-08 13:13:08,837 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:13:09,188 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 13:13:09,188 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 13:13:23,319 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:13:23,320 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:13:27,508 - INFO - rag_pipeline - RAG latency: 21.27s
+2026-03-08 13:14:53,412 - INFO - rag_pipeline - New user request: Tôi muốn kinh doanh, VCB có các gói vay nào?
+2026-03-08 13:14:54,041 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:14:54,042 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:14:54,043 - INFO - rag_pipeline - User query: Tôi muốn kinh doanh, VCB có các gói vay nào?
+2026-03-08 13:14:56,311 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có những gói vay nào dành cho khách hàng có nhu cầu kinh doanh?', '1. Vietcombank cung cấp những loại hình vay nào cho khách hàng kinh doanh?', '2. Các gói vay kinh doanh của ngân hàng Vietcombank là gì?', '3. Khách hàng có nhu cầu kinh doanh có thể lựa chọn gói vay nào tại Vietcombank?']
+2026-03-08 13:14:56,312 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:14:56,645 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 13:14:56,645 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 13:15:11,591 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:15:11,592 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:15:16,345 - INFO - rag_pipeline - RAG latency: 22.30s
+2026-03-08 13:16:55,448 - INFO - rag_pipeline - New user request: Hãy cho tôi biết thêm thông tin về Vay tín chấp theo lương
+2026-03-08 13:16:56,337 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 13:16:56,337 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 13:16:56,338 - INFO - rag_pipeline - User query: Hãy cho tôi biết thêm thông tin về Vay tín chấp theo lương
+2026-03-08 13:16:59,054 - INFO - rag_pipeline - Final search queries: ['Bạn có thể cung cấp thêm thông tin chi tiết về sản phẩm Vay tín chấp theo lương của ngân hàng Vietcombank không?', '1. Xin vui lòng cho tôi biết thêm về sản phẩm Vay tín chấp theo lương của ngân hàng Vietcombank.', '2. Tôi muốn tìm hiểu thêm thông tin chi tiết về vay tín chấp theo lương tại Vietcombank, bạn có thể giúp không?', '3. Có thể cho tôi biết rõ hơn về điều kiện và đặc điểm của sản phẩm Vay tín chấp theo lương của ngân hàng Vietcombank không?']
+2026-03-08 13:16:59,056 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 13:16:59,392 - INFO - rag_pipeline - Documents after merge/filter: 30
+2026-03-08 13:16:59,392 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 13:17:14,168 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 13:17:14,168 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 13:17:22,913 - INFO - rag_pipeline - RAG latency: 26.57s
+2026-03-08 14:10:12,531 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 14:11:05,969 - INFO - rag_pipeline - New user request: VCB có gói vay Nhà Mới Thành Đạt không
+2026-03-08 14:11:08,225 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:11:08,226 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:11:08,227 - INFO - rag_pipeline - User query: VCB có gói vay Nhà Mới Thành Đạt không
+2026-03-08 14:11:11,003 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có cung cấp gói vay Nhà Mới Thành Đạt hay không?', 'Gói vay Nhà Mới Thành Đạt có được Vietcombank cung cấp không?', 'Vietcombank có hỗ trợ gói vay Nhà Mới Thành Đạt không?', 'Tôi có thể tìm thấy thông tin về gói vay Nhà Mới Thành Đạt của Vietcombank ở đâu?']
+2026-03-08 14:11:11,003 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:11:12,470 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:11:12,470 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:11:28,916 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:11:28,919 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:11:32,599 - INFO - rag_pipeline - RAG latency: 24.37s
+2026-03-08 14:11:50,205 - INFO - rag_pipeline - New user request: Điều kiện
+2026-03-08 14:11:51,166 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:11:51,167 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:11:51,168 - INFO - rag_pipeline - User query: Điều kiện
+2026-03-08 14:11:54,263 - INFO - rag_pipeline - Final search queries: ['Điều kiện để được vay gói Nhà Mới Thành Đạt của Vietcombank là gì?', 'Tôi cần đáp ứng những điều kiện nào để vay gói Nhà Mới Thành Đạt của Vietcombank?', 'Vay gói Nhà Mới Thành Đạt của Vietcombank cần những yêu cầu gì?', 'Xin cho biết các tiêu chí để đủ điều kiện vay gói Nhà Mới Thành Đạt tại Vietcombank?']
+2026-03-08 14:11:54,264 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:11:54,713 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:11:54,713 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:12:09,314 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:12:09,314 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:12:12,932 - INFO - rag_pipeline - RAG latency: 21.76s
+2026-03-08 14:13:26,898 - INFO - rag_pipeline - New user request: Hình như đây không  phải là điều kiện vay của gói vay Nhà Mới Thành Đạt
+2026-03-08 14:13:27,609 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:13:27,610 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:13:27,611 - INFO - rag_pipeline - User query: Hình như đây không  phải là điều kiện vay của gói vay Nhà Mới Thành Đạt
+2026-03-08 14:13:30,075 - INFO - rag_pipeline - Final search queries: ['Điều kiện vay của gói vay Nhà Mới Thành Đạt tại Vietcombank là gì?', 'Tôi muốn biết điều kiện để vay gói vay Nhà Mới Thành Đạt tại Vietcombank.', 'Gói vay Nhà Mới Thành Đạt của Vietcombank có những yêu cầu gì để được vay?', 'Xin cho biết các tiêu chí vay của gói vay Nhà Mới Thành Đạt tại Vietcombank.']
+2026-03-08 14:13:30,076 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:13:30,453 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:13:30,454 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:13:45,522 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:13:45,523 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:13:49,042 - INFO - rag_pipeline - RAG latency: 21.43s
+2026-03-08 14:15:15,838 - INFO - rag_pipeline - New user request: Điều kiện để vay xây sửa nhà ở
+2026-03-08 14:15:16,624 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:15:16,625 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:15:16,626 - INFO - rag_pipeline - User query: Điều kiện để vay xây sửa nhà ở
+2026-03-08 14:15:18,997 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay xây sửa nhà ở tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay để xây dựng hoặc sửa chữa nhà ở tại Vietcombank.', 'Vietcombank có những yêu cầu gì để cho vay xây sửa nhà ở?', 'Xin cho biết các điều kiện vay vốn xây dựng và sửa chữa nhà ở tại ngân hàng Vietcombank.']
+2026-03-08 14:15:18,999 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:15:19,311 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:15:19,312 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:15:33,177 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:15:33,178 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:15:38,765 - INFO - rag_pipeline - RAG latency: 22.14s
+2026-03-08 14:17:41,472 - INFO - rag_pipeline - New user request: Tôi muốn vay mua nhà, VCB có gói vay nào không?
+2026-03-08 14:17:42,269 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:17:42,270 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:17:42,271 - INFO - rag_pipeline - User query: Tôi muốn vay mua nhà, VCB có gói vay nào không?
+2026-03-08 14:17:44,754 - INFO - rag_pipeline - Final search queries: ['Vietcombank có gói vay nào dành cho khách hàng muốn vay mua nhà không?', '1. Vietcombank có những gói vay nào hỗ trợ khách hàng mua nhà?', '2. Khách hàng muốn vay mua nhà tại Vietcombank có thể lựa chọn gói vay nào?', '3. Có gói vay nào tại Vietcombank dành cho người muốn vay để mua nhà không?']
+2026-03-08 14:17:44,755 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:17:45,061 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:17:45,062 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:17:58,928 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:17:58,929 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:18:01,345 - INFO - rag_pipeline - RAG latency: 19.07s
+2026-03-08 14:19:08,915 - INFO - rag_pipeline - New user request: Điều kiện cho vay mua nhà ở, đất ở
+2026-03-08 14:19:09,611 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:19:09,613 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:19:09,614 - INFO - rag_pipeline - User query: Điều kiện cho vay mua nhà ở, đất ở
+2026-03-08 14:19:12,129 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua nhà ở và đất ở tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay mua nhà và đất tại Vietcombank là gì?', 'Vay mua nhà và đất ở Vietcombank cần những điều kiện gì?', 'Xin cho biết các yêu cầu để vay mua nhà và đất tại ngân hàng Vietcombank?']
+2026-03-08 14:19:12,129 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:19:12,434 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:19:12,434 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:19:26,324 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:19:26,325 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:19:29,478 - INFO - rag_pipeline - RAG latency: 19.86s
+2026-03-08 14:20:23,316 - INFO - rag_pipeline - New user request: VCB còn gói vay nào khác cho bất động sản ngoài gói  vay mua nhà ở, đất ở
+2026-03-08 14:20:23,986 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:20:23,987 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:20:23,988 - INFO - rag_pipeline - User query: VCB còn gói vay nào khác cho bất động sản ngoài gói  vay mua nhà ở, đất ở
+2026-03-08 14:20:26,791 - INFO - rag_pipeline - Final search queries: ['Vietcombank có những gói vay nào khác cho bất động sản ngoài gói vay mua nhà ở và đất ở?', '1. Vietcombank cung cấp những loại hình vay nào cho bất động sản ngoài gói vay mua nhà và đất ở?', '2. Có những gói vay bất động sản nào khác tại Vietcombank ngoài gói vay mua nhà ở và đất ở không?', '3. Vietcombank có các gói vay bất động sản nào khác ngoài gói vay mua nhà và đất ở không?']
+2026-03-08 14:20:26,793 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:20:27,101 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:20:27,101 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:20:41,633 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:20:41,634 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:20:45,486 - INFO - rag_pipeline - RAG latency: 21.50s
+2026-03-08 14:21:40,848 - INFO - rag_pipeline - New user request: Điều kiện Vay mua nhà dự án
+2026-03-08 14:21:41,609 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:21:41,610 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:21:41,610 - INFO - rag_pipeline - User query: Điều kiện Vay mua nhà dự án
+2026-03-08 14:21:44,036 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua nhà dự án tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay mua nhà dự án tại Vietcombank.', 'Vietcombank có những yêu cầu gì để vay mua nhà dự án?', 'Xin cho biết các tiêu chí vay mua nhà dự án tại Vietcombank.']
+2026-03-08 14:21:44,038 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:21:44,320 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:21:44,321 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:21:59,005 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:21:59,005 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:22:03,521 - INFO - rag_pipeline - RAG latency: 21.91s
+2026-03-08 14:22:51,117 - INFO - rag_pipeline - New user request: Cần chuẩn bị gì
+2026-03-08 14:22:51,904 - INFO - rag_pipeline - Intent classified by LLM: out_of_scope
+2026-03-08 14:22:51,905 - INFO - rag_pipeline - Intent: out_of_scope
+2026-03-08 14:22:51,906 - WARNING - rag_pipeline - Out of scope request blocked
+2026-03-08 14:23:10,721 - INFO - rag_pipeline - New user request: Cần chuẩn bị hồ sơ gì
+2026-03-08 14:23:11,454 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:23:11,456 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:23:11,457 - INFO - rag_pipeline - User query: Cần chuẩn bị hồ sơ gì
+2026-03-08 14:23:14,814 - INFO - rag_pipeline - Final search queries: ['Khách hàng cần chuẩn bị hồ sơ gì để tiến hành vay mua nhà dự án tại Vietcombank?', 'Tôi cần chuẩn bị những giấy tờ gì để vay mua nhà dự án tại Vietcombank?', 'Để vay mua nhà dự án tại Vietcombank, khách hàng cần có những hồ sơ nào?', 'Hồ sơ cần thiết để thực hiện vay mua nhà dự án tại Vietcombank là gì?']
+2026-03-08 14:23:14,816 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:23:15,136 - INFO - rag_pipeline - Documents after merge: 26
+2026-03-08 14:23:15,136 - INFO - rag_pipeline - Retrieved docs count: 26
+2026-03-08 14:23:27,924 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:23:27,924 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:23:34,218 - INFO - rag_pipeline - RAG latency: 22.76s
+2026-03-08 14:25:30,276 - INFO - rag_pipeline - New user request: Hồ sơ để vay mua nhà dự án mà
+2026-03-08 14:25:31,025 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:25:31,026 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:25:31,027 - INFO - rag_pipeline - User query: Hồ sơ để vay mua nhà dự án mà
+2026-03-08 14:25:33,613 - INFO - rag_pipeline - Final search queries: ['Hồ sơ cần chuẩn bị để vay mua nhà dự án tại Vietcombank là gì?', 'Tôi cần chuẩn bị những hồ sơ gì để vay mua nhà dự án tại Vietcombank?', 'Để vay mua nhà dự án tại Vietcombank, hồ sơ cần thiết là gì?', 'Xin cho biết hồ sơ cần có khi vay mua nhà dự án tại Vietcombank?']
+2026-03-08 14:25:33,615 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:25:33,931 - INFO - rag_pipeline - Documents after merge: 28
+2026-03-08 14:25:33,931 - INFO - rag_pipeline - Retrieved docs count: 28
+2026-03-08 14:25:47,155 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:25:47,155 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:25:54,381 - INFO - rag_pipeline - RAG latency: 23.35s
+2026-03-08 14:29:21,195 - INFO - rag_pipeline - New user request: Điều kiện để Vay mua nhà dự án và Vay mua nhà ở, đất ở
+2026-03-08 14:29:21,888 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:29:21,889 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:29:21,890 - INFO - rag_pipeline - User query: Điều kiện để Vay mua nhà dự án và Vay mua nhà ở, đất ở
+2026-03-08 14:29:25,449 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay sản phẩm "Vay mua nhà dự án" và "Vay mua nhà ở, đất ở" tại Vietcombank là gì?', 'Tôi muốn biết điều kiện vay cho sản phẩm "Vay mua nhà dự án" và "Vay mua nhà ở, đất ở" tại Vietcombank.', 'Xin cho biết các yêu cầu để vay sản phẩm "Vay mua nhà dự án" và "Vay mua nhà ở, đất ở" tại Vietcombank.', 'Điều kiện nào cần có để vay sản phẩm "Vay mua nhà dự án" và "Vay mua nhà ở, đất ở" tại ngân hàng Vietcombank?']
+2026-03-08 14:29:25,450 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:29:25,780 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:29:25,781 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:29:39,765 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:29:39,765 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:29:45,604 - INFO - rag_pipeline - RAG latency: 23.71s
+2026-03-08 14:31:00,361 - INFO - rag_pipeline - New user request: Quy trình vay của 2 gói vay trên
+2026-03-08 14:31:01,171 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:31:01,172 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:31:01,173 - INFO - rag_pipeline - User query: Quy trình vay của 2 gói vay trên
+2026-03-08 14:31:04,879 - INFO - rag_pipeline - Final search queries: ['Quy trình vay của hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank là gì?', 'Quy trình vay cho hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank như thế nào?', 'Tôi muốn biết quy trình vay của hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank.', 'Có thể cho tôi biết quy trình vay của hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank không?']
+2026-03-08 14:31:04,880 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:31:05,220 - INFO - rag_pipeline - Documents after merge: 27
+2026-03-08 14:31:05,221 - INFO - rag_pipeline - Retrieved docs count: 27
+2026-03-08 14:31:18,097 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:31:18,098 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:31:23,094 - INFO - rag_pipeline - RAG latency: 21.92s
+2026-03-08 14:33:30,481 - INFO - rag_pipeline - New user request: Bạn đưa thông tin về Vay ô tô mà tôi không có hỏi đến
+2026-03-08 14:33:31,495 - INFO - rag_pipeline - Intent classified by LLM: out_of_scope
+2026-03-08 14:33:31,496 - INFO - rag_pipeline - Intent: out_of_scope
+2026-03-08 14:33:31,497 - WARNING - rag_pipeline - Out of scope request blocked
+2026-03-08 14:34:14,029 - INFO - rag_pipeline - New user request: Quy trình cho vay của Vay mua nhà dự án và Vay mua nhà ở, đất ở
+2026-03-08 14:34:14,934 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:34:14,935 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:34:14,936 - INFO - rag_pipeline - User query: Quy trình cho vay của Vay mua nhà dự án và Vay mua nhà ở, đất ở
+2026-03-08 14:34:18,190 - INFO - rag_pipeline - Final search queries: ['Quy trình cho vay của sản phẩm Vay mua nhà dự án và Vay mua nhà ở, đất ở tại Vietcombank là gì?', 'Quy trình vay vốn cho sản phẩm Vay mua nhà dự án và Vay mua nhà ở, đất ở tại Vietcombank ra sao?', 'Tôi muốn biết quy trình cho vay của Vietcombank đối với sản phẩm Vay mua nhà dự án và Vay mua nhà ở, đất ở.', 'Có thể cho tôi biết các bước trong quy trình vay của sản phẩm Vay mua nhà dự án và Vay mua nhà ở, đất ở tại Vietcombank không?']
+2026-03-08 14:34:18,192 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:34:18,508 - INFO - rag_pipeline - Documents after merge: 24
+2026-03-08 14:34:18,509 - INFO - rag_pipeline - Retrieved docs count: 24
+2026-03-08 14:34:29,849 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:34:29,850 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:34:33,092 - INFO - rag_pipeline - RAG latency: 18.16s
+2026-03-08 14:35:43,787 - INFO - rag_pipeline - New user request: Hồ sơ chuẩn bị để vay xây sửa nhà ở
+2026-03-08 14:35:44,454 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:35:44,454 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:35:44,455 - INFO - rag_pipeline - User query: Hồ sơ chuẩn bị để vay xây sửa nhà ở
+2026-03-08 14:35:47,408 - INFO - rag_pipeline - Final search queries: ['Hồ sơ cần chuẩn bị để vay vốn xây dựng hoặc sửa chữa nhà ở là gì?', '1. Tôi cần chuẩn bị những giấy tờ gì để vay vốn xây dựng hoặc sửa chữa nhà ở?', '2. Để vay vốn cho việc xây dựng hoặc sửa chữa nhà, hồ sơ cần có những gì?', '3. Những tài liệu nào cần thiết để thực hiện vay vốn xây dựng hoặc sửa chữa nhà ở?']
+2026-03-08 14:35:47,410 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:35:47,723 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:35:47,724 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:36:02,069 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:36:02,069 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:36:08,382 - INFO - rag_pipeline - RAG latency: 23.93s
+2026-03-08 14:36:38,104 - INFO - rag_pipeline - New user request: Điều kiện là gì
+2026-03-08 14:36:38,877 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 14:36:38,877 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 14:36:38,878 - INFO - rag_pipeline - User query: Điều kiện là gì
+2026-03-08 14:36:41,241 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay xây sửa nhà ở tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay xây sửa nhà ở tại Vietcombank.', 'Vietcombank có những yêu cầu gì để vay vốn xây sửa nhà?', 'Xin cho biết các điều kiện cần có để vay tiền xây sửa nhà tại Vietcombank.']
+2026-03-08 14:36:41,242 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 14:36:41,531 - INFO - rag_pipeline - Documents after merge: 30
+2026-03-08 14:36:41,532 - INFO - rag_pipeline - Retrieved docs count: 30
+2026-03-08 14:36:55,367 - INFO - rag_pipeline - Reranked docs: 8
+2026-03-08 14:36:55,367 - INFO - rag_pipeline - Building context from 8 documents
+2026-03-08 14:36:57,721 - INFO - rag_pipeline - RAG latency: 18.84s
+2026-03-08 15:03:59,880 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 15:07:32,685 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 15:07:43,351 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 15:07:43,359 - INFO - rag_pipeline - Embedding product names
+2026-03-08 15:08:26,231 - INFO - rag_pipeline - New user request: Hồ sơ chuẩn bị để vay xây sửa nhà ở
+2026-03-08 15:08:27,036 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 15:08:27,037 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 15:08:27,037 - INFO - rag_pipeline - User query: Hồ sơ chuẩn bị để vay xây sửa nhà ở
+2026-03-08 15:08:29,973 - INFO - rag_pipeline - Final search queries: ['Hồ sơ cần chuẩn bị để vay xây sửa nhà ở tại Vietcombank là gì?', 'Tôi cần chuẩn bị những hồ sơ gì để vay tiền xây sửa nhà ở Vietcombank?', 'Để vay xây sửa nhà tại Vietcombank, hồ sơ cần có là gì?', 'Xin cho biết các tài liệu cần thiết để vay vốn xây sửa nhà ở Vietcombank?']
+2026-03-08 15:08:32,330 - INFO - rag_pipeline - Detected product: Vay xây sửa nhà ở (score=0.592)
+2026-03-08 15:08:32,331 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 15:08:33,536 - INFO - rag_pipeline - Docs after product filter: 5
+2026-03-08 15:08:37,357 - INFO - rag_pipeline - Building context from 5 documents
+2026-03-08 15:08:44,668 - INFO - rag_pipeline - RAG latency: 17.63s
+2026-03-08 15:09:22,801 - INFO - rag_pipeline - New user request: Điều kiện là gì
+2026-03-08 15:09:23,624 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 15:09:23,625 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 15:09:23,625 - INFO - rag_pipeline - User query: Điều kiện là gì
+2026-03-08 15:09:26,727 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay xây sửa nhà ở tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay xây sửa nhà ở tại Vietcombank.', 'Vietcombank có những yêu cầu gì để vay vốn xây sửa nhà ở?', 'Xin cho biết các tiêu chí để được vay xây sửa nhà tại ngân hàng Vietcombank?']
+2026-03-08 15:09:27,140 - INFO - rag_pipeline - Detected product: Vay xây sửa nhà ở (score=0.626)
+2026-03-08 15:09:27,141 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 15:09:27,430 - INFO - rag_pipeline - Docs after product filter: 5
+2026-03-08 15:09:29,996 - INFO - rag_pipeline - Building context from 5 documents
+2026-03-08 15:09:34,070 - INFO - rag_pipeline - RAG latency: 10.45s
+2026-03-08 15:10:39,764 - INFO - rag_pipeline - New user request: Thời hạn vay tối đa
+2026-03-08 15:10:40,547 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 15:10:40,548 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 15:10:40,548 - INFO - rag_pipeline - User query: Thời hạn vay tối đa
+2026-03-08 15:10:43,647 - INFO - rag_pipeline - Final search queries: ['Thời hạn vay tối đa cho khoản vay xây sửa nhà ở tại Vietcombank là bao lâu?', 'Thời gian vay tối đa cho khoản vay xây dựng và sửa chữa nhà tại Vietcombank là bao nhiêu?', 'Vietcombank quy định thời hạn tối đa cho khoản vay xây sửa nhà là bao lâu?', 'Khoản vay xây dựng và sửa chữa nhà ở tại Vietcombank có thời hạn tối đa là bao nhiêu?']
+2026-03-08 15:10:44,244 - INFO - rag_pipeline - Detected product: Vay xây sửa nhà ở (score=0.559)
+2026-03-08 15:10:44,245 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 15:10:44,555 - INFO - rag_pipeline - Docs after product filter: 5
+2026-03-08 15:10:47,218 - INFO - rag_pipeline - Building context from 5 documents
+2026-03-08 15:10:48,381 - INFO - rag_pipeline - RAG latency: 7.83s
+2026-03-08 15:12:00,207 - INFO - rag_pipeline - New user request: Điều kiện vay mua nhà dự án và vay mua nhà ở, đất ở tại VCB
+2026-03-08 15:12:00,975 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 15:12:00,976 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 15:12:00,977 - INFO - rag_pipeline - User query: Điều kiện vay mua nhà dự án và vay mua nhà ở, đất ở tại VCB
+2026-03-08 15:12:04,319 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank là gì?', 'Tôi muốn biết điều kiện vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank.', 'Vui lòng cho tôi biết các yêu cầu để vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank.', 'Điều kiện nào cần có để thực hiện vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank?']
+2026-03-08 15:12:04,719 - INFO - rag_pipeline - Detected product: Vay mua nhà dự án (score=0.585)
+2026-03-08 15:12:04,720 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 15:12:05,032 - INFO - rag_pipeline - Docs after product filter: 6
+2026-03-08 15:12:08,136 - INFO - rag_pipeline - Building context from 6 documents
+2026-03-08 15:12:13,297 - INFO - rag_pipeline - RAG latency: 12.32s
+2026-03-08 15:13:43,433 - INFO - rag_pipeline - New user request: Điều kiện vay mua nhà ở đất ở
+2026-03-08 15:13:44,043 - INFO - rag_pipeline - Intent classified by LLM: info_query
+2026-03-08 15:13:44,044 - INFO - rag_pipeline - Intent: info_query
+2026-03-08 15:13:44,045 - INFO - rag_pipeline - User query: Điều kiện vay mua nhà ở đất ở
+2026-03-08 15:13:46,598 - INFO - rag_pipeline - Final search queries: ['Điều kiện vay mua nhà ở và đất ở tại Vietcombank là gì?', 'Tôi muốn biết điều kiện để vay mua nhà và đất ở tại Vietcombank.', 'Vietcombank có những yêu cầu gì để vay mua nhà và đất ở?', 'Xin cho biết các tiêu chí vay mua nhà và đất ở tại ngân hàng Vietcombank.']
+2026-03-08 15:13:47,121 - INFO - rag_pipeline - Detected product: Vietcombank JCB (score=0.560)
+2026-03-08 15:13:47,122 - INFO - rag_pipeline - Starting document retrieval
+2026-03-08 15:13:47,411 - INFO - rag_pipeline - Docs after product filter: 0
+2026-03-08 15:16:41,766 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 15:26:24,493 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 15:26:35,191 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 15:27:18,479 - INFO - rag_pipeline - User request: Điều kiện vay mua nhà dự án và vay mua nhà ở, đất ở tại VCB
+2026-03-08 15:27:21,652 - INFO - rag_pipeline - Product router: ['Vay mua nhà ở, đất ở', 'Vay mua nhà dự án']
+2026-03-08 15:27:23,396 - INFO - rag_pipeline - Search queries: ['Điều kiện vay vốn để mua nhà dự án và vay mua nhà ở, đất ở tại ngân hàng Vietcombank là gì?', '1. Tôi muốn biết điều kiện để vay vốn mua nhà dự án và vay mua nhà, đất ở tại ngân hàng Vietcombank.', '2. Ngân hàng Vietcombank có những yêu cầu gì để vay vốn mua nhà dự án và vay mua nhà, đất ở?', '3. Xin cho biết các điều kiện vay vốn của ngân hàng Vietcombank cho việc mua nhà dự án và mua nhà, đất ở.', 'Điều kiện vay vốn để mua nhà dự án và vay mua nhà ở, đất ở tại ngân hàng Vietcombank là gì? Vay mua nhà ở, đất ở', 'Điều kiện vay vốn để mua nhà dự án và vay mua nhà ở, đất ở tại ngân hàng Vietcombank là gì? Vay mua nhà dự án']
+2026-03-08 15:27:23,398 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:27:24,763 - INFO - rag_pipeline - Retrieved docs: 11
+2026-03-08 15:27:37,491 - INFO - rag_pipeline - RAG latency: 17.80s
+2026-03-08 15:29:50,180 - INFO - rag_pipeline - User request: Hồ sơ chuẩn bị để vay 2 gói vay trên
+2026-03-08 15:29:52,918 - INFO - rag_pipeline - Product router: ['Vay mua nhà ở, đất ở', 'Vay mua nhà dự án']
+2026-03-08 15:29:54,882 - INFO - rag_pipeline - Search queries: ['Hồ sơ cần chuẩn bị để vay hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank là gì?', 'Tôi cần chuẩn bị những hồ sơ gì để vay hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank?', 'Xin cho biết hồ sơ cần thiết để thực hiện vay hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank?', 'Để vay hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank, tôi cần chuẩn bị những giấy tờ nào?', 'Hồ sơ cần chuẩn bị để vay hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank là gì? Vay mua nhà ở, đất ở', 'Hồ sơ cần chuẩn bị để vay hai gói vay mua nhà dự án và vay mua nhà ở, đất ở tại Vietcombank là gì? Vay mua nhà dự án']
+2026-03-08 15:29:54,884 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:29:55,371 - INFO - rag_pipeline - Retrieved docs: 11
+2026-03-08 15:30:11,471 - INFO - rag_pipeline - RAG latency: 20.61s
+2026-03-08 15:31:40,703 - INFO - rag_pipeline - User request: Quy trình vay và ngày trả nợ của Vay mua nhà dự án
+2026-03-08 15:31:43,263 - INFO - rag_pipeline - Product router: ['Vay mua nhà dự án']
+2026-03-08 15:31:45,094 - INFO - rag_pipeline - Search queries: ['Quy trình vay và thời gian trả nợ cho gói vay "Vay mua nhà dự án" tại Vietcombank là gì?', 'Quy trình và thời gian hoàn trả cho gói vay "Vay mua nhà dự án" tại Vietcombank như thế nào?', 'Tôi muốn biết quy trình vay và thời gian trả nợ của gói vay "Vay mua nhà dự án" tại Vietcombank.', 'Gói vay "Vay mua nhà dự án" tại Vietcombank có quy trình vay và thời gian trả nợ ra sao?', 'Quy trình vay và thời gian trả nợ cho gói vay "Vay mua nhà dự án" tại Vietcombank là gì? Vay mua nhà dự án']
+2026-03-08 15:31:45,096 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:31:45,490 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-08 15:31:52,269 - INFO - rag_pipeline - RAG latency: 10.93s
+2026-03-08 15:33:51,680 - INFO - rag_pipeline - User request: Tôi vay 10 tỷ với lãi suất 10% trong 10 năm thì mỗi tháng tôi phải trả bao nhiêu tiền
+2026-03-08 15:33:51,681 - INFO - rag_pipeline - Loan calculation: principal=10000000000.0, rate=10.0, years=10.0, payment=132150736.88176192
+2026-03-08 15:35:52,870 - INFO - rag_pipeline - User request: Hiện tại VCB có gói vay mua ô tô không
+2026-03-08 15:35:55,744 - INFO - rag_pipeline - Product router: ['Vay mua ô tô']
+2026-03-08 15:35:57,501 - INFO - rag_pipeline - Search queries: ['Vietcombank hiện tại có cung cấp gói vay mua ô tô hay không?', 'Vietcombank có đang cung cấp gói vay mua ô tô không?', 'Hiện tại, Vietcombank có gói vay nào cho việc mua ô tô không?', 'Tôi muốn biết liệu Vietcombank có dịch vụ vay mua ô tô hay không?', 'Vietcombank hiện tại có cung cấp gói vay mua ô tô hay không? Vay mua ô tô']
+2026-03-08 15:35:57,503 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:35:57,864 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-08 15:36:01,880 - INFO - rag_pipeline - RAG latency: 8.35s
+2026-03-08 15:36:29,397 - INFO - rag_pipeline - User request: Điều kiện và hồ sơ là gì
+2026-03-08 15:36:31,546 - INFO - rag_pipeline - Product router: ['Vay mua ô tô']
+2026-03-08 15:36:32,847 - INFO - rag_pipeline - Search queries: ['Điều kiện và hồ sơ vay mua ô tô tại Vietcombank là gì?', 'Tôi cần biết điều kiện và hồ sơ để vay mua ô tô tại Vietcombank.', 'Vietcombank yêu cầu những gì để vay mua ô tô?', 'Hồ sơ và điều kiện vay mua ô tô tại ngân hàng Vietcombank là như thế nào?', 'Điều kiện và hồ sơ vay mua ô tô tại Vietcombank là gì? Vay mua ô tô']
+2026-03-08 15:36:32,848 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:36:33,193 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-08 15:36:41,227 - INFO - rag_pipeline - RAG latency: 11.00s
+2026-03-08 15:37:55,492 - INFO - rag_pipeline - User request: Tôi muốn đi du lịch thì nên chọn loại thẻ nào
+2026-03-08 15:37:58,676 - INFO - rag_pipeline - Product router: ['Vietcombank Vietnam Airlines American Express®', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard® World', 'Vietcombank Visa Platinum', 'Vietcombank Vietnam Airlines Platinum American Express®']
+2026-03-08 15:38:00,006 - INFO - rag_pipeline - Search queries: ['Tôi muốn đi du lịch thì nên chọn loại thẻ ngân hàng nào của Vietcombank?', '1. Thẻ ngân hàng nào của Vietcombank phù hợp cho việc đi du lịch?', '2. Tôi nên sử dụng thẻ nào của Vietcombank khi đi du lịch?', '3. Vietcombank có loại thẻ nào tốt cho việc du lịch không?', 'Tôi muốn đi du lịch thì nên chọn loại thẻ ngân hàng nào của Vietcombank? Vietcombank Vietnam Airlines American Express®', 'Tôi muốn đi du lịch thì nên chọn loại thẻ ngân hàng nào của Vietcombank? Vietcombank JCB Platinum', 'Tôi muốn đi du lịch thì nên chọn loại thẻ ngân hàng nào của Vietcombank? Vietcombank Mastercard® World', 'Tôi muốn đi du lịch thì nên chọn loại thẻ ngân hàng nào của Vietcombank? Vietcombank Visa Platinum', 'Tôi muốn đi du lịch thì nên chọn loại thẻ ngân hàng nào của Vietcombank? Vietcombank Vietnam Airlines Platinum American Express®']
+2026-03-08 15:38:00,007 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:38:00,940 - INFO - rag_pipeline - Retrieved docs: 5
+2026-03-08 15:38:09,547 - INFO - rag_pipeline - RAG latency: 13.08s
+2026-03-08 15:39:43,341 - INFO - rag_pipeline - User request: Lợi ích của thẻ Vietcombank Mastercard® World
+2026-03-08 15:39:45,517 - INFO - rag_pipeline - Product router: ['Vietcombank Mastercard® World']
+2026-03-08 15:39:46,931 - INFO - rag_pipeline - Search queries: ['Lợi ích của thẻ Vietcombank Mastercard® World là gì?', 'Thẻ Vietcombank Mastercard® World mang lại những lợi ích gì?', 'Những ưu điểm của thẻ Vietcombank Mastercard® World là gì?', 'Tôi có thể nhận được những lợi ích nào từ thẻ Vietcombank Mastercard® World?', 'Lợi ích của thẻ Vietcombank Mastercard® World là gì? Vietcombank Mastercard® World']
+2026-03-08 15:39:46,933 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:39:47,310 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 15:39:55,038 - INFO - rag_pipeline - RAG latency: 11.00s
+2026-03-08 15:40:43,457 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-08 15:40:45,600 - INFO - rag_pipeline - Product router: None
+2026-03-08 15:40:46,812 - INFO - rag_pipeline - Search queries: ['Điều kiện để mở thẻ Vietcombank là gì?', 'Tôi cần biết điều kiện mở thẻ Vietcombank.', 'Thẻ Vietcombank cần những yêu cầu gì để mở?', 'Mở thẻ Vietcombank cần đáp ứng những điều kiện nào?']
+2026-03-08 15:40:46,813 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:40:47,048 - INFO - rag_pipeline - Retrieved docs: 30
+2026-03-08 15:41:09,004 - INFO - rag_pipeline - RAG latency: 24.77s
+2026-03-08 15:43:43,859 - INFO - rag_pipeline - User request: Điều kiện mở thẻ Vietcombank Mastercard® World:
+2026-03-08 15:43:46,057 - INFO - rag_pipeline - Product router: ['Vietcombank Mastercard® World']
+2026-03-08 15:43:47,249 - INFO - rag_pipeline - Search queries: ['Điều kiện mở thẻ Vietcombank Mastercard® World là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Mastercard® World.', 'Thẻ Vietcombank Mastercard® World yêu cầu những điều kiện gì để mở?', 'Xin cho biết các yêu cầu cần có để đăng ký thẻ Vietcombank Mastercard® World.', 'Điều kiện mở thẻ Vietcombank Mastercard® World là gì? Vietcombank Mastercard® World']
+2026-03-08 15:43:47,251 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:43:47,618 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 15:43:50,605 - INFO - rag_pipeline - RAG latency: 5.94s
+2026-03-08 15:45:20,357 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 15:45:31,380 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 15:45:40,446 - INFO - rag_pipeline - User request: Tôi muốn đi du lịch thì nên chọn loại thẻ nào
+2026-03-08 15:45:43,727 - INFO - rag_pipeline - Product router: ['Vietcombank JCB Platinum', 'Vietcombank American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Visa Platinum']
+2026-03-08 15:45:45,720 - INFO - rag_pipeline - Search queries: ['Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch?', 'Loại thẻ ngân hàng nào của Vietcombank phù hợp nhất cho việc đi du lịch?', 'Tôi nên sử dụng thẻ ngân hàng nào của Vietcombank khi đi du lịch?', 'Vietcombank có loại thẻ nào tốt cho việc sử dụng khi đi du lịch không?', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch? Vietcombank JCB Platinum', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch? Vietcombank American Express®', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch? Vietcombank Vietnam Airlines Platinum American Express®', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch? Vietcombank Visa Platinum']
+2026-03-08 15:45:45,722 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:45:46,352 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-08 15:45:53,805 - INFO - rag_pipeline - RAG latency: 12.25s
+2026-03-08 15:46:45,193 - INFO - rag_pipeline - User request: Còn loại thẻ nào khác phù hợp nữa không
+2026-03-08 15:46:48,170 - INFO - rag_pipeline - Product router: ['Vietcombank American Express®', 'Vietcombank Visa Platinum', 'Vietcombank Mastercard® World', 'Vietcombank JCB Platinum', 'Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:46:50,118 - INFO - rag_pipeline - Search queries: ['Ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express®, còn loại thẻ nào khác phù hợp cho việc đi du lịch không?', '1. Có những loại thẻ nào khác ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express® phù hợp cho việc du lịch?', '2. Tôi có thể sử dụng thẻ nào khác ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express® khi đi du lịch?', '3. Ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express®, ngân hàng có cung cấp thẻ nào khác dành cho du lịch không?', 'Ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express®, còn loại thẻ nào khác phù hợp cho việc đi du lịch không? Vietcombank American Express®', 'Ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express®, còn loại thẻ nào khác phù hợp cho việc đi du lịch không? Vietcombank Visa Platinum', 'Ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express®, còn loại thẻ nào khác phù hợp cho việc đi du lịch không? Vietcombank Mastercard® World', 'Ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express®, còn loại thẻ nào khác phù hợp cho việc đi du lịch không? Vietcombank JCB Platinum', 'Ngoài thẻ Vietcombank Vietnam Airlines Platinum American Express®, còn loại thẻ nào khác phù hợp cho việc đi du lịch không? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:46:50,120 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:46:50,840 - INFO - rag_pipeline - Retrieved docs: 5
+2026-03-08 15:47:03,094 - INFO - rag_pipeline - RAG latency: 17.06s
+2026-03-08 15:48:25,443 - INFO - rag_pipeline - User request: Những lợi ích của thẻ Vietcombank Cashplus Platinum American Express
+2026-03-08 15:48:27,696 - INFO - rag_pipeline - Product router: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:48:29,574 - INFO - rag_pipeline - Search queries: ['Những lợi ích của thẻ Vietcombank Cashplus Platinum American Express là gì?', 'Thẻ Vietcombank Cashplus Platinum American Express có những ưu điểm gì?', 'Tôi muốn biết các lợi ích của thẻ Vietcombank Cashplus Platinum American Express.', 'Thẻ Vietcombank Cashplus Platinum American Express mang lại những giá trị gì cho người sử dụng?', 'Những lợi ích của thẻ Vietcombank Cashplus Platinum American Express là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:48:29,576 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:48:29,957 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 15:48:38,107 - INFO - rag_pipeline - RAG latency: 12.05s
+2026-03-08 15:49:19,579 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-08 15:49:22,919 - ERROR - rag_pipeline - Product router error: 'NoneType' object has no attribute 'get'
+2026-03-08 15:49:24,955 - INFO - rag_pipeline - Search queries: ['Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express® là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express®.', 'Xin cho biết các yêu cầu để đăng ký thẻ Vietcombank Cashplus Platinum American Express®.', 'Điều kiện nào cần có để tôi có thể mở thẻ Vietcombank Cashplus Platinum American Express®?']
+2026-03-08 15:49:24,957 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:49:25,248 - INFO - rag_pipeline - Retrieved docs: 30
+2026-03-08 15:49:59,724 - INFO - rag_pipeline - RAG latency: 38.41s
+2026-03-08 15:52:16,829 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 15:52:27,653 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 15:52:39,286 - INFO - rag_pipeline - User request: Những lợi ích của thẻ Vietcombank Cashplus Platinum American Express
+2026-03-08 15:52:42,133 - INFO - rag_pipeline - Product router: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:52:44,006 - INFO - rag_pipeline - Search queries: ['Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Thẻ tín dụng Vietcombank Cashplus Platinum American Express mang lại những lợi ích gì?', 'Những ưu điểm của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Tôi muốn biết thẻ tín dụng Vietcombank Cashplus Platinum American Express có những lợi ích nào?', 'Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:52:44,008 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:52:44,422 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 15:52:54,767 - INFO - rag_pipeline - RAG latency: 14.54s
+2026-03-08 15:53:13,707 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-08 15:53:15,954 - ERROR - rag_pipeline - Product router error: 'NoneType' object has no attribute 'get'
+2026-03-08 15:53:17,402 - INFO - rag_pipeline - Search queries: ['Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express.', 'Xin cho biết yêu cầu để đăng ký thẻ Vietcombank Cashplus Platinum American Express.', 'Điều kiện nào cần có để mở thẻ Vietcombank Cashplus Platinum American Express?']
+2026-03-08 15:53:17,404 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:53:17,690 - INFO - rag_pipeline - Retrieved docs: 30
+2026-03-08 15:53:49,638 - INFO - rag_pipeline - RAG latency: 35.12s
+2026-03-08 15:58:27,765 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 15:58:38,504 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 15:59:25,464 - INFO - rag_pipeline - User request: Những lợi ích của thẻ Vietcombank Cashplus Platinum American Express
+2026-03-08 15:59:28,350 - INFO - rag_pipeline - Product router detected: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:59:29,851 - INFO - rag_pipeline - Search queries: ['Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Thẻ tín dụng Vietcombank Cashplus Platinum American Express có những ưu điểm gì?', 'Những lợi ích nổi bật của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Thẻ tín dụng Vietcombank Cashplus Platinum American Express mang lại những giá trị gì cho người sử dụng?', 'Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 15:59:29,853 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 15:59:30,599 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 15:59:39,443 - INFO - rag_pipeline - RAG latency: 12.97s
+2026-03-08 16:00:44,671 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-08 16:00:47,190 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 16:00:49,181 - INFO - rag_pipeline - Search queries: ['Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express.', 'Xin cho biết các yêu cầu để đăng ký thẻ Vietcombank Cashplus Platinum American Express.', 'Điều kiện nào cần có để tôi có thể mở thẻ Vietcombank Cashplus Platinum American Express?']
+2026-03-08 16:00:49,183 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:00:49,486 - INFO - rag_pipeline - Retrieved docs: 30
+2026-03-08 16:01:27,696 - INFO - rag_pipeline - RAG latency: 42.28s
+2026-03-08 16:17:21,121 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 16:17:32,003 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 16:18:00,969 - INFO - rag_pipeline - User request: Những lợi ích của thẻ Vietcombank Cashplus Platinum American Express
+2026-03-08 16:18:04,462 - INFO - rag_pipeline - Product router detected: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:18:06,380 - INFO - rag_pipeline - Search queries: ['Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Thẻ tín dụng Vietcombank Cashplus Platinum American Express mang lại những lợi ích gì?', 'Những ưu điểm của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Tôi muốn biết thẻ tín dụng Vietcombank Cashplus Platinum American Express có những lợi ích nào?', 'Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:18:06,381 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:18:07,667 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 16:18:17,963 - INFO - rag_pipeline - RAG latency: 15.59s
+2026-03-08 16:18:46,255 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-08 16:18:48,920 - INFO - rag_pipeline - Product router detected: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:18:50,419 - INFO - rag_pipeline - Search queries: ['Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express.', 'Xin cho biết các yêu cầu để đăng ký thẻ Vietcombank Cashplus Platinum American Express.', 'Điều kiện nào cần có để tôi có thể mở thẻ Vietcombank Cashplus Platinum American Express?', 'Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:18:50,420 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:18:50,810 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 16:18:54,856 - INFO - rag_pipeline - RAG latency: 7.80s
+2026-03-08 16:19:17,623 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 16:19:28,229 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 16:20:34,553 - INFO - rag_pipeline - User request: Tôi muốn đi du lịch nước ngoài thì nên cchọn loại thẻ nào cho phù hợp
+2026-03-08 16:20:37,972 - INFO - rag_pipeline - Product router detected: ['Vietcombank Vietnam Airlines American Express®', 'Vietcombank Visa Platinum', 'Vietcombank Mastercard® World', 'Vietcombank JCB Platinum', 'Vietcombank American Express®']
+2026-03-08 16:20:39,900 - INFO - rag_pipeline - Search queries: ['Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch nước ngoài?', 'Loại thẻ ngân hàng nào của Vietcombank phù hợp để sử dụng khi đi du lịch nước ngoài?', 'Tôi nên sử dụng thẻ ngân hàng nào của Vietcombank khi đi du lịch ở nước ngoài?', 'Thẻ ngân hàng Vietcombank nào là lựa chọn tốt nhất cho việc du lịch quốc tế?', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch nước ngoài? Vietcombank Vietnam Airlines American Express®', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch nước ngoài? Vietcombank Visa Platinum', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch nước ngoài? Vietcombank Mastercard® World', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch nước ngoài? Vietcombank JCB Platinum', 'Nên chọn loại thẻ ngân hàng nào của Vietcombank để sử dụng khi đi du lịch nước ngoài? Vietcombank American Express®']
+2026-03-08 16:20:39,900 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:20:40,607 - INFO - rag_pipeline - Retrieved docs: 5
+2026-03-08 16:20:47,769 - INFO - rag_pipeline - RAG latency: 12.24s
+2026-03-08 16:21:11,307 - INFO - rag_pipeline - User request: Lợi ích của thẻ Vietcombank Mastercard® World
+2026-03-08 16:21:13,990 - INFO - rag_pipeline - Product router detected: ['Vietcombank Mastercard® World']
+2026-03-08 16:21:15,341 - INFO - rag_pipeline - Search queries: ['Lợi ích của thẻ Vietcombank Mastercard® World là gì?', 'Thẻ Vietcombank Mastercard® World mang lại những lợi ích gì?', 'Những ưu điểm của thẻ Vietcombank Mastercard® World là gì?', 'Tôi có thể nhận được những lợi ích nào từ thẻ Vietcombank Mastercard® World?', 'Lợi ích của thẻ Vietcombank Mastercard® World là gì? Vietcombank Mastercard® World']
+2026-03-08 16:21:15,343 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:21:15,702 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 16:21:22,555 - INFO - rag_pipeline - RAG latency: 10.50s
+2026-03-08 16:21:40,526 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-08 16:21:42,703 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 16:21:44,183 - INFO - rag_pipeline - Search queries: ['Điều kiện để mở thẻ Vietcombank Mastercard® World là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Mastercard® World.', 'Xin cho biết các yêu cầu để đăng ký thẻ Vietcombank Mastercard® World.', 'Điều kiện nào cần có để tôi có thể mở thẻ Vietcombank Mastercard® World?']
+2026-03-08 16:21:44,185 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:21:44,477 - INFO - rag_pipeline - Retrieved docs: 30
+2026-03-08 16:22:04,697 - INFO - rag_pipeline - RAG latency: 23.41s
+2026-03-08 16:33:55,694 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 16:34:06,610 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 16:34:51,228 - INFO - rag_pipeline - User request: Những lợi ích của thẻ Vietcombank Cashplus Platinum American Express
+2026-03-08 16:34:53,359 - INFO - rag_pipeline - Rewritten query: Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?
+2026-03-08 16:34:54,588 - INFO - rag_pipeline - Product router detected: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:34:54,589 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:34:55,974 - INFO - rag_pipeline - Multi queries: ['Thẻ tín dụng Vietcombank Cashplus Platinum American Express mang lại những lợi ích gì?', 'Những ưu điểm của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Tôi muốn biết lợi ích của việc sử dụng thẻ tín dụng Vietcombank Cashplus Platinum American Express.']
+2026-03-08 16:34:55,976 - INFO - rag_pipeline - Final search queries: ['Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Thẻ tín dụng Vietcombank Cashplus Platinum American Express mang lại những lợi ích gì?', 'Những ưu điểm của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì?', 'Tôi muốn biết lợi ích của việc sử dụng thẻ tín dụng Vietcombank Cashplus Platinum American Express.', 'Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:34:55,978 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:34:56,666 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 16:35:04,363 - INFO - rag_pipeline - RAG latency: 11.91s
+2026-03-08 16:35:17,911 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-08 16:35:19,707 - INFO - rag_pipeline - Rewritten query: Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express là gì?
+2026-03-08 16:35:20,871 - INFO - rag_pipeline - Product router detected: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:35:20,872 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:35:22,439 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express.', 'Xin cho biết các yêu cầu để đăng ký thẻ Vietcombank Cashplus Platinum American Express.', 'Điều kiện nào cần có để tôi có thể mở thẻ Vietcombank Cashplus Platinum American Express?']
+2026-03-08 16:35:22,441 - INFO - rag_pipeline - Final search queries: ['Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express là gì?', 'Tôi cần biết điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express.', 'Xin cho biết các yêu cầu để đăng ký thẻ Vietcombank Cashplus Platinum American Express.', 'Điều kiện nào cần có để tôi có thể mở thẻ Vietcombank Cashplus Platinum American Express?', 'Điều kiện để mở thẻ Vietcombank Cashplus Platinum American Express là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 16:35:22,442 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:35:22,816 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 16:35:26,855 - INFO - rag_pipeline - RAG latency: 8.11s
+2026-03-08 16:36:09,599 - INFO - rag_pipeline - User request: Tôi muốn mua xe ô tô nhưng không đủ tiền, VCB có cho vay không
+2026-03-08 16:36:11,170 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank có cung cấp dịch vụ cho vay để mua xe ô tô hay không?
+2026-03-08 16:36:12,223 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-08 16:36:12,224 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-08 16:36:13,501 - INFO - rag_pipeline - Multi queries: ['Vietcombank có dịch vụ cho vay mua xe ô tô không?', 'Tôi có thể vay tiền mua xe ô tô tại ngân hàng Vietcombank không?', 'Ngân hàng Vietcombank có hỗ trợ cho vay để mua ô tô hay không?']
+2026-03-08 16:36:13,502 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có cung cấp dịch vụ cho vay để mua xe ô tô hay không?', 'Vietcombank có dịch vụ cho vay mua xe ô tô không?', 'Tôi có thể vay tiền mua xe ô tô tại ngân hàng Vietcombank không?', 'Ngân hàng Vietcombank có hỗ trợ cho vay để mua ô tô hay không?', 'Ngân hàng Vietcombank có cung cấp dịch vụ cho vay để mua xe ô tô hay không? Vay mua ô tô']
+2026-03-08 16:36:13,504 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:36:13,862 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-08 16:36:17,872 - INFO - rag_pipeline - RAG latency: 7.64s
+2026-03-08 16:37:19,293 - INFO - rag_pipeline - User request: Điều kiện là gì
+2026-03-08 16:37:20,830 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay mua ô tô tại Vietcombank là gì?
+2026-03-08 16:37:21,480 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-08 16:37:21,481 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-08 16:37:22,898 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện vay mua ô tô tại Vietcombank.', 'Vietcombank có những yêu cầu gì để vay mua ô tô?', 'Xin cho biết các tiêu chí để được vay mua ô tô tại Vietcombank.']
+2026-03-08 16:37:22,900 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay mua ô tô tại Vietcombank.', 'Vietcombank có những yêu cầu gì để vay mua ô tô?', 'Xin cho biết các tiêu chí để được vay mua ô tô tại Vietcombank.', 'Điều kiện để vay mua ô tô tại Vietcombank là gì? Vay mua ô tô']
+2026-03-08 16:37:22,901 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:37:23,239 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-08 16:37:27,364 - INFO - rag_pipeline - RAG latency: 7.39s
+2026-03-08 16:38:16,612 - INFO - rag_pipeline - User request: Tôi thường xuyên đi du lịch nước ngoài thì loại thẻ nào phù hợp nhất với tôi
+2026-03-08 16:38:18,583 - INFO - rag_pipeline - Rewritten query: Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài?
+2026-03-08 16:38:19,744 - INFO - rag_pipeline - Product router detected: ['Vietcombank Visa Platinum', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank Mastercard® World', 'Vietcombank JCB Platinum', 'Vietcombank Vietnam Airlines American Express®']
+2026-03-08 16:38:19,752 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Visa Platinum', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank Mastercard® World', 'Vietcombank JCB Platinum', 'Vietcombank Vietnam Airlines American Express®']
+2026-03-08 16:38:22,276 - INFO - rag_pipeline - Multi queries: ['1. Tôi nên chọn loại thẻ nào của Vietcombank khi thường xuyên đi du lịch nước ngoài?', '2. Thẻ Vietcombank nào là lựa chọn tốt nhất cho người thường xuyên du lịch quốc tế?', '3. Nếu tôi hay đi du lịch nước ngoài, thẻ nào của Vietcombank sẽ phù hợp với tôi?']
+2026-03-08 16:38:22,278 - INFO - rag_pipeline - Final search queries: ['Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài?', '1. Tôi nên chọn loại thẻ nào của Vietcombank khi thường xuyên đi du lịch nước ngoài?', '2. Thẻ Vietcombank nào là lựa chọn tốt nhất cho người thường xuyên du lịch quốc tế?', '3. Nếu tôi hay đi du lịch nước ngoài, thẻ nào của Vietcombank sẽ phù hợp với tôi?', 'Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài? Vietcombank Visa Platinum', 'Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài? Vietcombank Vietnam Airlines Platinum American Express®', 'Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài? Vietcombank Cashplus Platinum American Express®', 'Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài? Vietcombank Mastercard® World', 'Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài? Vietcombank JCB Platinum', 'Loại thẻ nào của Vietcombank phù hợp nhất với tôi nếu tôi thường xuyên đi du lịch nước ngoài? Vietcombank Vietnam Airlines American Express®']
+2026-03-08 16:38:22,280 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:38:23,081 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-08 16:38:32,158 - INFO - rag_pipeline - RAG latency: 14.92s
+2026-03-08 16:38:54,255 - INFO - rag_pipeline - User request: Lợi ích của thẻ
+2026-03-08 16:38:56,065 - INFO - rag_pipeline - Rewritten query: Lợi ích của thẻ Vietcombank Mastercard® World là gì?
+2026-03-08 16:38:56,726 - INFO - rag_pipeline - Product router detected: ['Vietcombank Mastercard® World']
+2026-03-08 16:38:56,727 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Mastercard® World']
+2026-03-08 16:38:58,357 - INFO - rag_pipeline - Multi queries: ['Thẻ Vietcombank Mastercard® World mang lại những lợi ích gì?', 'Những ưu điểm của thẻ Vietcombank Mastercard® World là gì?', 'Tôi có thể nhận được những gì khi sử dụng thẻ Vietcombank Mastercard® World?']
+2026-03-08 16:38:58,358 - INFO - rag_pipeline - Final search queries: ['Lợi ích của thẻ Vietcombank Mastercard® World là gì?', 'Thẻ Vietcombank Mastercard® World mang lại những lợi ích gì?', 'Những ưu điểm của thẻ Vietcombank Mastercard® World là gì?', 'Tôi có thể nhận được những gì khi sử dụng thẻ Vietcombank Mastercard® World?', 'Lợi ích của thẻ Vietcombank Mastercard® World là gì? Vietcombank Mastercard® World']
+2026-03-08 16:38:58,360 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:38:58,709 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 16:39:04,707 - INFO - rag_pipeline - RAG latency: 9.62s
+2026-03-08 16:39:14,270 - INFO - rag_pipeline - User request: Điều kiện mở
+2026-03-08 16:39:15,712 - INFO - rag_pipeline - Rewritten query: Điều kiện để mở thẻ tín dụng Vietcombank Mastercard® World là gì?
+2026-03-08 16:39:16,472 - INFO - rag_pipeline - Product router detected: ['Vietcombank Mastercard® World']
+2026-03-08 16:39:16,473 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Mastercard® World']
+2026-03-08 16:39:18,322 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện để mở thẻ tín dụng Vietcombank Mastercard® World.', 'Xin cho biết các yêu cầu để đăng ký thẻ tín dụng Vietcombank Mastercard® World.', 'Điều kiện nào cần có để có thể mở thẻ tín dụng Vietcombank Mastercard® World?']
+2026-03-08 16:39:18,323 - INFO - rag_pipeline - Final search queries: ['Điều kiện để mở thẻ tín dụng Vietcombank Mastercard® World là gì?', 'Tôi cần biết điều kiện để mở thẻ tín dụng Vietcombank Mastercard® World.', 'Xin cho biết các yêu cầu để đăng ký thẻ tín dụng Vietcombank Mastercard® World.', 'Điều kiện nào cần có để có thể mở thẻ tín dụng Vietcombank Mastercard® World?', 'Điều kiện để mở thẻ tín dụng Vietcombank Mastercard® World là gì? Vietcombank Mastercard® World']
+2026-03-08 16:39:18,325 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:39:18,691 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-08 16:39:22,000 - INFO - rag_pipeline - RAG latency: 7.12s
+2026-03-08 16:40:27,493 - INFO - rag_pipeline - User request: Quy định xác thực giao dịch thẻ VCB trên ứng dụng MOCA?
+2026-03-08 16:40:29,105 - INFO - rag_pipeline - Rewritten query: Quy định xác thực giao dịch thẻ Vietcombank Mastercard® World trên ứng dụng MOCA là gì?
+2026-03-08 16:40:29,650 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 16:40:29,650 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 16:40:31,329 - INFO - rag_pipeline - Multi queries: ['Tôi muốn biết quy định xác thực giao dịch thẻ Vietcombank Mastercard® World trên ứng dụng MOCA.', 'Xin cho biết thông tin về quy định xác thực giao dịch thẻ Vietcombank Mastercard® World khi sử dụng ứng dụng MOCA.', 'Quy trình xác thực giao dịch thẻ Vietcombank Mastercard® World trên ứng dụng MOCA được quy định như thế nào?']
+2026-03-08 16:40:31,331 - INFO - rag_pipeline - Final search queries: ['Quy định xác thực giao dịch thẻ Vietcombank Mastercard® World trên ứng dụng MOCA là gì?', 'Tôi muốn biết quy định xác thực giao dịch thẻ Vietcombank Mastercard® World trên ứng dụng MOCA.', 'Xin cho biết thông tin về quy định xác thực giao dịch thẻ Vietcombank Mastercard® World khi sử dụng ứng dụng MOCA.', 'Quy trình xác thực giao dịch thẻ Vietcombank Mastercard® World trên ứng dụng MOCA được quy định như thế nào?']
+2026-03-08 16:40:31,332 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:40:31,643 - INFO - rag_pipeline - Retrieved docs: 30
+2026-03-08 16:40:50,873 - INFO - rag_pipeline - RAG latency: 22.71s
+2026-03-08 16:45:41,314 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 16:45:52,001 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 16:46:14,555 - INFO - rag_pipeline - User request: Quy định xác thực giao dịch thẻ VCB trên ứng dụng MOCA?
+2026-03-08 16:46:16,716 - INFO - rag_pipeline - Rewritten query: Quy định xác thực giao dịch thẻ tín dụng Vietcombank trên ứng dụng MOCA là gì?
+2026-03-08 16:46:17,291 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 16:46:17,293 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 16:46:19,982 - INFO - rag_pipeline - Multi queries: ['Tôi muốn biết quy trình xác thực giao dịch thẻ tín dụng Vietcombank trên ứng dụng MOCA.']
+2026-03-08 16:46:19,983 - INFO - rag_pipeline - Final search queries: ['Quy định xác thực giao dịch thẻ tín dụng Vietcombank trên ứng dụng MOCA là gì?', 'Tôi muốn biết quy trình xác thực giao dịch thẻ tín dụng Vietcombank trên ứng dụng MOCA.']
+2026-03-08 16:46:19,985 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:46:20,821 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 16:46:32,626 - INFO - rag_pipeline - RAG latency: 16.96s
+2026-03-08 16:47:18,847 - INFO - rag_pipeline - User request: Tối đa 1 ngày tôi có thể sử dụng dịch vụ thanh toán thẻ VCB-MOCA để thanh toán hàng hóa dịch vụ bao nhiêu lần, hạn mức bao nhiêu
+2026-03-08 16:47:21,106 - INFO - rag_pipeline - Rewritten query: Tối đa 1 ngày, tôi có thể sử dụng dịch vụ thanh toán thẻ VCB-MOCA để thanh toán hàng hóa và dịch vụ bao nhiêu lần, và hạn mức thanh toán là bao nhiêu?
+2026-03-08 16:47:21,638 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 16:47:21,639 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 16:47:25,053 - INFO - rag_pipeline - Multi queries: ['Tôi có thể thực hiện bao nhiêu giao dịch thanh toán bằng thẻ VCB-MOCA trong một ngày và hạn mức thanh toán là bao nhiêu?']
+2026-03-08 16:47:25,054 - INFO - rag_pipeline - Final search queries: ['Tối đa 1 ngày, tôi có thể sử dụng dịch vụ thanh toán thẻ VCB-MOCA để thanh toán hàng hóa và dịch vụ bao nhiêu lần, và hạn mức thanh toán là bao nhiêu?', 'Tôi có thể thực hiện bao nhiêu giao dịch thanh toán bằng thẻ VCB-MOCA trong một ngày và hạn mức thanh toán là bao nhiêu?']
+2026-03-08 16:47:25,056 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:47:25,227 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 16:47:38,418 - INFO - rag_pipeline - RAG latency: 18.82s
+2026-03-08 16:48:48,841 - INFO - rag_pipeline - User request: Phải làm gì khi rút tiền không thành công tài khoản bị trừ tại máy ATM
+2026-03-08 16:49:44,864 - INFO - rag_pipeline - User request: Phải làm gì khi rút tiền không thành công nhưng tài khoản bị trừ tại máy ATM
+2026-03-08 16:50:03,503 - INFO - rag_pipeline - User request: Tôi phải làm gì khi gặp sự cố rút tiền không thành công tài khoản bị trừ tại máy ATM
+2026-03-08 16:53:22,342 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 16:53:33,475 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 16:54:02,382 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 16:54:13,541 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 16:54:40,662 - INFO - rag_pipeline - User request: Phải làm gì khi rút tiền không thành công tài khoản bị trừ tại máy ATM
+2026-03-08 16:54:42,910 - INFO - rag_pipeline - Rewritten query: Tôi phải làm gì khi gặp sự cố rút tiền không thành công và tài khoản bị trừ tại máy ATM?
+2026-03-08 16:54:43,726 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 16:54:46,517 - INFO - rag_pipeline - Multi queries: ['Tôi cần làm gì nếu tôi không rút được tiền từ máy ATM nhưng tài khoản của tôi vẫn bị trừ?']
+2026-03-08 16:54:46,519 - INFO - rag_pipeline - Final search queries: ['Tôi phải làm gì khi gặp sự cố rút tiền không thành công và tài khoản bị trừ tại máy ATM?', 'Tôi cần làm gì nếu tôi không rút được tiền từ máy ATM nhưng tài khoản của tôi vẫn bị trừ?']
+2026-03-08 16:54:46,520 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:54:46,907 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 16:55:00,631 - INFO - rag_pipeline - RAG latency: 18.80s
+2026-03-08 16:56:04,294 - INFO - rag_pipeline - User request: Khách hàng nhận thẻ nhưng không sử dụng được tại ATM/POS/chi tiêu online. Vì sao?
+2026-03-08 16:56:06,362 - INFO - rag_pipeline - Rewritten query: Tại sao khách hàng nhận thẻ Vietcombank nhưng không sử dụng được tại máy ATM, POS hoặc để chi tiêu online?
+2026-03-08 16:56:07,293 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 16:56:10,202 - INFO - rag_pipeline - Multi queries: ['Tại sao khách hàng không thể sử dụng thẻ Vietcombank tại máy ATM, POS hoặc cho giao dịch trực tuyến?']
+2026-03-08 16:56:10,204 - INFO - rag_pipeline - Final search queries: ['Tại sao khách hàng nhận thẻ Vietcombank nhưng không sử dụng được tại máy ATM, POS hoặc để chi tiêu online?', 'Tại sao khách hàng không thể sử dụng thẻ Vietcombank tại máy ATM, POS hoặc cho giao dịch trực tuyến?']
+2026-03-08 16:56:10,205 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:56:10,369 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 16:56:24,780 - INFO - rag_pipeline - RAG latency: 19.75s
+2026-03-08 16:57:43,312 - INFO - rag_pipeline - User request: VCB có quy định hạn mức đối với các loại giao dịch được thực hiện trên ATM hay không? Hạn mức đó là bao nhiêu?
+2026-03-08 16:57:45,448 - INFO - rag_pipeline - Rewritten query: VCB có quy định hạn mức đối với các loại giao dịch được thực hiện trên máy ATM không? Nếu có, hạn mức đó là bao nhiêu?
+2026-03-08 16:57:45,992 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 16:57:45,994 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 16:57:49,253 - INFO - rag_pipeline - Multi queries: ['Ngân hàng VCB có quy định về hạn mức giao dịch trên máy ATM không? Nếu có, hạn mức cụ thể là bao nhiêu?']
+2026-03-08 16:57:49,255 - INFO - rag_pipeline - Final search queries: ['VCB có quy định hạn mức đối với các loại giao dịch được thực hiện trên máy ATM không? Nếu có, hạn mức đó là bao nhiêu?', 'Ngân hàng VCB có quy định về hạn mức giao dịch trên máy ATM không? Nếu có, hạn mức cụ thể là bao nhiêu?']
+2026-03-08 16:57:49,256 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:57:49,437 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 16:58:01,327 - INFO - rag_pipeline - RAG latency: 17.16s
+2026-03-08 16:59:38,179 - INFO - rag_pipeline - User request: Loại giao dịch nào sẽ áp dụng Phí xử lý giao dịch nội tệ tại nước ngoài?
+2026-03-08 16:59:39,876 - INFO - rag_pipeline - Rewritten query: Loại giao dịch nào sẽ bị áp dụng Phí xử lý giao dịch nội tệ tại nước ngoài khi sử dụng thẻ của Vietcombank?
+2026-03-08 16:59:40,421 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 16:59:40,423 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 16:59:44,088 - INFO - rag_pipeline - Multi queries: ['Phí xử lý giao dịch nội tệ tại nước ngoài sẽ áp dụng cho những loại giao dịch nào khi sử dụng thẻ Vietcombank?']
+2026-03-08 16:59:44,089 - INFO - rag_pipeline - Final search queries: ['Loại giao dịch nào sẽ bị áp dụng Phí xử lý giao dịch nội tệ tại nước ngoài khi sử dụng thẻ của Vietcombank?', 'Phí xử lý giao dịch nội tệ tại nước ngoài sẽ áp dụng cho những loại giao dịch nào khi sử dụng thẻ Vietcombank?']
+2026-03-08 16:59:44,090 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 16:59:44,263 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 16:59:53,236 - INFO - rag_pipeline - RAG latency: 14.43s
+2026-03-08 17:01:14,165 - INFO - rag_pipeline - User request: Phí xử lý giao dịch nội tệ tại nước ngoài có tính cho giao dịch bằng ngoại tệ khác VND của Thẻ TDQT/GNQT Vietcombank
+2026-03-08 17:01:16,219 - INFO - rag_pipeline - Rewritten query: Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không?
+2026-03-08 17:01:18,508 - INFO - rag_pipeline - Product router detected: ['Vietcombank JCB', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Vibe Platinum', 'Vietcombank Visa Platinum', 'Vietcombank Visa Snack', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard® World', 'Vietcombank American Express®', 'Vietcombank Mastercard®', 'Vietcombank Cashplus Platinum American Express®']
+2026-03-08 17:01:18,510 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank JCB', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Vibe Platinum', 'Vietcombank Visa Platinum', 'Vietcombank Visa Snack', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard® World', 'Vietcombank American Express®', 'Vietcombank Mastercard®', 'Vietcombank Cashplus Platinum American Express®']
+2026-03-08 17:01:23,537 - INFO - rag_pipeline - Multi queries: ['Có phải phí xử lý giao dịch nội tệ tại nước ngoài cũng áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng và thẻ ghi nợ quốc tế Vietcombank không?']
+2026-03-08 17:01:23,538 - INFO - rag_pipeline - Final search queries: ['Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không?', 'Có phải phí xử lý giao dịch nội tệ tại nước ngoài cũng áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng và thẻ ghi nợ quốc tế Vietcombank không?', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank JCB', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank Vietnam Airlines Platinum American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank Vibe Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank Visa Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank Visa Snack', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank JCB Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank Mastercard® World', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank Mastercard®', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng quốc tế và thẻ ghi nợ quốc tế Vietcombank hay không? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 17:01:23,540 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:01:24,595 - INFO - rag_pipeline - Retrieved docs: 9
+2026-03-08 17:01:33,617 - INFO - rag_pipeline - RAG latency: 18.77s
+2026-03-08 17:03:13,508 - INFO - rag_pipeline - User request: Phí xử lý giao dịch nội tệ tại nước ngoài có tính cho giao dịch bằng ngoại tệ khác VND của Thẻ TDQT/GNQT Vietcombank tại nước ngoài không?
+2026-03-08 17:03:16,003 - INFO - rag_pipeline - Rewritten query: Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không?
+2026-03-08 17:03:18,223 - INFO - rag_pipeline - Product router detected: ['Vietcombank JCB', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Vibe Platinum', 'Vietcombank Visa Platinum', 'Vietcombank Visa Snack', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard® World', 'Vietcombank American Express®', 'Vietcombank Mastercard®', 'Vietcombank Cashplus Platinum American Express®']
+2026-03-08 17:03:18,225 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank JCB', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Vibe Platinum', 'Vietcombank Visa Platinum', 'Vietcombank Visa Snack', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard® World', 'Vietcombank American Express®', 'Vietcombank Mastercard®', 'Vietcombank Cashplus Platinum American Express®']
+2026-03-08 17:03:23,483 - INFO - rag_pipeline - Multi queries: ['Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế và Ghi nợ Quốc tế của Vietcombank không?']
+2026-03-08 17:03:23,484 - INFO - rag_pipeline - Final search queries: ['Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không?', 'Phí xử lý giao dịch nội tệ tại nước ngoài có áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế và Ghi nợ Quốc tế của Vietcombank không?', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank JCB', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank Vietnam Airlines Platinum American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank Vibe Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank Visa Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank Visa Snack', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank JCB Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank Mastercard® World', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank Mastercard®', 'Phí xử lý giao dịch nội tệ tại nước ngoài có được áp dụng cho các giao dịch bằng ngoại tệ khác VND của Thẻ tín dụng Quốc tế (TDQT) và Ghi nợ Quốc tế (GNQT) Vietcombank không? Vietcombank Cashplus Platinum American Express®']
+2026-03-08 17:03:23,487 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:03:24,592 - INFO - rag_pipeline - Retrieved docs: 10
+2026-03-08 17:03:32,580 - INFO - rag_pipeline - RAG latency: 18.24s
+2026-03-08 17:07:58,140 - INFO - rag_pipeline - User request: Thông tin mã nước của đơn vị chấp nhận thẻ nằm ở đâu? Làm sao Khách hàng có thể biết được mã nước của đơn vị chấp nhận thẻ?
+2026-03-08 17:10:53,234 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 17:11:04,401 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 17:11:10,806 - INFO - rag_pipeline - User request: Thông tin mã nước của đơn vị chấp nhận thẻ nằm ở đâu? Làm sao Khách hàng có thể biết được mã nước của đơn vị chấp nhận thẻ?
+2026-03-08 17:11:13,501 - INFO - rag_pipeline - Rewritten query: Thông tin về mã nước của đơn vị chấp nhận thẻ nằm ở đâu và làm thế nào để khách hàng có thể biết được mã nước của đơn vị chấp nhận thẻ?
+2026-03-08 17:11:14,096 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 17:11:16,982 - INFO - rag_pipeline - Multi queries: ['Mã nước của đơn vị chấp nhận thẻ được tìm thấy ở đâu và khách hàng có thể tra cứu mã nước này như thế nào?']
+2026-03-08 17:11:16,984 - INFO - rag_pipeline - Final search queries: ['Thông tin về mã nước của đơn vị chấp nhận thẻ nằm ở đâu và làm thế nào để khách hàng có thể biết được mã nước của đơn vị chấp nhận thẻ?', 'Mã nước của đơn vị chấp nhận thẻ được tìm thấy ở đâu và khách hàng có thể tra cứu mã nước này như thế nào?']
+2026-03-08 17:11:16,985 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:11:17,176 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 17:11:28,258 - INFO - rag_pipeline - RAG latency: 16.25s
+2026-03-08 17:14:33,894 - INFO - rag_pipeline - User request: Tôi bị nuốt thẻ tại ATM, tôi cần phải làm gì để nhận lại được thẻ?
+2026-03-08 17:14:36,108 - INFO - rag_pipeline - Rewritten query: Tôi bị nuốt thẻ tín dụng Quốc tế/Ghi nợ Quốc tế Vietcombank tại ATM, tôi cần phải làm gì để nhận lại được thẻ?
+2026-03-08 17:14:36,833 - INFO - rag_pipeline - Product router detected: ['null']
+2026-03-08 17:14:36,834 - INFO - rag_pipeline - Detected products after rewrite: ['null']
+2026-03-08 17:14:39,269 - INFO - rag_pipeline - Multi queries: ['Tôi đã bị nuốt thẻ tín dụng/Ghi nợ Quốc tế Vietcombank tại máy ATM, làm thế nào để lấy lại thẻ?']
+2026-03-08 17:14:39,270 - INFO - rag_pipeline - Final search queries: ['Tôi bị nuốt thẻ tín dụng Quốc tế/Ghi nợ Quốc tế Vietcombank tại ATM, tôi cần phải làm gì để nhận lại được thẻ?', 'Tôi đã bị nuốt thẻ tín dụng/Ghi nợ Quốc tế Vietcombank tại máy ATM, làm thế nào để lấy lại thẻ?', 'Tôi bị nuốt thẻ tín dụng Quốc tế/Ghi nợ Quốc tế Vietcombank tại ATM, tôi cần phải làm gì để nhận lại được thẻ? null']
+2026-03-08 17:14:39,271 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:14:39,531 - WARNING - rag_pipeline - Product filter empty → fallback
+2026-03-08 17:14:39,532 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 17:14:52,409 - INFO - rag_pipeline - RAG latency: 17.64s
+2026-03-08 17:16:19,106 - INFO - rag_pipeline - User request: Tôi có thể liên kết những loại thẻ nào của VCB trên Ứng dụng MOCA
+2026-03-08 17:16:21,233 - INFO - rag_pipeline - Rewritten query: Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA?
+2026-03-08 17:16:23,372 - INFO - rag_pipeline - Product router detected: ['Vietcombank Visa Platinum', 'Vietcombank Vibe Platinum', 'Vietcombank JCB Platinum', 'Vietcombank Vibe', 'Vietcombank Mastercard®', 'Vietcombank Mastercard® World', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank Vietnam Airlines American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank American Express®', 'Vietcombank Visa Snack', 'Vietcombank JCB']
+2026-03-08 17:16:23,375 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Visa Platinum', 'Vietcombank Vibe Platinum', 'Vietcombank JCB Platinum', 'Vietcombank Vibe', 'Vietcombank Mastercard®', 'Vietcombank Mastercard® World', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank Vietnam Airlines American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank American Express®', 'Vietcombank Visa Snack', 'Vietcombank JCB']
+2026-03-08 17:16:25,759 - INFO - rag_pipeline - Multi queries: ['Những loại thẻ nào của Vietcombank (VCB) có thể được liên kết trên Ứng dụng MOCA?']
+2026-03-08 17:16:25,760 - INFO - rag_pipeline - Final search queries: ['Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA?', 'Những loại thẻ nào của Vietcombank (VCB) có thể được liên kết trên Ứng dụng MOCA?', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Visa Platinum', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Vibe Platinum', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank JCB Platinum', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Vibe', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Mastercard®', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Mastercard® World', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Cashplus Platinum American Express®', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Vietnam Airlines American Express®', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Vietnam Airlines Platinum American Express®', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank American Express®', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank Visa Snack', 'Tôi có thể liên kết những loại thẻ nào của Vietcombank (VCB) trên Ứng dụng MOCA? Vietcombank JCB']
+2026-03-08 17:16:25,763 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:16:26,794 - INFO - rag_pipeline - Retrieved docs: 8
+2026-03-08 17:16:34,207 - INFO - rag_pipeline - RAG latency: 14.37s
+2026-03-08 17:18:09,103 - INFO - rag_pipeline - User request: Phí xử lý giao dịch nội tệ tại nước ngoài được tính như thế nào?
+2026-03-08 17:18:11,302 - INFO - rag_pipeline - Rewritten query: Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào?
+2026-03-08 17:18:13,630 - INFO - rag_pipeline - Product router detected: ['Vietcombank Visa Platinum', 'Vietcombank Vibe Platinum', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard®', 'Vietcombank Mastercard® World', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank Vietnam Airlines American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank American Express®', 'Vietcombank Visa Snack', 'Vietcombank JCB']
+2026-03-08 17:18:13,631 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Visa Platinum', 'Vietcombank Vibe Platinum', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard®', 'Vietcombank Mastercard® World', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank Vietnam Airlines American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank American Express®', 'Vietcombank Visa Snack', 'Vietcombank JCB']
+2026-03-08 17:18:16,010 - INFO - rag_pipeline - Multi queries: ['Cách tính phí xử lý giao dịch nội tệ khi sử dụng thẻ tín dụng Vietcombank ở nước ngoài là gì?']
+2026-03-08 17:18:16,011 - INFO - rag_pipeline - Final search queries: ['Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào?', 'Cách tính phí xử lý giao dịch nội tệ khi sử dụng thẻ tín dụng Vietcombank ở nước ngoài là gì?', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Visa Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Vibe Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank JCB Platinum', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Mastercard®', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Mastercard® World', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Cashplus Platinum American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Vietnam Airlines American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Vietnam Airlines Platinum American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank Visa Snack', 'Phí xử lý giao dịch nội tệ tại nước ngoài của thẻ tín dụng Vietcombank được tính như thế nào? Vietcombank JCB']
+2026-03-08 17:18:16,014 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:18:17,013 - INFO - rag_pipeline - Retrieved docs: 11
+2026-03-08 17:18:26,919 - INFO - rag_pipeline - RAG latency: 16.82s
+2026-03-08 17:24:29,342 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 17:24:40,194 - INFO - rag_pipeline - Loaded 27 products
+2026-03-08 17:24:44,547 - INFO - rag_pipeline - User request: Phí xử lý giao dịch nội tệ tại nước ngoài được tính như thế nào?
+2026-03-08 17:24:47,675 - INFO - rag_pipeline - Rewritten query: Phí xử lý giao dịch nội tệ tại nước ngoài đối với các loại thẻ của Vietcombank như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum được tính như thế nào?
+2026-03-08 17:24:48,772 - INFO - rag_pipeline - Product router detected: ['Vietcombank Mastercard® World', 'Vietcombank JCB', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank JCB Platinum']
+2026-03-08 17:24:48,774 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Mastercard® World', 'Vietcombank JCB', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank JCB Platinum']
+2026-03-08 17:24:53,695 - INFO - rag_pipeline - Multi queries: ['Phí giao dịch nội tệ khi sử dụng thẻ Vietcombank tại nước ngoài được tính ra sao cho các loại thẻ như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum?']
+2026-03-08 17:24:53,697 - INFO - rag_pipeline - Final search queries: ['Phí xử lý giao dịch nội tệ tại nước ngoài đối với các loại thẻ của Vietcombank như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum được tính như thế nào?', 'Phí giao dịch nội tệ khi sử dụng thẻ Vietcombank tại nước ngoài được tính ra sao cho các loại thẻ như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum?', 'Phí xử lý giao dịch nội tệ tại nước ngoài đối với các loại thẻ của Vietcombank như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum được tính như thế nào? Vietcombank Mastercard® World', 'Phí xử lý giao dịch nội tệ tại nước ngoài đối với các loại thẻ của Vietcombank như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum được tính như thế nào? Vietcombank JCB', 'Phí xử lý giao dịch nội tệ tại nước ngoài đối với các loại thẻ của Vietcombank như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum được tính như thế nào? Vietcombank Cashplus Platinum American Express®', 'Phí xử lý giao dịch nội tệ tại nước ngoài đối với các loại thẻ của Vietcombank như Vietcombank Mastercard® World, Vietcombank JCB, Vietcombank Cashplus Platinum American Express® và Vietcombank JCB Platinum được tính như thế nào? Vietcombank JCB Platinum']
+2026-03-08 17:24:53,699 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:24:54,285 - INFO - rag_pipeline - Retrieved docs: 3
+2026-03-08 17:24:57,382 - INFO - rag_pipeline - RAG latency: 11.78s
+2026-03-08 17:25:32,143 - INFO - rag_pipeline - User request: Phí xử lý giao dịch nội tệ tại nước ngoài được tính như thế nào?
+2026-03-08 17:25:34,020 - INFO - rag_pipeline - Rewritten query: Cách tính phí xử lý giao dịch nội tệ khi thực hiện tại nước ngoài là gì?
+2026-03-08 17:25:34,494 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 17:25:34,495 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 17:25:37,112 - INFO - rag_pipeline - Multi queries: ['Phí xử lý giao dịch nội tệ khi thực hiện ở nước ngoài được tính như thế nào?']
+2026-03-08 17:25:37,113 - INFO - rag_pipeline - Final search queries: ['Cách tính phí xử lý giao dịch nội tệ khi thực hiện tại nước ngoài là gì?', 'Phí xử lý giao dịch nội tệ khi thực hiện ở nước ngoài được tính như thế nào?']
+2026-03-08 17:25:37,115 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:25:37,279 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 17:25:43,715 - INFO - rag_pipeline - RAG latency: 10.61s
+2026-03-08 17:26:09,775 - INFO - rag_pipeline - User request: Phí xử lý giao dịch nội tệ tại nước ngoài được áp dụng cho loại thẻ nào
+2026-03-08 17:26:11,508 - INFO - rag_pipeline - Rewritten query: Phí xử lý giao dịch nội tệ tại nước ngoài được áp dụng cho loại thẻ nào của Vietcombank?
+2026-03-08 17:26:12,248 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-08 17:26:12,249 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-08 17:26:14,631 - INFO - rag_pipeline - Multi queries: ['Loại thẻ nào của Vietcombank bị áp dụng phí xử lý giao dịch nội tệ khi sử dụng ở nước ngoài?']
+2026-03-08 17:26:14,632 - INFO - rag_pipeline - Final search queries: ['Phí xử lý giao dịch nội tệ tại nước ngoài được áp dụng cho loại thẻ nào của Vietcombank?', 'Loại thẻ nào của Vietcombank bị áp dụng phí xử lý giao dịch nội tệ khi sử dụng ở nước ngoài?']
+2026-03-08 17:26:14,633 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:26:14,791 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 17:26:23,786 - INFO - rag_pipeline - RAG latency: 13.24s
+2026-03-08 17:28:34,741 - INFO - rag_pipeline - User request: Các sản phẩm vay tiêu dùng hiện có của VCB
+2026-03-08 17:28:36,198 - INFO - rag_pipeline - Rewritten query: Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì?
+2026-03-08 17:28:38,031 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp đối với Người lao động', 'Vay cầm cố giấy tờ có giá', 'Vay tiêu dùng có tài sản bảo đảm', 'Vay xây sửa nhà ở', 'Vay mua nhà dự án', 'Vay mua ô tô', 'Vay tín chấp theo lương']
+2026-03-08 17:28:38,033 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp đối với Người lao động', 'Vay cầm cố giấy tờ có giá', 'Vay tiêu dùng có tài sản bảo đảm', 'Vay xây sửa nhà ở', 'Vay mua nhà dự án', 'Vay mua ô tô', 'Vay tín chấp theo lương']
+2026-03-08 17:28:39,683 - INFO - rag_pipeline - Multi queries: ['Vietcombank hiện đang cung cấp những sản phẩm vay tiêu dùng nào?']
+2026-03-08 17:28:39,684 - INFO - rag_pipeline - Final search queries: ['Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì?', 'Vietcombank hiện đang cung cấp những sản phẩm vay tiêu dùng nào?', 'Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì? Vay tín chấp đối với Người lao động', 'Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì? Vay cầm cố giấy tờ có giá', 'Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì? Vay tiêu dùng có tài sản bảo đảm', 'Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì? Vay xây sửa nhà ở', 'Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì? Vay mua nhà dự án', 'Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì? Vay mua ô tô', 'Các sản phẩm vay tiêu dùng hiện có của Vietcombank là gì? Vay tín chấp theo lương']
+2026-03-08 17:28:39,685 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:28:40,378 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 17:28:53,204 - INFO - rag_pipeline - RAG latency: 17.73s
+2026-03-08 17:32:40,518 - INFO - rag_pipeline - User request: Có vay tín chấp không
+2026-03-08 17:32:42,673 - INFO - rag_pipeline - Rewritten query: Vietcombank có cung cấp sản phẩm vay tín chấp không?
+2026-03-08 17:32:43,464 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp đối với Người lao động', 'Vay tín chấp theo lương']
+2026-03-08 17:32:43,465 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp đối với Người lao động', 'Vay tín chấp theo lương']
+2026-03-08 17:32:45,058 - INFO - rag_pipeline - Multi queries: ['Vietcombank có sản phẩm cho vay tín chấp hay không?']
+2026-03-08 17:32:45,059 - INFO - rag_pipeline - Final search queries: ['Vietcombank có cung cấp sản phẩm vay tín chấp không?', 'Vietcombank có sản phẩm cho vay tín chấp hay không?', 'Vietcombank có cung cấp sản phẩm vay tín chấp không? Vay tín chấp đối với Người lao động', 'Vietcombank có cung cấp sản phẩm vay tín chấp không? Vay tín chấp theo lương']
+2026-03-08 17:32:45,061 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:32:45,325 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-08 17:32:50,719 - INFO - rag_pipeline - RAG latency: 9.24s
+2026-03-08 17:37:54,193 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-08 17:38:04,973 - INFO - rag_pipeline - Loaded 26 products
+2026-03-08 17:38:19,429 - INFO - rag_pipeline - User request: Các sản phẩm vay tiêu dùng của VCB
+2026-03-08 17:38:21,583 - INFO - rag_pipeline - Rewritten query: Danh sách các sản phẩm vay tiêu dùng mà Ngân hàng Vietcombank cung cấp là gì?
+2026-03-08 17:38:22,792 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp theo lương', 'Vay tiêu dùng có tài sản bảo đảm', 'Vay cầm cố giấy tờ có giá']
+2026-03-08 17:38:22,801 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp theo lương', 'Vay tiêu dùng có tài sản bảo đảm', 'Vay cầm cố giấy tờ có giá']
+2026-03-08 17:38:25,057 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank có những sản phẩm vay tiêu dùng nào?']
+2026-03-08 17:38:25,058 - INFO - rag_pipeline - Final search queries: ['Danh sách các sản phẩm vay tiêu dùng mà Ngân hàng Vietcombank cung cấp là gì?', 'Ngân hàng Vietcombank có những sản phẩm vay tiêu dùng nào?', 'Danh sách các sản phẩm vay tiêu dùng mà Ngân hàng Vietcombank cung cấp là gì? Vay tín chấp theo lương', 'Danh sách các sản phẩm vay tiêu dùng mà Ngân hàng Vietcombank cung cấp là gì? Vay tiêu dùng có tài sản bảo đảm', 'Danh sách các sản phẩm vay tiêu dùng mà Ngân hàng Vietcombank cung cấp là gì? Vay cầm cố giấy tờ có giá']
+2026-03-08 17:38:25,061 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:38:25,453 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-08 17:38:40,022 - INFO - rag_pipeline - RAG latency: 19.25s
+2026-03-08 17:39:25,677 - INFO - rag_pipeline - User request: Hồ sơ vay tín chấp theo lương:
+2026-03-08 17:39:27,464 - INFO - rag_pipeline - Rewritten query: Bạn có thể cho tôi biết thông tin chi tiết về hồ sơ vay tín chấp theo lương của Vietcombank không?
+2026-03-08 17:39:28,241 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp theo lương']
+2026-03-08 17:39:28,242 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp theo lương']
+2026-03-08 17:39:30,742 - INFO - rag_pipeline - Multi queries: ['Tôi muốn biết thông tin chi tiết về hồ sơ vay tín chấp dựa trên lương tại Vietcombank.']
+2026-03-08 17:39:30,744 - INFO - rag_pipeline - Final search queries: ['Bạn có thể cho tôi biết thông tin chi tiết về hồ sơ vay tín chấp theo lương của Vietcombank không?', 'Tôi muốn biết thông tin chi tiết về hồ sơ vay tín chấp dựa trên lương tại Vietcombank.', 'Bạn có thể cho tôi biết thông tin chi tiết về hồ sơ vay tín chấp theo lương của Vietcombank không? Vay tín chấp theo lương']
+2026-03-08 17:39:30,745 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:39:30,985 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-08 17:39:37,314 - INFO - rag_pipeline - RAG latency: 10.68s
+2026-03-08 17:40:48,732 - INFO - rag_pipeline - User request: Quy trình & Ngày trả nợ
+2026-03-08 17:40:50,373 - INFO - rag_pipeline - Rewritten query: Quy trình vay tín chấp theo lương tại Vietcombank là gì và ngày trả nợ sẽ được xác định như thế nào?
+2026-03-08 17:40:51,104 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp theo lương']
+2026-03-08 17:40:51,105 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp theo lương']
+2026-03-08 17:40:54,498 - INFO - rag_pipeline - Multi queries: ['Tôi muốn biết quy trình vay tín chấp dựa trên lương tại Vietcombank và cách xác định ngày trả nợ.']
+2026-03-08 17:40:54,499 - INFO - rag_pipeline - Final search queries: ['Quy trình vay tín chấp theo lương tại Vietcombank là gì và ngày trả nợ sẽ được xác định như thế nào?', 'Tôi muốn biết quy trình vay tín chấp dựa trên lương tại Vietcombank và cách xác định ngày trả nợ.', 'Quy trình vay tín chấp theo lương tại Vietcombank là gì và ngày trả nợ sẽ được xác định như thế nào? Vay tín chấp theo lương']
+2026-03-08 17:40:54,501 - INFO - rag_pipeline - Starting retrieval
+2026-03-08 17:40:54,738 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-08 17:41:01,367 - INFO - rag_pipeline - RAG latency: 11.92s
+2026-03-11 18:17:08,206 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 18:17:20,006 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 18:18:29,457 - INFO - rag_pipeline - User request: VCB cho vay bao nhiêu % giá trị xe ô tô
+2026-03-11 18:18:32,863 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank áp dụng tỷ lệ cho vay tối đa bao nhiêu phần trăm giá trị xe ô tô?
+2026-03-11 18:18:33,573 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 18:18:33,575 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 18:18:37,078 - INFO - rag_pipeline - Multi queries: ['Tỷ lệ cho vay tối đa của ngân hàng Vietcombank đối với giá trị xe ô tô là bao nhiêu phần trăm?']
+2026-03-11 18:18:37,079 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank áp dụng tỷ lệ cho vay tối đa bao nhiêu phần trăm giá trị xe ô tô?', 'Tỷ lệ cho vay tối đa của ngân hàng Vietcombank đối với giá trị xe ô tô là bao nhiêu phần trăm?']
+2026-03-11 18:18:37,081 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 18:18:39,033 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 18:18:48,885 - INFO - rag_pipeline - RAG latency: 17.74s
+2026-03-11 18:19:32,030 - INFO - rag_pipeline - User request: Điều kiện và hồ sơ là gì
+2026-03-11 18:19:33,656 - INFO - rag_pipeline - Rewritten query: Điều kiện và hồ sơ cần có để vay vốn mua xe ô tô tại Vietcombank là gì?
+2026-03-11 18:19:35,270 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 18:19:35,271 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 18:19:37,229 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện và hồ sơ để vay mua ô tô tại Vietcombank.']
+2026-03-11 18:19:37,230 - INFO - rag_pipeline - Final search queries: ['Điều kiện và hồ sơ cần có để vay vốn mua xe ô tô tại Vietcombank là gì?', 'Tôi cần biết điều kiện và hồ sơ để vay mua ô tô tại Vietcombank.', 'Điều kiện và hồ sơ cần có để vay vốn mua xe ô tô tại Vietcombank là gì? Vay mua ô tô']
+2026-03-11 18:19:37,231 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 18:19:37,509 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 18:19:44,576 - INFO - rag_pipeline - RAG latency: 11.84s
+2026-03-11 18:56:52,934 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 18:57:07,272 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:03:49,143 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:04:00,211 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:08:27,191 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:08:38,965 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:12:57,462 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:13:10,328 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:16:23,850 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:16:35,247 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:21:52,323 - INFO - rag_pipeline - User request: Lợi ích thẻ Vietcombank Mastercard World
+2026-03-11 19:21:56,387 - INFO - rag_pipeline - Rewritten query: Những lợi ích của thẻ Vietcombank Mastercard World là gì?
+2026-03-11 19:21:57,612 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:21:57,614 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:22:00,532 - INFO - rag_pipeline - Multi queries: ['Thẻ Vietcombank Mastercard World mang lại những ưu điểm gì?']
+2026-03-11 19:22:00,533 - INFO - rag_pipeline - Final search queries: ['Những lợi ích của thẻ Vietcombank Mastercard World là gì?', 'Thẻ Vietcombank Mastercard World mang lại những ưu điểm gì?']
+2026-03-11 19:22:00,537 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:22:01,811 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:22:18,090 - INFO - rag_pipeline - RAG latency: 23.36s
+2026-03-11 19:25:02,851 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:25:13,830 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:25:38,889 - INFO - rag_pipeline - User request: Lợi ích thẻ Vietcombank Mastercard World
+2026-03-11 19:25:42,031 - INFO - rag_pipeline - Rewritten query: Những lợi ích của thẻ Vietcombank Mastercard World là gì?
+2026-03-11 19:25:43,515 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:25:43,515 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:25:46,557 - INFO - rag_pipeline - Multi queries: ['Thẻ Vietcombank Mastercard World mang lại những ưu điểm gì?']
+2026-03-11 19:25:46,558 - INFO - rag_pipeline - Final search queries: ['Những lợi ích của thẻ Vietcombank Mastercard World là gì?', 'Thẻ Vietcombank Mastercard World mang lại những ưu điểm gì?']
+2026-03-11 19:25:46,559 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:25:47,593 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:26:03,415 - INFO - rag_pipeline - RAG latency: 22.85s
+2026-03-11 19:29:54,484 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:30:07,474 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:32:12,286 - INFO - rag_pipeline - User request: Lợi ích thẻ Vietcombank Mastercard World
+2026-03-11 19:32:15,076 - INFO - rag_pipeline - Rewritten query: Những lợi ích của thẻ Vietcombank Mastercard World là gì?
+2026-03-11 19:32:15,600 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:32:15,601 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:32:19,099 - INFO - rag_pipeline - Multi queries: ['Thẻ Vietcombank Mastercard World mang lại những ưu điểm gì?']
+2026-03-11 19:32:19,100 - INFO - rag_pipeline - Final search queries: ['Những lợi ích của thẻ Vietcombank Mastercard World là gì?', 'Thẻ Vietcombank Mastercard World mang lại những ưu điểm gì?']
+2026-03-11 19:32:19,109 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:32:20,273 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:32:38,149 - INFO - rag_pipeline - RAG latency: 24.01s
+2026-03-11 19:35:18,129 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:35:29,336 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:36:34,788 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 19:36:37,198 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 19:36:37,794 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:36:37,796 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:36:41,585 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:36:41,586 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:36:41,587 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:36:42,709 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:36:54,335 - INFO - rag_pipeline - RAG latency: 18.31s
+2026-03-11 19:37:31,927 - INFO - rag_pipeline - User request: Đối tượng là gì
+2026-03-11 19:37:34,025 - INFO - rag_pipeline - Rewritten query: Đối tượng trong ngân hàng Vietcombank được định nghĩa như thế nào?
+2026-03-11 19:37:34,556 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:37:34,557 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:37:37,715 - INFO - rag_pipeline - Multi queries: ['Định nghĩa về đối tượng trong ngân hàng Vietcombank là gì?']
+2026-03-11 19:37:37,716 - INFO - rag_pipeline - Final search queries: ['Đối tượng trong ngân hàng Vietcombank được định nghĩa như thế nào?', 'Định nghĩa về đối tượng trong ngân hàng Vietcombank là gì?']
+2026-03-11 19:37:37,717 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:37:37,881 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:37:50,154 - INFO - rag_pipeline - RAG latency: 17.14s
+2026-03-11 19:41:45,916 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 19:41:48,056 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 19:41:49,675 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:41:49,676 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:41:54,111 - INFO - rag_pipeline - Multi queries: ['Tỷ lệ cho vay của ngân hàng Vietcombank đối với giá trị xe khi vay mua ô tô là bao nhiêu?']
+2026-03-11 19:41:54,113 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Tỷ lệ cho vay của ngân hàng Vietcombank đối với giá trị xe khi vay mua ô tô là bao nhiêu?']
+2026-03-11 19:41:54,115 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:41:54,968 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:42:05,863 - INFO - rag_pipeline - RAG latency: 18.97s
+2026-03-11 19:42:46,926 - INFO - rag_pipeline - User request: Đối tượng là gì
+2026-03-11 19:42:49,507 - INFO - rag_pipeline - Rewritten query: Đối tượng vay mua ô tô tại Vietcombank là ai?
+2026-03-11 19:42:50,073 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:42:50,074 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:42:52,204 - INFO - rag_pipeline - Multi queries: ['Ai là đối tượng đủ điều kiện để vay mua ô tô tại Vietcombank?']
+2026-03-11 19:42:52,205 - INFO - rag_pipeline - Final search queries: ['Đối tượng vay mua ô tô tại Vietcombank là ai?', 'Ai là đối tượng đủ điều kiện để vay mua ô tô tại Vietcombank?']
+2026-03-11 19:42:52,207 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:42:52,388 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:43:01,932 - INFO - rag_pipeline - RAG latency: 14.10s
+2026-03-11 19:47:46,376 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:47:57,484 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:48:14,221 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 19:48:16,690 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 19:48:17,661 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:48:17,661 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:48:21,662 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank áp dụng tỷ lệ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:48:21,663 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Ngân hàng Vietcombank áp dụng tỷ lệ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:48:21,665 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:48:22,726 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:48:34,895 - INFO - rag_pipeline - RAG latency: 19.32s
+2026-03-11 19:49:15,335 - INFO - rag_pipeline - User request: Điều kiện là gì
+2026-03-11 19:49:17,356 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay mua ô tô tại Vietcombank là gì?
+2026-03-11 19:49:18,243 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 19:49:18,244 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 19:49:21,604 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết các yêu cầu để vay mua ô tô tại Vietcombank.']
+2026-03-11 19:49:21,605 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại Vietcombank là gì?', 'Tôi cần biết các yêu cầu để vay mua ô tô tại Vietcombank.', 'Điều kiện để vay mua ô tô tại Vietcombank là gì? Vay mua ô tô']
+2026-03-11 19:49:21,606 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:49:21,857 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 19:49:27,448 - INFO - rag_pipeline - RAG latency: 11.14s
+2026-03-11 19:52:06,947 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:52:18,077 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:52:22,964 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 19:52:25,356 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 19:52:25,892 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:52:25,893 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:52:30,880 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank hỗ trợ cho vay tối đa bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:52:30,880 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Ngân hàng Vietcombank hỗ trợ cho vay tối đa bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:52:30,881 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:52:31,098 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:52:39,875 - INFO - rag_pipeline - RAG latency: 15.70s
+2026-03-11 19:52:58,215 - INFO - rag_pipeline - User request: Điều kiện là gì
+2026-03-11 19:53:00,053 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì?
+2026-03-11 19:53:00,742 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 19:53:00,744 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 19:53:03,500 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện vay mua ô tô tại ngân hàng Vietcombank.']
+2026-03-11 19:53:03,500 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì?', 'Tôi cần biết điều kiện vay mua ô tô tại ngân hàng Vietcombank.', 'Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì? Vay mua ô tô']
+2026-03-11 19:53:03,502 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:53:03,780 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 19:53:07,511 - INFO - rag_pipeline - RAG latency: 8.45s
+2026-03-11 19:54:35,511 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:54:46,864 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:55:05,378 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 19:55:08,053 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 19:55:08,532 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 19:55:08,533 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 19:55:12,223 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:55:12,225 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 19:55:12,227 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:55:12,444 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 19:55:22,054 - INFO - rag_pipeline - RAG latency: 15.15s
+2026-03-11 19:56:32,330 - INFO - rag_pipeline - User request: Tôi muốn vay tín chấp thì điều kiện để vay là gì
+2026-03-11 19:56:34,211 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay tín chấp tại ngân hàng Vietcombank là gì?
+2026-03-11 19:56:35,079 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp theo lương']
+2026-03-11 19:56:35,080 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp theo lương']
+2026-03-11 19:56:37,320 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết những yêu cầu để vay tín chấp tại ngân hàng Vietcombank.']
+2026-03-11 19:56:37,321 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay tín chấp tại ngân hàng Vietcombank là gì?', 'Tôi cần biết những yêu cầu để vay tín chấp tại ngân hàng Vietcombank.', 'Điều kiện để vay tín chấp tại ngân hàng Vietcombank là gì? Vay tín chấp theo lương']
+2026-03-11 19:56:37,323 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:56:37,598 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-11 19:56:43,987 - INFO - rag_pipeline - RAG latency: 10.74s
+2026-03-11 19:58:41,255 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 19:58:52,771 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 19:59:12,015 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 19:59:14,285 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe trong trường hợp tôi muốn vay mua ô tô?
+2026-03-11 19:59:14,989 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 19:59:14,990 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 19:59:17,659 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi tôi muốn mua ô tô?']
+2026-03-11 19:59:17,660 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe trong trường hợp tôi muốn vay mua ô tô?', 'Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi tôi muốn mua ô tô?', 'Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe trong trường hợp tôi muốn vay mua ô tô? Vay mua ô tô']
+2026-03-11 19:59:17,661 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:59:18,907 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 19:59:24,735 - INFO - rag_pipeline - RAG latency: 11.46s
+2026-03-11 19:59:48,818 - INFO - rag_pipeline - User request: Hồ sơ chuẩn bị
+2026-03-11 19:59:50,683 - INFO - rag_pipeline - Rewritten query: Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì?
+2026-03-11 19:59:51,402 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 19:59:51,403 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 19:59:53,844 - INFO - rag_pipeline - Multi queries: ['Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?']
+2026-03-11 19:59:53,845 - INFO - rag_pipeline - Final search queries: ['Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì?', 'Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?', 'Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì? Vay mua ô tô']
+2026-03-11 19:59:53,847 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 19:59:54,266 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 20:00:00,534 - INFO - rag_pipeline - RAG latency: 10.70s
+2026-03-11 20:00:16,207 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 20:00:18,225 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 20:00:18,820 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 20:00:18,821 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 20:00:22,090 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank hỗ trợ cho vay tối đa bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 20:00:22,091 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Ngân hàng Vietcombank hỗ trợ cho vay tối đa bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 20:00:22,093 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:00:22,280 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 20:00:31,295 - INFO - rag_pipeline - RAG latency: 14.35s
+2026-03-11 20:00:37,812 - INFO - rag_pipeline - User request: Hồ sơ chuẩn bị
+2026-03-11 20:00:40,685 - INFO - rag_pipeline - Rewritten query: Cần chuẩn bị những hồ sơ gì để thực hiện giao dịch tại ngân hàng Vietcombank?
+2026-03-11 20:00:41,277 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 20:00:41,278 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 20:00:43,373 - INFO - rag_pipeline - Multi queries: ['Tôi cần những giấy tờ gì để thực hiện giao dịch tại ngân hàng Vietcombank?']
+2026-03-11 20:00:43,373 - INFO - rag_pipeline - Final search queries: ['Cần chuẩn bị những hồ sơ gì để thực hiện giao dịch tại ngân hàng Vietcombank?', 'Tôi cần những giấy tờ gì để thực hiện giao dịch tại ngân hàng Vietcombank?']
+2026-03-11 20:00:43,381 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:00:43,562 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 20:00:56,570 - INFO - rag_pipeline - RAG latency: 16.85s
+2026-03-11 20:05:56,198 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 20:06:07,428 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 20:16:39,908 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 20:16:43,587 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 20:16:44,571 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 20:16:44,572 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 20:16:49,485 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?']
+2026-03-11 20:16:49,486 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Ngân hàng Vietcombank hỗ trợ cho vay bao nhiêu phần trăm giá trị xe khi vay mua ô tô?', 'Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô? Vay mua ô tô']
+2026-03-11 20:16:49,486 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:16:50,702 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 20:16:55,319 - INFO - rag_pipeline - RAG latency: 14.05s
+2026-03-11 20:17:24,665 - INFO - rag_pipeline - User request: Đối tượng là gì
+2026-03-11 20:17:27,861 - INFO - rag_pipeline - Rewritten query: Đối tượng vay mua ô tô tại Vietcombank là ai?
+2026-03-11 20:17:28,665 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 20:17:28,667 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 20:17:31,427 - INFO - rag_pipeline - Multi queries: ['Ai là những người đủ điều kiện vay mua ô tô tại Vietcombank?']
+2026-03-11 20:17:31,428 - INFO - rag_pipeline - Final search queries: ['Đối tượng vay mua ô tô tại Vietcombank là ai?', 'Ai là những người đủ điều kiện vay mua ô tô tại Vietcombank?']
+2026-03-11 20:17:31,429 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:17:31,607 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 20:17:42,167 - INFO - rag_pipeline - RAG latency: 15.99s
+2026-03-11 20:19:55,033 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 20:20:06,353 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 20:20:17,153 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 20:20:25,061 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 20:20:25,669 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 20:20:25,669 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 20:20:29,531 - INFO - rag_pipeline - Multi queries: ['Vietcombank cho vay tối đa bao nhiêu phần trăm giá trị xe khi mua ô tô?']
+2026-03-11 20:20:29,532 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Vietcombank cho vay tối đa bao nhiêu phần trăm giá trị xe khi mua ô tô?']
+2026-03-11 20:20:29,533 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:20:30,674 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 20:20:41,198 - INFO - rag_pipeline - RAG latency: 17.31s
+2026-03-11 20:20:59,079 - INFO - rag_pipeline - User request: Điều kiện là gì
+2026-03-11 20:21:01,239 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay mua ô tô tại Vietcombank là gì?
+2026-03-11 20:21:01,966 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 20:21:01,967 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 20:21:04,129 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết các yêu cầu để vay mua ô tô tại Vietcombank.']
+2026-03-11 20:21:04,130 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại Vietcombank là gì?', 'Tôi cần biết các yêu cầu để vay mua ô tô tại Vietcombank.', 'Điều kiện để vay mua ô tô tại Vietcombank là gì? Vay mua ô tô']
+2026-03-11 20:21:04,132 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:21:04,852 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 20:21:09,015 - INFO - rag_pipeline - RAG latency: 8.83s
+2026-03-11 20:21:47,702 - INFO - rag_pipeline - User request: Hồ sơ chuẩn bị
+2026-03-11 20:21:49,447 - INFO - rag_pipeline - Rewritten query: Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì?
+2026-03-11 20:21:50,228 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 20:21:50,229 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 20:21:52,870 - INFO - rag_pipeline - Multi queries: ['Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?']
+2026-03-11 20:21:52,871 - INFO - rag_pipeline - Final search queries: ['Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì?', 'Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?', 'Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì? Vay mua ô tô']
+2026-03-11 20:21:52,871 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:21:53,177 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 20:22:00,877 - INFO - rag_pipeline - RAG latency: 12.37s
+2026-03-11 20:29:50,338 - INFO - rag_pipeline - User request: Tôi muốn vay mua ô tô, VCB cho vay bao nhiêu % giá trị xe
+2026-03-11 20:29:52,298 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?
+2026-03-11 20:29:52,819 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 20:29:52,820 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 20:29:55,626 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank hỗ trợ vay bao nhiêu phần trăm giá trị xe khi mua ô tô?']
+2026-03-11 20:29:55,627 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank cho vay bao nhiêu phần trăm giá trị xe đối với khoản vay mua ô tô?', 'Ngân hàng Vietcombank hỗ trợ vay bao nhiêu phần trăm giá trị xe khi mua ô tô?']
+2026-03-11 20:29:55,629 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:29:55,820 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 20:30:05,006 - INFO - rag_pipeline - RAG latency: 13.87s
+2026-03-11 20:30:34,205 - INFO - rag_pipeline - User request: Điều kiện là gì
+2026-03-11 20:30:36,437 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay mua ô tô tại Vietcombank là gì?
+2026-03-11 20:30:37,482 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 20:30:37,483 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 20:30:40,134 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết các yêu cầu để vay mua ô tô tại Vietcombank.']
+2026-03-11 20:30:40,135 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại Vietcombank là gì?', 'Tôi cần biết các yêu cầu để vay mua ô tô tại Vietcombank.', 'Điều kiện để vay mua ô tô tại Vietcombank là gì? Vay mua ô tô']
+2026-03-11 20:30:40,136 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:30:40,379 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 20:30:45,178 - INFO - rag_pipeline - RAG latency: 9.57s
+2026-03-11 20:33:32,843 - INFO - rag_pipeline - User request: VCB có cho vay tiêu dùng không
+2026-03-11 20:33:34,653 - INFO - rag_pipeline - Rewritten query: Vietcombank có cung cấp dịch vụ cho vay tiêu dùng không?
+2026-03-11 20:33:35,550 - INFO - rag_pipeline - Product router detected: ['Vay tiêu dùng có tài sản bảo đảm', 'Vay tín chấp theo lương']
+2026-03-11 20:33:35,551 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tiêu dùng có tài sản bảo đảm', 'Vay tín chấp theo lương']
+2026-03-11 20:33:37,580 - INFO - rag_pipeline - Multi queries: ['Vietcombank có dịch vụ cho vay tiêu dùng hay không?']
+2026-03-11 20:33:37,581 - INFO - rag_pipeline - Final search queries: ['Vietcombank có cung cấp dịch vụ cho vay tiêu dùng không?', 'Vietcombank có dịch vụ cho vay tiêu dùng hay không?', 'Vietcombank có cung cấp dịch vụ cho vay tiêu dùng không? Vay tiêu dùng có tài sản bảo đảm', 'Vietcombank có cung cấp dịch vụ cho vay tiêu dùng không? Vay tín chấp theo lương']
+2026-03-11 20:33:37,583 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:33:37,921 - INFO - rag_pipeline - Retrieved docs: 12
+2026-03-11 20:33:47,043 - INFO - rag_pipeline - RAG latency: 13.38s
+2026-03-11 20:35:03,847 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-11 20:35:15,012 - INFO - rag_pipeline - Loaded 26 products
+2026-03-11 20:35:23,800 - INFO - rag_pipeline - User request: Điều kiện để Vay tín chấp theo lương
+2026-03-11 20:35:25,880 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay tín chấp theo lương tại Vietcombank là gì?
+2026-03-11 20:35:26,864 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp theo lương']
+2026-03-11 20:35:26,865 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp theo lương']
+2026-03-11 20:35:28,796 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện vay tín chấp theo lương tại Vietcombank là gì?']
+2026-03-11 20:35:28,797 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay tín chấp theo lương tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay tín chấp theo lương tại Vietcombank là gì?', 'Điều kiện để vay tín chấp theo lương tại Vietcombank là gì? Vay tín chấp theo lương']
+2026-03-11 20:35:28,798 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:35:29,546 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-11 20:35:36,465 - INFO - rag_pipeline - RAG latency: 11.54s
+2026-03-11 20:36:22,601 - INFO - rag_pipeline - User request: Hồ sơ chuẩn bị
+2026-03-11 20:36:24,933 - INFO - rag_pipeline - Rewritten query: Cần chuẩn bị những hồ sơ gì để thực hiện giao dịch tại ngân hàng Vietcombank?
+2026-03-11 20:36:25,911 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 20:36:25,913 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 20:36:32,040 - INFO - rag_pipeline - Multi queries: ['Tôi cần những giấy tờ gì để thực hiện giao dịch tại ngân hàng Vietcombank?']
+2026-03-11 20:36:32,041 - INFO - rag_pipeline - Final search queries: ['Cần chuẩn bị những hồ sơ gì để thực hiện giao dịch tại ngân hàng Vietcombank?', 'Tôi cần những giấy tờ gì để thực hiện giao dịch tại ngân hàng Vietcombank?']
+2026-03-11 20:36:32,043 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:36:32,587 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 20:36:46,078 - INFO - rag_pipeline - RAG latency: 22.65s
+2026-03-11 20:39:20,606 - INFO - rag_pipeline - User request: Tôi muốn vay tin chấp có được không
+2026-03-11 20:39:22,315 - INFO - rag_pipeline - Rewritten query: Tôi có thể vay tín chấp tại ngân hàng Vietcombank không?
+2026-03-11 20:39:23,139 - INFO - rag_pipeline - Product router detected: ['Vay tín chấp theo lương']
+2026-03-11 20:39:23,139 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tín chấp theo lương']
+2026-03-11 20:39:25,329 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank có cho vay tín chấp không?']
+2026-03-11 20:39:25,330 - INFO - rag_pipeline - Final search queries: ['Tôi có thể vay tín chấp tại ngân hàng Vietcombank không?', 'Ngân hàng Vietcombank có cho vay tín chấp không?', 'Tôi có thể vay tín chấp tại ngân hàng Vietcombank không? Vay tín chấp theo lương']
+2026-03-11 20:39:25,331 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:39:26,531 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-11 20:39:34,868 - INFO - rag_pipeline - RAG latency: 13.37s
+2026-03-11 20:44:51,667 - INFO - rag_pipeline - User request: Thẻ tín dụng nào phù hợp mở để mua sắm
+2026-03-11 20:45:00,981 - INFO - rag_pipeline - Rewritten query: Thẻ tín dụng nào của Vietcombank phù hợp nhất cho việc mua sắm?
+2026-03-11 20:45:02,631 - INFO - rag_pipeline - Product router detected: ['Vietcombank Mastercard®', 'Vietcombank Visa Platinum', 'Vietcombank Vibe', 'Vietcombank Vibe Platinum', 'Vietcombank Visa Snack']
+2026-03-11 20:45:02,632 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Mastercard®', 'Vietcombank Visa Platinum', 'Vietcombank Vibe', 'Vietcombank Vibe Platinum', 'Vietcombank Visa Snack']
+2026-03-11 20:45:05,223 - INFO - rag_pipeline - Multi queries: ['Thẻ tín dụng nào của Vietcombank tốt nhất cho việc chi tiêu mua sắm?']
+2026-03-11 20:45:05,225 - INFO - rag_pipeline - Final search queries: ['Thẻ tín dụng nào của Vietcombank phù hợp nhất cho việc mua sắm?', 'Thẻ tín dụng nào của Vietcombank tốt nhất cho việc chi tiêu mua sắm?', 'Thẻ tín dụng nào của Vietcombank phù hợp nhất cho việc mua sắm? Vietcombank Mastercard®', 'Thẻ tín dụng nào của Vietcombank phù hợp nhất cho việc mua sắm? Vietcombank Visa Platinum', 'Thẻ tín dụng nào của Vietcombank phù hợp nhất cho việc mua sắm? Vietcombank Vibe', 'Thẻ tín dụng nào của Vietcombank phù hợp nhất cho việc mua sắm? Vietcombank Vibe Platinum', 'Thẻ tín dụng nào của Vietcombank phù hợp nhất cho việc mua sắm? Vietcombank Visa Snack']
+2026-03-11 20:45:05,227 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:45:06,244 - INFO - rag_pipeline - Retrieved docs: 6
+2026-03-11 20:45:17,135 - INFO - rag_pipeline - RAG latency: 17.67s
+2026-03-11 20:50:13,305 - INFO - rag_pipeline - User request: Gói vay mua ô tô của VCB như thế nào
+2026-03-11 20:50:15,211 - INFO - rag_pipeline - Rewritten query: Thông tin về gói vay mua ô tô của ngân hàng Vietcombank là gì?
+2026-03-11 20:50:16,725 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 20:50:16,725 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 20:50:18,947 - INFO - rag_pipeline - Multi queries: ['Ngân hàng Vietcombank có gói vay mua ô tô nào và thông tin chi tiết ra sao?']
+2026-03-11 20:50:18,949 - INFO - rag_pipeline - Final search queries: ['Thông tin về gói vay mua ô tô của ngân hàng Vietcombank là gì?', 'Ngân hàng Vietcombank có gói vay mua ô tô nào và thông tin chi tiết ra sao?', 'Thông tin về gói vay mua ô tô của ngân hàng Vietcombank là gì? Vay mua ô tô']
+2026-03-11 20:50:18,950 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:50:19,237 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 20:50:28,052 - INFO - rag_pipeline - RAG latency: 13.85s
+2026-03-11 20:54:50,239 - INFO - rag_pipeline - User request: Điều kiẹn de vay mua o to
+2026-03-11 20:54:53,200 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì?
+2026-03-11 20:54:53,937 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-11 20:54:53,938 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-11 20:54:55,929 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết các yêu cầu để vay mua ô tô tại ngân hàng Vietcombank.']
+2026-03-11 20:54:55,930 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì?', 'Tôi cần biết các yêu cầu để vay mua ô tô tại ngân hàng Vietcombank.', 'Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì? Vay mua ô tô']
+2026-03-11 20:54:55,931 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:54:56,210 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-11 20:55:00,881 - INFO - rag_pipeline - RAG latency: 9.50s
+2026-03-11 20:59:33,059 - INFO - rag_pipeline - User request: Vay xây sửa cơ sở du lịch như thế nào
+2026-03-11 20:59:35,951 - INFO - rag_pipeline - Rewritten query: Làm thế nào để vay vốn xây dựng và sửa chữa cơ sở du lịch tại Vietcombank?
+2026-03-11 20:59:39,192 - INFO - rag_pipeline - Product router detected: ['Vay xây mới cơ sở lưu trú du lịch', 'Vay xây sửa nhà ở']
+2026-03-11 20:59:39,194 - INFO - rag_pipeline - Detected products after rewrite: ['Vay xây mới cơ sở lưu trú du lịch', 'Vay xây sửa nhà ở']
+2026-03-11 20:59:41,767 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết quy trình vay vốn để xây dựng và sửa chữa cơ sở du lịch tại Vietcombank như thế nào?']
+2026-03-11 20:59:41,769 - INFO - rag_pipeline - Final search queries: ['Làm thế nào để vay vốn xây dựng và sửa chữa cơ sở du lịch tại Vietcombank?', 'Tôi cần biết quy trình vay vốn để xây dựng và sửa chữa cơ sở du lịch tại Vietcombank như thế nào?', 'Làm thế nào để vay vốn xây dựng và sửa chữa cơ sở du lịch tại Vietcombank? Vay xây mới cơ sở lưu trú du lịch', 'Làm thế nào để vay vốn xây dựng và sửa chữa cơ sở du lịch tại Vietcombank? Vay xây sửa nhà ở']
+2026-03-11 20:59:41,771 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 20:59:42,150 - INFO - rag_pipeline - Retrieved docs: 11
+2026-03-11 20:59:57,939 - INFO - rag_pipeline - RAG latency: 23.81s
+2026-03-11 21:01:28,446 - INFO - rag_pipeline - User request: Tại sao thẻ không thẻ rút được tiền
+2026-03-11 21:01:30,231 - INFO - rag_pipeline - Rewritten query: Tại sao thẻ không thẻ của tôi không rút được tiền?
+2026-03-11 21:01:30,957 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-11 21:01:30,957 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 21:01:34,323 - INFO - rag_pipeline - Multi queries: ['Tại sao tôi không thể rút tiền từ thẻ không thẻ của mình?']
+2026-03-11 21:01:34,323 - INFO - rag_pipeline - Final search queries: ['Tại sao thẻ không thẻ của tôi không rút được tiền?', 'Tại sao tôi không thể rút tiền từ thẻ không thẻ của mình?']
+2026-03-11 21:01:34,324 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:01:34,511 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 21:01:49,364 - INFO - rag_pipeline - RAG latency: 20.06s
+2026-03-11 21:09:49,995 - INFO - rag_pipeline - User request: Làm sao để vay mua nhà
+2026-03-11 21:09:52,385 - INFO - rag_pipeline - Rewritten query: Các bước cần thực hiện để vay vốn mua nhà tại ngân hàng Vietcombank là gì?
+2026-03-11 21:09:53,660 - INFO - rag_pipeline - Product router detected: ['Vay mua nhà ở, đất ở', 'Vay mua nhà dự án']
+2026-03-11 21:09:53,662 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua nhà ở, đất ở', 'Vay mua nhà dự án']
+2026-03-11 21:09:56,457 - INFO - rag_pipeline - Multi queries: ['Tôi cần làm gì để vay tiền mua nhà tại ngân hàng Vietcombank?']
+2026-03-11 21:09:56,458 - INFO - rag_pipeline - Final search queries: ['Các bước cần thực hiện để vay vốn mua nhà tại ngân hàng Vietcombank là gì?', 'Tôi cần làm gì để vay tiền mua nhà tại ngân hàng Vietcombank?', 'Các bước cần thực hiện để vay vốn mua nhà tại ngân hàng Vietcombank là gì? Vay mua nhà ở, đất ở', 'Các bước cần thực hiện để vay vốn mua nhà tại ngân hàng Vietcombank là gì? Vay mua nhà dự án']
+2026-03-11 21:09:56,460 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:09:56,823 - INFO - rag_pipeline - Retrieved docs: 11
+2026-03-11 21:10:12,463 - INFO - rag_pipeline - RAG latency: 21.34s
+2026-03-11 21:10:46,499 - INFO - rag_pipeline - User request: Có các gói vay nào
+2026-03-11 21:10:48,516 - INFO - rag_pipeline - Rewritten query: Các gói vay mua nhà nào đang được cung cấp tại Vietcombank?
+2026-03-11 21:10:49,615 - INFO - rag_pipeline - Product router detected: ['Vay mua nhà dự án', 'Vay mua nhà ở, đất ở']
+2026-03-11 21:10:49,617 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua nhà dự án', 'Vay mua nhà ở, đất ở']
+2026-03-11 21:10:52,150 - INFO - rag_pipeline - Multi queries: ['Vietcombank hiện có những gói vay mua nhà nào?']
+2026-03-11 21:10:52,151 - INFO - rag_pipeline - Final search queries: ['Các gói vay mua nhà nào đang được cung cấp tại Vietcombank?', 'Vietcombank hiện có những gói vay mua nhà nào?', 'Các gói vay mua nhà nào đang được cung cấp tại Vietcombank? Vay mua nhà dự án', 'Các gói vay mua nhà nào đang được cung cấp tại Vietcombank? Vay mua nhà ở, đất ở']
+2026-03-11 21:10:52,153 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:10:52,490 - INFO - rag_pipeline - Retrieved docs: 11
+2026-03-11 21:11:03,324 - INFO - rag_pipeline - RAG latency: 15.95s
+2026-03-11 21:11:29,704 - INFO - rag_pipeline - User request: Vay mua nhà ở, đất ở có cần thế chấp gì không
+2026-03-11 21:11:31,913 - INFO - rag_pipeline - Rewritten query: Vay mua nhà ở hoặc đất ở tại Vietcombank có cần phải thế chấp tài sản gì không?
+2026-03-11 21:11:33,294 - INFO - rag_pipeline - Product router detected: ['Vay mua nhà ở, đất ở']
+2026-03-11 21:11:33,295 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua nhà ở, đất ở']
+2026-03-11 21:11:36,851 - INFO - rag_pipeline - Multi queries: ['Có cần thế chấp tài sản khi vay mua nhà hoặc đất tại Vietcombank không?']
+2026-03-11 21:11:36,852 - INFO - rag_pipeline - Final search queries: ['Vay mua nhà ở hoặc đất ở tại Vietcombank có cần phải thế chấp tài sản gì không?', 'Có cần thế chấp tài sản khi vay mua nhà hoặc đất tại Vietcombank không?', 'Vay mua nhà ở hoặc đất ở tại Vietcombank có cần phải thế chấp tài sản gì không? Vay mua nhà ở, đất ở']
+2026-03-11 21:11:36,860 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:11:37,117 - INFO - rag_pipeline - Retrieved docs: 5
+2026-03-11 21:11:41,806 - INFO - rag_pipeline - RAG latency: 11.25s
+2026-03-11 21:12:45,924 - INFO - rag_pipeline - User request: Có cách nào để không cần thế chấp mà vẫn vay được không?
+2026-03-11 21:12:47,917 - INFO - rag_pipeline - Rewritten query: Có cách nào để vay mua nhà ở, đất ở tại Vietcombank mà không cần thế chấp tài sản không?
+2026-03-11 21:12:49,318 - INFO - rag_pipeline - Product router detected: ['Vay mua nhà ở, đất ở', 'Vay tín chấp theo lương']
+2026-03-11 21:12:49,319 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua nhà ở, đất ở', 'Vay tín chấp theo lương']
+2026-03-11 21:12:52,746 - INFO - rag_pipeline - Multi queries: ['Tôi có thể vay mua nhà hoặc đất tại Vietcombank mà không cần thế chấp tài sản không?']
+2026-03-11 21:12:52,747 - INFO - rag_pipeline - Final search queries: ['Có cách nào để vay mua nhà ở, đất ở tại Vietcombank mà không cần thế chấp tài sản không?', 'Tôi có thể vay mua nhà hoặc đất tại Vietcombank mà không cần thế chấp tài sản không?', 'Có cách nào để vay mua nhà ở, đất ở tại Vietcombank mà không cần thế chấp tài sản không? Vay mua nhà ở, đất ở', 'Có cách nào để vay mua nhà ở, đất ở tại Vietcombank mà không cần thế chấp tài sản không? Vay tín chấp theo lương']
+2026-03-11 21:12:52,749 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:12:53,117 - INFO - rag_pipeline - Retrieved docs: 8
+2026-03-11 21:13:00,996 - INFO - rag_pipeline - RAG latency: 14.06s
+2026-03-11 21:15:23,956 - INFO - rag_pipeline - User request: Các loại thẻ tín dụng hiện có của Vietcombank
+2026-03-11 21:15:24,925 - INFO - rag_pipeline - User request: VCB có gói vay Mua Nhà Thành Đạt không
+2026-03-11 21:15:26,047 - INFO - rag_pipeline - Rewritten query: Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào?
+2026-03-11 21:15:27,096 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank có cung cấp gói vay Mua Nhà Thành Đạt hay không?
+2026-03-11 21:15:27,835 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-11 21:15:28,040 - INFO - rag_pipeline - Product router detected: ['Vietcombank American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Mastercard® World', 'Vietcombank Visa Platinum', 'Vietcombank Mastercard®', 'Vietcombank Vibe Platinum', 'Vietcombank Vietnam Airlines American Express®', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank JCB Platinum', 'Vietcombank JCB']
+2026-03-11 21:15:28,042 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank Mastercard® World', 'Vietcombank Visa Platinum', 'Vietcombank Mastercard®', 'Vietcombank Vibe Platinum', 'Vietcombank Vietnam Airlines American Express®', 'Vietcombank Cashplus Platinum American Express®', 'Vietcombank JCB Platinum', 'Vietcombank JCB']
+2026-03-11 21:15:30,136 - INFO - rag_pipeline - Multi queries: ['Vietcombank có những loại thẻ tín dụng nào đang được cung cấp?']
+2026-03-11 21:15:30,137 - INFO - rag_pipeline - Final search queries: ['Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào?', 'Vietcombank có những loại thẻ tín dụng nào đang được cung cấp?', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank American Express®', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank Mastercard® World', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank Visa Platinum', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank Mastercard®', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank Vibe Platinum', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank Vietnam Airlines American Express®', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank Cashplus Platinum American Express®', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank JCB Platinum', 'Vietcombank hiện đang cung cấp những loại thẻ tín dụng nào? Vietcombank JCB']
+2026-03-11 21:15:30,139 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:15:30,704 - INFO - rag_pipeline - Multi queries: ['Gói vay Mua Nhà Thành Đạt có được cung cấp bởi ngân hàng Vietcombank không?']
+2026-03-11 21:15:30,705 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có cung cấp gói vay Mua Nhà Thành Đạt hay không?', 'Gói vay Mua Nhà Thành Đạt có được cung cấp bởi ngân hàng Vietcombank không?']
+2026-03-11 21:15:30,706 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:15:31,014 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-11 21:15:31,607 - INFO - rag_pipeline - Retrieved docs: 8
+2026-03-11 21:15:43,466 - INFO - rag_pipeline - RAG latency: 17.59s
+2026-03-11 21:15:46,210 - INFO - rag_pipeline - RAG latency: 21.35s
+2026-03-11 21:16:35,649 - INFO - rag_pipeline - User request: Điều kiện là gì
+2026-03-11 21:16:36,514 - INFO - rag_pipeline - User request: Lợi ích khi mở Vietcombank Mastercard® World
+2026-03-11 21:16:37,570 - INFO - rag_pipeline - Rewritten query: Điều kiện để vay vốn trong gói vay "Nhà Mới Thành Đạt" của ngân hàng Vietcombank là gì?
+2026-03-11 21:16:38,294 - INFO - rag_pipeline - Product router detected: ['Nhà Mới Thành Đạt']
+2026-03-11 21:16:38,295 - INFO - rag_pipeline - Detected products after rewrite: ['Nhà Mới Thành Đạt']
+2026-03-11 21:16:38,320 - INFO - rag_pipeline - Rewritten query: Lợi ích khi mở thẻ tín dụng Vietcombank Mastercard® World là gì?
+2026-03-11 21:16:39,540 - INFO - rag_pipeline - Product router detected: ['Vietcombank Mastercard® World']
+2026-03-11 21:16:39,541 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Mastercard® World']
+2026-03-11 21:16:42,439 - INFO - rag_pipeline - Multi queries: ['Thẻ tín dụng Vietcombank Mastercard® World mang lại những lợi ích gì?']
+2026-03-11 21:16:42,440 - INFO - rag_pipeline - Final search queries: ['Lợi ích khi mở thẻ tín dụng Vietcombank Mastercard® World là gì?', 'Thẻ tín dụng Vietcombank Mastercard® World mang lại những lợi ích gì?', 'Lợi ích khi mở thẻ tín dụng Vietcombank Mastercard® World là gì? Vietcombank Mastercard® World']
+2026-03-11 21:16:42,441 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:16:42,697 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-11 21:16:42,741 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện vay vốn cho gói vay "Nhà Mới Thành Đạt" tại ngân hàng Vietcombank.']
+2026-03-11 21:16:42,743 - INFO - rag_pipeline - Final search queries: ['Điều kiện để vay vốn trong gói vay "Nhà Mới Thành Đạt" của ngân hàng Vietcombank là gì?', 'Tôi cần biết điều kiện vay vốn cho gói vay "Nhà Mới Thành Đạt" tại ngân hàng Vietcombank.', 'Điều kiện để vay vốn trong gói vay "Nhà Mới Thành Đạt" của ngân hàng Vietcombank là gì? Nhà Mới Thành Đạt']
+2026-03-11 21:16:42,745 - INFO - rag_pipeline - Starting retrieval
+2026-03-11 21:16:43,194 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-11 21:16:47,713 - INFO - rag_pipeline - RAG latency: 11.25s
+2026-03-11 21:16:51,998 - INFO - rag_pipeline - RAG latency: 14.77s
+2026-03-11 21:18:35,898 - INFO - rag_pipeline - User request: Tôi đã nắm được thông tin. Xim cảm ơn bạn
+2026-03-11 21:19:31,074 - INFO - rag_pipeline - User request: Tôi vay 10 tỷ với lãi suất 5% trong 10 năm thì mỗi tháng tôi phải trả bao nhiêu
+2026-03-11 21:19:31,086 - INFO - rag_pipeline - Loan calculation: principal=10000000000.0, rate=10.0, years=5.0, payment=212470447.11268333
+2026-03-11 21:20:35,785 - INFO - rag_pipeline - User request: Tôi vay 10 tỷ trong 10 năm với lãi suất 5%  thì mỗi tháng tôi phải trả bao nhiêu
+2026-03-11 21:20:35,786 - INFO - rag_pipeline - Loan calculation: principal=10000000000.0, rate=5.0, years=10.0, payment=106065515.23907553
+2026-03-12 16:41:41,141 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-12 16:41:56,077 - INFO - rag_pipeline - Loaded 26 products
+2026-03-12 16:44:05,652 - INFO - rag_pipeline - User request: VCB có thể cho vay bao nhiêu khi vay mua ô tô
+2026-03-12 16:44:09,723 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank có chính sách cho vay tối đa bao nhiêu cho khách hàng vay mua ô tô?
+2026-03-12 16:44:11,200 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 16:44:11,200 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 16:44:14,201 - INFO - rag_pipeline - Multi queries: ['Chính sách cho vay mua ô tô của ngân hàng Vietcombank là bao nhiêu tiền tối đa?']
+2026-03-12 16:44:14,202 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có chính sách cho vay tối đa bao nhiêu cho khách hàng vay mua ô tô?', 'Chính sách cho vay mua ô tô của ngân hàng Vietcombank là bao nhiêu tiền tối đa?', 'Ngân hàng Vietcombank có chính sách cho vay tối đa bao nhiêu cho khách hàng vay mua ô tô? Vay mua ô tô']
+2026-03-12 16:44:14,203 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:44:15,594 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 16:44:20,875 - INFO - rag_pipeline - RAG latency: 13.32s
+2026-03-12 16:45:06,362 - INFO - rag_pipeline - User request: Ai mới có thể vay???
+2026-03-12 16:45:09,242 - INFO - rag_pipeline - Rewritten query: Ai là đối tượng đủ điều kiện để vay mua ô tô tại Vietcombank?
+2026-03-12 16:45:09,864 - WARNING - rag_pipeline - Product router invalid JSON: null
+2026-03-12 16:45:09,865 - INFO - rag_pipeline - Detected products after rewrite: None
+2026-03-12 16:45:12,533 - INFO - rag_pipeline - Multi queries: ['Đối tượng nào có thể vay mua ô tô tại Vietcombank?']
+2026-03-12 16:45:12,534 - INFO - rag_pipeline - Final search queries: ['Ai là đối tượng đủ điều kiện để vay mua ô tô tại Vietcombank?', 'Đối tượng nào có thể vay mua ô tô tại Vietcombank?']
+2026-03-12 16:45:12,536 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:45:12,862 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-12 16:45:24,579 - INFO - rag_pipeline - RAG latency: 17.41s
+2026-03-12 16:46:22,541 - INFO - rag_pipeline - User request: Hồ sơ để vay mua ô tô là gì
+2026-03-12 16:46:24,864 - INFO - rag_pipeline - Rewritten query: Hồ sơ cần chuẩn bị để vay mua ô tô tại Vietcombank bao gồm những gì?
+2026-03-12 16:46:25,549 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 16:46:25,550 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 16:46:28,268 - INFO - rag_pipeline - Multi queries: ['Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?']
+2026-03-12 16:46:28,270 - INFO - rag_pipeline - Final search queries: ['Hồ sơ cần chuẩn bị để vay mua ô tô tại Vietcombank bao gồm những gì?', 'Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?', 'Hồ sơ cần chuẩn bị để vay mua ô tô tại Vietcombank bao gồm những gì? Vay mua ô tô']
+2026-03-12 16:46:28,271 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:46:28,573 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 16:46:35,024 - INFO - rag_pipeline - RAG latency: 11.27s
+2026-03-12 16:49:00,047 - INFO - rag_pipeline - User request: Tôi muốn vay tiền để kinh doanh
+2026-03-12 16:49:02,245 - INFO - rag_pipeline - Rewritten query: Tôi muốn vay tiền để kinh doanh, vậy tôi cần biết hồ sơ cần chuẩn bị cho sản phẩm vay tiêu dùng có tài sản bảo đảm là gì?
+2026-03-12 16:49:03,796 - INFO - rag_pipeline - Product router detected: ['Vay tiêu dùng có tài sản bảo đảm', 'An tâm kinh doanh']
+2026-03-12 16:49:03,797 - INFO - rag_pipeline - Detected products after rewrite: ['Vay tiêu dùng có tài sản bảo đảm', 'An tâm kinh doanh']
+2026-03-12 16:49:08,749 - INFO - rag_pipeline - Multi queries: ['Tôi cần thông tin về hồ sơ cần chuẩn bị để vay tiền kinh doanh với sản phẩm vay tiêu dùng có tài sản bảo đảm.']
+2026-03-12 16:49:08,750 - INFO - rag_pipeline - Final search queries: ['Tôi muốn vay tiền để kinh doanh, vậy tôi cần biết hồ sơ cần chuẩn bị cho sản phẩm vay tiêu dùng có tài sản bảo đảm là gì?', 'Tôi cần thông tin về hồ sơ cần chuẩn bị để vay tiền kinh doanh với sản phẩm vay tiêu dùng có tài sản bảo đảm.', 'Tôi muốn vay tiền để kinh doanh, vậy tôi cần biết hồ sơ cần chuẩn bị cho sản phẩm vay tiêu dùng có tài sản bảo đảm là gì? Vay tiêu dùng có tài sản bảo đảm', 'Tôi muốn vay tiền để kinh doanh, vậy tôi cần biết hồ sơ cần chuẩn bị cho sản phẩm vay tiêu dùng có tài sản bảo đảm là gì? An tâm kinh doanh']
+2026-03-12 16:49:08,752 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:49:09,199 - INFO - rag_pipeline - Retrieved docs: 11
+2026-03-12 16:49:21,391 - INFO - rag_pipeline - RAG latency: 20.41s
+2026-03-12 16:50:00,997 - INFO - rag_pipeline - User request: VCb có gói vay nào khác để kinh doanh nữa không
+2026-03-12 16:50:03,464 - INFO - rag_pipeline - Rewritten query: Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không?
+2026-03-12 16:50:05,049 - INFO - rag_pipeline - Product router detected: ['Vay cầm cố giấy tờ có giá', 'Vay tiêu dùng có tài sản bảo đảm', 'Vay tín chấp theo lương', 'Vay mua ô tô', 'Vay nâng cấp cơ sở lưu trú du lịch', 'Kinh doanh tài lộc']
+2026-03-12 16:50:05,050 - INFO - rag_pipeline - Detected products after rewrite: ['Vay cầm cố giấy tờ có giá', 'Vay tiêu dùng có tài sản bảo đảm', 'Vay tín chấp theo lương', 'Vay mua ô tô', 'Vay nâng cấp cơ sở lưu trú du lịch', 'Kinh doanh tài lộc']
+2026-03-12 16:50:08,895 - INFO - rag_pipeline - Multi queries: ['Vietcombank có những gói vay nào khác ngoài "An tâm kinh doanh" cho khách hàng muốn vay tiền kinh doanh không?']
+2026-03-12 16:50:08,902 - INFO - rag_pipeline - Final search queries: ['Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không?', 'Vietcombank có những gói vay nào khác ngoài "An tâm kinh doanh" cho khách hàng muốn vay tiền kinh doanh không?', 'Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không? Vay cầm cố giấy tờ có giá', 'Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không? Vay tiêu dùng có tài sản bảo đảm', 'Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không? Vay tín chấp theo lương', 'Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không? Vay mua ô tô', 'Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không? Vay nâng cấp cơ sở lưu trú du lịch', 'Ngoài sản phẩm "An tâm kinh doanh", Vietcombank còn có những gói vay nào khác dành cho khách hàng có nhu cầu vay tiền để kinh doanh không? Kinh doanh tài lộc']
+2026-03-12 16:50:08,905 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:50:09,708 - INFO - rag_pipeline - Retrieved docs: 15
+2026-03-12 16:50:22,922 - INFO - rag_pipeline - RAG latency: 21.08s
+2026-03-12 16:52:29,366 - INFO - rag_pipeline - User request: Tôi muốn mở thẻ tín dụng để đi du lịch, có thẻ nào phù hợp  không
+2026-03-12 16:52:32,078 - INFO - rag_pipeline - Rewritten query: Có thẻ tín dụng nào của Vietcombank phù hợp cho việc đi du lịch không?
+2026-03-12 16:52:33,508 - INFO - rag_pipeline - Product router detected: ['Vietcombank Vietnam Airlines American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard® World', 'Vietcombank Visa Platinum']
+2026-03-12 16:52:33,508 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Vietnam Airlines American Express®', 'Vietcombank Vietnam Airlines Platinum American Express®', 'Vietcombank JCB Platinum', 'Vietcombank Mastercard® World', 'Vietcombank Visa Platinum']
+2026-03-12 16:52:37,267 - INFO - rag_pipeline - Multi queries: ['Thẻ tín dụng nào của Vietcombank thích hợp cho việc du lịch?']
+2026-03-12 16:52:37,268 - INFO - rag_pipeline - Final search queries: ['Có thẻ tín dụng nào của Vietcombank phù hợp cho việc đi du lịch không?', 'Thẻ tín dụng nào của Vietcombank thích hợp cho việc du lịch?', 'Có thẻ tín dụng nào của Vietcombank phù hợp cho việc đi du lịch không? Vietcombank Vietnam Airlines American Express®', 'Có thẻ tín dụng nào của Vietcombank phù hợp cho việc đi du lịch không? Vietcombank Vietnam Airlines Platinum American Express®', 'Có thẻ tín dụng nào của Vietcombank phù hợp cho việc đi du lịch không? Vietcombank JCB Platinum', 'Có thẻ tín dụng nào của Vietcombank phù hợp cho việc đi du lịch không? Vietcombank Mastercard® World', 'Có thẻ tín dụng nào của Vietcombank phù hợp cho việc đi du lịch không? Vietcombank Visa Platinum']
+2026-03-12 16:52:37,269 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:52:37,924 - INFO - rag_pipeline - Retrieved docs: 5
+2026-03-12 16:52:57,299 - INFO - rag_pipeline - RAG latency: 26.33s
+2026-03-12 16:54:50,224 - INFO - rag_pipeline - User request: Còn thẻ nào hoàn tiền ngoài Vietcombank Mastercard® World  nữa không
+2026-03-12 16:54:52,545 - INFO - rag_pipeline - Rewritten query: Ngoài thẻ tín dụng Vietcombank Mastercard® World, còn có thẻ tín dụng nào khác cũng có chương trình hoàn tiền không?
+2026-03-12 16:54:53,991 - INFO - rag_pipeline - Product router detected: ['Vietcombank Mastercard®', 'Vietcombank Visa Platinum', 'Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:54:53,992 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Mastercard®', 'Vietcombank Visa Platinum', 'Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:54:57,145 - INFO - rag_pipeline - Multi queries: ['Có những loại thẻ tín dụng nào của Vietcombank ngoài thẻ Mastercard® World có chương trình hoàn tiền không?']
+2026-03-12 16:54:57,146 - INFO - rag_pipeline - Final search queries: ['Ngoài thẻ tín dụng Vietcombank Mastercard® World, còn có thẻ tín dụng nào khác cũng có chương trình hoàn tiền không?', 'Có những loại thẻ tín dụng nào của Vietcombank ngoài thẻ Mastercard® World có chương trình hoàn tiền không?', 'Ngoài thẻ tín dụng Vietcombank Mastercard® World, còn có thẻ tín dụng nào khác cũng có chương trình hoàn tiền không? Vietcombank Mastercard®', 'Ngoài thẻ tín dụng Vietcombank Mastercard® World, còn có thẻ tín dụng nào khác cũng có chương trình hoàn tiền không? Vietcombank Visa Platinum', 'Ngoài thẻ tín dụng Vietcombank Mastercard® World, còn có thẻ tín dụng nào khác cũng có chương trình hoàn tiền không? Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:54:57,147 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:54:57,632 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 16:55:03,888 - INFO - rag_pipeline - RAG latency: 12.62s
+2026-03-12 16:55:36,956 - INFO - rag_pipeline - User request: Lợi ích cả thẻ Vietcombank Cashplus Platinum American Express®
+2026-03-12 16:55:38,974 - INFO - rag_pipeline - Rewritten query: Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express® là gì?
+2026-03-12 16:55:39,743 - INFO - rag_pipeline - Product router detected: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:55:39,744 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:55:42,705 - INFO - rag_pipeline - Multi queries: ['Thẻ tín dụng Vietcombank Cashplus Platinum American Express® mang lại những lợi ích gì?']
+2026-03-12 16:55:42,706 - INFO - rag_pipeline - Final search queries: ['Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express® là gì?', 'Thẻ tín dụng Vietcombank Cashplus Platinum American Express® mang lại những lợi ích gì?', 'Lợi ích của thẻ tín dụng Vietcombank Cashplus Platinum American Express® là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:55:42,708 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:55:42,986 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-12 16:55:54,219 - INFO - rag_pipeline - RAG latency: 16.50s
+2026-03-12 16:56:19,810 - INFO - rag_pipeline - User request: Điều kiện mở thẻ
+2026-03-12 16:56:22,358 - INFO - rag_pipeline - Rewritten query: Điều kiện để mở thẻ tín dụng Vietcombank Cashplus Platinum American Express® là gì?
+2026-03-12 16:56:23,141 - INFO - rag_pipeline - Product router detected: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:56:23,143 - INFO - rag_pipeline - Detected products after rewrite: ['Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:56:25,713 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện để đăng ký thẻ tín dụng Vietcombank Cashplus Platinum American Express®.']
+2026-03-12 16:56:25,714 - INFO - rag_pipeline - Final search queries: ['Điều kiện để mở thẻ tín dụng Vietcombank Cashplus Platinum American Express® là gì?', 'Tôi cần biết điều kiện để đăng ký thẻ tín dụng Vietcombank Cashplus Platinum American Express®.', 'Điều kiện để mở thẻ tín dụng Vietcombank Cashplus Platinum American Express® là gì? Vietcombank Cashplus Platinum American Express®']
+2026-03-12 16:56:25,716 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:56:25,993 - INFO - rag_pipeline - Retrieved docs: 1
+2026-03-12 16:56:31,006 - INFO - rag_pipeline - RAG latency: 9.55s
+2026-03-12 16:57:28,066 - INFO - rag_pipeline - User request: Hiện tại tôi muốn mua xe ô tô, nhưng chỉ đủ 30% giá trị xe. VCB có hỗ trợ cho vay không
+2026-03-12 16:57:30,181 - INFO - rag_pipeline - Rewritten query: Vietcombank có hỗ trợ cho vay mua xe ô tô trong trường hợp tôi chỉ đủ 30% giá trị xe không?
+2026-03-12 16:57:30,945 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 16:57:30,946 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 16:57:34,204 - INFO - rag_pipeline - Multi queries: ['Tôi có thể vay mua ô tô tại Vietcombank nếu tôi chỉ có 30% giá trị xe không?']
+2026-03-12 16:57:34,205 - INFO - rag_pipeline - Final search queries: ['Vietcombank có hỗ trợ cho vay mua xe ô tô trong trường hợp tôi chỉ đủ 30% giá trị xe không?', 'Tôi có thể vay mua ô tô tại Vietcombank nếu tôi chỉ có 30% giá trị xe không?', 'Vietcombank có hỗ trợ cho vay mua xe ô tô trong trường hợp tôi chỉ đủ 30% giá trị xe không? Vay mua ô tô']
+2026-03-12 16:57:34,206 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:57:34,500 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 16:57:39,607 - INFO - rag_pipeline - RAG latency: 10.65s
+2026-03-12 16:58:56,703 - INFO - rag_pipeline - User request: Chuẩn bị hồ sơ gì
+2026-03-12 16:58:58,588 - INFO - rag_pipeline - Rewritten query: Tôi cần chuẩn bị hồ sơ gì để vay mua ô tô tại Vietcombank?
+2026-03-12 16:58:59,564 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 16:58:59,565 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 16:59:02,033 - INFO - rag_pipeline - Multi queries: ['Hồ sơ cần thiết để vay mua ô tô tại Vietcombank là gì?']
+2026-03-12 16:59:02,034 - INFO - rag_pipeline - Final search queries: ['Tôi cần chuẩn bị hồ sơ gì để vay mua ô tô tại Vietcombank?', 'Hồ sơ cần thiết để vay mua ô tô tại Vietcombank là gì?', 'Tôi cần chuẩn bị hồ sơ gì để vay mua ô tô tại Vietcombank? Vay mua ô tô']
+2026-03-12 16:59:02,035 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:59:02,319 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 16:59:08,474 - INFO - rag_pipeline - RAG latency: 10.91s
+2026-03-12 16:59:35,444 - INFO - rag_pipeline - User request: Điều kiện để được vay là gì
+2026-03-12 16:59:37,819 - INFO - rag_pipeline - Rewritten query: Điều kiện để được vay mua ô tô tại Vietcombank là gì?
+2026-03-12 16:59:38,716 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 16:59:38,716 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 16:59:41,157 - INFO - rag_pipeline - Multi queries: ['Tôi cần biết điều kiện vay mua ô tô tại Vietcombank.']
+2026-03-12 16:59:41,158 - INFO - rag_pipeline - Final search queries: ['Điều kiện để được vay mua ô tô tại Vietcombank là gì?', 'Tôi cần biết điều kiện vay mua ô tô tại Vietcombank.', 'Điều kiện để được vay mua ô tô tại Vietcombank là gì? Vay mua ô tô']
+2026-03-12 16:59:41,159 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 16:59:41,430 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 16:59:46,109 - INFO - rag_pipeline - RAG latency: 9.80s
+2026-03-12 19:50:08,966 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-12 19:50:23,852 - INFO - rag_pipeline - Loaded 26 products
+2026-03-12 19:53:20,746 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-12 19:53:31,968 - INFO - rag_pipeline - Loaded 26 products
+2026-03-12 19:54:30,536 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-12 19:54:41,111 - INFO - rag_pipeline - Loaded 26 products
+2026-03-12 20:08:25,068 - INFO - rag_pipeline - Initializing RAGPipeline
+2026-03-12 20:08:36,148 - INFO - rag_pipeline - Loaded 26 products
+2026-03-12 20:09:41,515 - INFO - rag_pipeline - User request: Tôi có thể vay để mua ô tô không
+2026-03-12 20:09:45,425 - INFO - rag_pipeline - Rewritten query: Ngân hàng Vietcombank có cung cấp dịch vụ vay vốn để mua ô tô không?
+2026-03-12 20:09:46,884 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 20:09:46,892 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 20:09:50,992 - INFO - rag_pipeline - Multi queries: ['Vietcombank có cho vay để mua xe ô tô không?']
+2026-03-12 20:09:50,994 - INFO - rag_pipeline - Final search queries: ['Ngân hàng Vietcombank có cung cấp dịch vụ vay vốn để mua ô tô không?', 'Vietcombank có cho vay để mua xe ô tô không?', 'Ngân hàng Vietcombank có cung cấp dịch vụ vay vốn để mua ô tô không? Vay mua ô tô']
+2026-03-12 20:09:50,995 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 20:09:52,242 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 20:09:59,237 - INFO - rag_pipeline - RAG latency: 16.00s
+2026-03-12 20:12:05,466 - INFO - rag_pipeline - User request: Hồ sơ cần chuẩn bị
+2026-03-12 20:12:07,820 - INFO - rag_pipeline - Rewritten query: Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì?
+2026-03-12 20:12:08,993 - INFO - rag_pipeline - Product router detected: ['Vay mua ô tô']
+2026-03-12 20:12:08,994 - INFO - rag_pipeline - Detected products after rewrite: ['Vay mua ô tô']
+2026-03-12 20:12:12,561 - INFO - rag_pipeline - Multi queries: ['Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?']
+2026-03-12 20:12:12,562 - INFO - rag_pipeline - Final search queries: ['Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì?', 'Tôi cần chuẩn bị những giấy tờ gì để vay mua ô tô tại Vietcombank?', 'Để vay mua ô tô tại Vietcombank, tôi cần chuẩn bị hồ sơ gì? Vay mua ô tô']
+2026-03-12 20:12:12,563 - INFO - rag_pipeline - Starting retrieval
+2026-03-12 20:12:12,989 - INFO - rag_pipeline - Retrieved docs: 4
+2026-03-12 20:12:19,703 - INFO - rag_pipeline - RAG latency: 13.56s
