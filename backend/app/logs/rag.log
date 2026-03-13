@@ -106,3 +106,4 @@
 2026-03-13 14:36:06,359 - INFO - app.rag.rag_pipeline - Final search queries: ['Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì?', 'Tôi cần biết các yêu cầu để vay mua ô tô tại ngân hàng Vietcombank.', 'Điều kiện để vay mua ô tô tại ngân hàng Vietcombank là gì? Vay mua ô tô']
 2026-03-13 14:36:06,360 - INFO - app.rag.rag_pipeline - Starting retrieval
 2026-03-13 14:36:06,467 - INFO - app.rag.rag_pipeline - Retrieved docs: 4
+2026-03-13 14:36:11,274 - INFO - app.rag.rag_pipeline - RAG latency: 9.58s
