@@ -9,10 +9,10 @@ from typing import List, Dict
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.query_rewriter import rewrite_query
 from app.rag.multi_query import generate_queries
 
+HybridRetriever = None
 load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -166,6 +166,11 @@ class RAGPipeline:
     def __init__(self):
 
         logger.info("Initializing RAGPipeline")
+
+        global HybridRetriever
+
+        if HybridRetriever is None:
+            from app.rag.hybrid_retriever import HybridRetriever
 
         self.retriever = HybridRetriever()
 
