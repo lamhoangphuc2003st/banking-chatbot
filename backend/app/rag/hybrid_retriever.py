@@ -141,4 +141,3 @@ class HybridRetriever:
         )
 
         return ranked[:top_k]
-```
