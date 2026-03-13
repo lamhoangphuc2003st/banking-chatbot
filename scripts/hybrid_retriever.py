@@ -2,71 +2,32 @@ import os
 import json
 import faiss
 import numpy as np
-import logging
-
 from sentence_transformers import SentenceTransformer
 from app.retrieval.bm25_index import BM25Index
 
 
 EMBEDDING_MODEL = "bkai-foundation-models/vietnamese-bi-encoder"
 
-BASE_DIR = os.path.dirname(
-    os.path.dirname(
-        os.path.dirname(os.path.abspath(__file__))
-    )
-)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 CHUNKS_PATH = os.path.join(BASE_DIR, "data", "vietcombank_chunks.json")
 FAISS_PATH = os.path.join(BASE_DIR, "data", "faiss_index.bin")
-
-logger = logging.getLogger(__name__)
 
 
 class HybridRetriever:
 
     def __init__(self):
 
-        # Lazy components
-        self.model = None
-        self.index = None
-        self.chunks = None
-        self.bm25 = None
+        self.model = SentenceTransformer(EMBEDDING_MODEL)
 
-        logger.info("HybridRetriever initialized (lazy mode)")
+        self.index = faiss.read_index(FAISS_PATH)
 
-    # -----------------------------
-    # Lazy loader
-    # -----------------------------
-    def load(self):
+        with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
+            self.chunks = json.load(f)
 
-        if self.model is None:
+        self.bm25 = BM25Index(CHUNKS_PATH)
 
-            logger.info("Loading embedding model...")
-            self.model = SentenceTransformer(EMBEDDING_MODEL)
-
-        if self.index is None:
-
-            logger.info("Loading FAISS index...")
-            self.index = faiss.read_index(FAISS_PATH)
-
-        if self.chunks is None:
-
-            logger.info("Loading chunks JSON...")
-            with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
-                self.chunks = json.load(f)
-
-        if self.bm25 is None:
-
-            logger.info("Building BM25 index...")
-            self.bm25 = BM25Index(CHUNKS_PATH)
-
-    # -----------------------------
-    # Embedding
-    # -----------------------------
     def embed_query(self, query):
-
-        if self.model is None:
-            self.load()
 
         embedding = self.model.encode(
             [query],
@@ -75,13 +36,7 @@ class HybridRetriever:
 
         return np.array(embedding).astype("float32")
 
-    # -----------------------------
-    # Vector search
-    # -----------------------------
     def vector_search(self, query, top_k=10):
-
-        if self.index is None or self.chunks is None:
-            self.load()
 
         q = self.embed_query(query)
 
@@ -90,9 +45,6 @@ class HybridRetriever:
         results = []
 
         for score, idx in zip(scores[0], ids[0]):
-
-            if idx >= len(self.chunks):
-                continue
 
             chunk = self.chunks[idx]
 
@@ -106,13 +58,7 @@ class HybridRetriever:
 
         return results
 
-    # -----------------------------
-    # Hybrid search
-    # -----------------------------
     def hybrid_search(self, query, top_k=10):
-
-        if self.bm25 is None:
-            self.load()
 
         vector_results = self.vector_search(query, top_k)
 
@@ -123,6 +69,7 @@ class HybridRetriever:
         for r in vector_results:
 
             key = r["doc_id"]
+
             merged[key] = r
 
         for r in bm25_results:
@@ -130,8 +77,11 @@ class HybridRetriever:
             key = r["doc_id"]
 
             if key in merged:
+
                 merged[key]["score"] += r["score"]
+
             else:
+
                 merged[key] = r
 
         ranked = sorted(
@@ -141,4 +91,3 @@ class HybridRetriever:
         )
 
         return ranked[:top_k]
-```

@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from app.rag.rag_pipeline import RAGPipeline
+# from app.rag.rag_pipeline import RAGPipeline
 
 
 # -----------------------------
@@ -31,7 +31,9 @@ def get_pipeline():
 
     if pipeline is None:
         logger.info("Initializing RAGPipeline...")
+        from app.rag.rag_pipeline import RAGPipeline
         pipeline = RAGPipeline()
+        logger.info("RAG pipeline loaded")
 
     return pipeline
 
@@ -47,10 +49,7 @@ app = FastAPI(title="Vietcombank RAG Chatbot")
 # -----------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://your-frontend.vercel.app"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
