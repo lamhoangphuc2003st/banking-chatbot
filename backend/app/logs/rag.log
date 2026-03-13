@@ -31,3 +31,14 @@
 2026-03-13 00:33:02,856 - INFO - app.rag.rag_pipeline - Starting retrieval
 2026-03-13 00:33:04,249 - INFO - app.rag.rag_pipeline - Retrieved docs: 4
 2026-03-13 00:33:14,358 - INFO - app.rag.rag_pipeline - RAG latency: 16.50s
+2026-03-13 13:07:20,813 - INFO - app.rag.rag_pipeline - Initializing RAGPipeline
+2026-03-13 13:07:26,405 - INFO - app.rag.rag_pipeline - Loaded 26 products
+2026-03-13 13:07:26,405 - INFO - app.rag.rag_pipeline - User request: Điều kiện của gói vay An tâm kinh doanh
+2026-03-13 13:07:30,128 - INFO - app.rag.rag_pipeline - Rewritten query: Điều kiện để được vay gói An tâm kinh doanh tại ngân hàng Vietcombank là gì?
+2026-03-13 13:07:31,501 - INFO - app.rag.rag_pipeline - Product router detected: ['An tâm kinh doanh']
+2026-03-13 13:07:31,503 - INFO - app.rag.rag_pipeline - Detected products after rewrite: ['An tâm kinh doanh']
+2026-03-13 13:07:37,036 - INFO - app.rag.rag_pipeline - Multi queries: ['Tôi cần biết điều kiện vay gói An tâm kinh doanh của ngân hàng Vietcombank.']
+2026-03-13 13:07:37,036 - INFO - app.rag.rag_pipeline - Final search queries: ['Điều kiện để được vay gói An tâm kinh doanh tại ngân hàng Vietcombank là gì?', 'Tôi cần biết điều kiện vay gói An tâm kinh doanh của ngân hàng Vietcombank.', 'Điều kiện để được vay gói An tâm kinh doanh tại ngân hàng Vietcombank là gì? An tâm kinh doanh']
+2026-03-13 13:07:37,036 - INFO - app.rag.rag_pipeline - Starting retrieval
+2026-03-13 13:07:44,228 - INFO - app.rag.rag_pipeline - Retrieved docs: 6
+2026-03-13 13:07:58,947 - INFO - app.rag.rag_pipeline - RAG latency: 30.37s

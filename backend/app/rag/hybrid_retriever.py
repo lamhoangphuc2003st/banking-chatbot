@@ -8,7 +8,8 @@ from sentence_transformers import SentenceTransformer
 from app.retrieval.bm25_index import BM25Index
 
 
-EMBEDDING_MODEL = "bkai-foundation-models/vietnamese-bi-encoder"
+# model nhẹ hơn nhiều
+EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
 BASE_DIR = os.path.dirname(
     os.path.dirname(
@@ -26,7 +27,6 @@ class HybridRetriever:
 
     def __init__(self):
 
-        # Lazy components
         self.model = None
         self.index = None
         self.chunks = None
@@ -34,35 +34,28 @@ class HybridRetriever:
 
         logger.info("HybridRetriever initialized (lazy mode)")
 
-    # -----------------------------
-    # Lazy loader
-    # -----------------------------
     def load(self):
 
         if self.model is None:
-
             logger.info("Loading embedding model...")
-            self.model = SentenceTransformer(EMBEDDING_MODEL)
+            self.model = SentenceTransformer(
+                EMBEDDING_MODEL,
+                cache_folder="/tmp/hf_cache"
+            )
 
         if self.index is None:
-
             logger.info("Loading FAISS index...")
             self.index = faiss.read_index(FAISS_PATH)
 
         if self.chunks is None:
-
             logger.info("Loading chunks JSON...")
             with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
                 self.chunks = json.load(f)
 
         if self.bm25 is None:
-
             logger.info("Building BM25 index...")
             self.bm25 = BM25Index(CHUNKS_PATH)
 
-    # -----------------------------
-    # Embedding
-    # -----------------------------
     def embed_query(self, query):
 
         if self.model is None:
@@ -75,10 +68,7 @@ class HybridRetriever:
 
         return np.array(embedding).astype("float32")
 
-    # -----------------------------
-    # Vector search
-    # -----------------------------
-    def vector_search(self, query, top_k=10):
+    def vector_search(self, query, top_k=5):
 
         if self.index is None or self.chunks is None:
             self.load()
@@ -106,24 +96,18 @@ class HybridRetriever:
 
         return results
 
-    # -----------------------------
-    # Hybrid search
-    # -----------------------------
-    def hybrid_search(self, query, top_k=10):
+    def hybrid_search(self, query, top_k=5):
 
         if self.bm25 is None:
             self.load()
 
         vector_results = self.vector_search(query, top_k)
-
         bm25_results = self.bm25.search(query, top_k)
 
         merged = {}
 
         for r in vector_results:
-
-            key = r["doc_id"]
-            merged[key] = r
+            merged[r["doc_id"]] = r
 
         for r in bm25_results:
 

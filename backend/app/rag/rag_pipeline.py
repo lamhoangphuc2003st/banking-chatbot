@@ -10,7 +10,6 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 from app.rag.hybrid_retriever import HybridRetriever
-from app.rag.reranker import Reranker
 from app.rag.query_rewriter import rewrite_query
 from app.rag.multi_query import generate_queries
 
@@ -169,7 +168,6 @@ class RAGPipeline:
         logger.info("Initializing RAGPipeline")
 
         self.retriever = HybridRetriever()
-        self.reranker = Reranker()
 
         self.max_multi_queries = 1
         self.retrieve_top_k = 15
@@ -425,27 +423,22 @@ Câu trả lời:
         if not retrieved:
             return "Tôi không tìm thấy thông tin."
 
-        reranked = self.reranker.rerank(
-            rewritten,
-            retrieved,
-            top_k=self.rerank_top_k
-        )
-
-        context = self.build_context(reranked)
+        # KHÔNG dùng reranker nữa
+        context = self.build_context(retrieved[:5])
 
         system_prompt = """
-Bạn là chuyên gia tư vấn Vietcombank.
-Trả lời dựa trên thông tin cung cấp.
-"""
+    Bạn là chuyên gia tư vấn Vietcombank.
+    Trả lời dựa trên thông tin cung cấp.
+    """
 
         user_prompt = f"""
-Thông tin:
+    Thông tin:
 
-{context}
+    {context}
 
-Câu hỏi:
-{query}
-"""
+    Câu hỏi:
+    {query}
+    """
 
         try:
 
