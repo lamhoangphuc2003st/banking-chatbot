@@ -8,7 +8,7 @@ from sentence_transformers import SentenceTransformer
 from app.retrieval.bm25_index import BM25Index
 
 
-# model nhẹ hơn nhiều
+# embedding model
 EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
 BASE_DIR = os.path.dirname(
@@ -36,22 +36,29 @@ class HybridRetriever:
 
     def load(self):
 
+        # -------- Embedding model --------
         if self.model is None:
             logger.info("Loading embedding model...")
+
             self.model = SentenceTransformer(
                 EMBEDDING_MODEL,
+                device="cpu",
                 cache_folder="/tmp/hf_cache"
             )
 
+        # -------- FAISS --------
         if self.index is None:
             logger.info("Loading FAISS index...")
             self.index = faiss.read_index(FAISS_PATH)
 
+        # -------- Chunks --------
         if self.chunks is None:
             logger.info("Loading chunks JSON...")
+
             with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
                 self.chunks = json.load(f)
 
+        # -------- BM25 --------
         if self.bm25 is None:
             logger.info("Building BM25 index...")
             self.bm25 = BM25Index(CHUNKS_PATH)
@@ -62,11 +69,14 @@ class HybridRetriever:
             self.load()
 
         embedding = self.model.encode(
-            [query],
-            normalize_embeddings=True
+            [query],  # phải là list
+            normalize_embeddings=True,
+            convert_to_numpy=True
         )
 
-        return np.array(embedding).astype("float32")
+        embedding = embedding.astype("float32")
+
+        return embedding
 
     def vector_search(self, query, top_k=5):
 
@@ -75,22 +85,27 @@ class HybridRetriever:
 
         q = self.embed_query(query)
 
+        # DEBUG nếu cần
+        # logger.info(f"Query shape: {q.shape}")
+        # logger.info(f"Index dim: {self.index.d}")
+
         scores, ids = self.index.search(q, top_k)
 
         results = []
 
         for score, idx in zip(scores[0], ids[0]):
 
-            if idx >= len(self.chunks):
+            # FAISS có thể trả -1
+            if idx < 0 or idx >= len(self.chunks):
                 continue
 
             chunk = self.chunks[idx]
 
             results.append({
                 "score": float(score),
-                "doc_id": chunk["doc_id"],
-                "product_name": chunk["product_name"],
-                "text": chunk["text"],
+                "doc_id": chunk.get("doc_id"),
+                "product_name": chunk.get("product_name"),
+                "text": chunk.get("text"),
                 "metadata": chunk.get("metadata", {})
             })
 
@@ -106,9 +121,11 @@ class HybridRetriever:
 
         merged = {}
 
+        # vector results
         for r in vector_results:
             merged[r["doc_id"]] = r
 
+        # bm25 results
         for r in bm25_results:
 
             key = r["doc_id"]
