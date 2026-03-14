@@ -3,7 +3,6 @@ from app.rag.chains.multi_query_chain import multi_query_chain
 from app.rag.chains.generator_chain import generator_chain
 
 from app.rag.retrieval.hybrid_retriever import HybridRetriever
-from app.rag.retrieval.reranker import Reranker
 
 from app.rag.routers.product_router import detect_product
 from app.rag.utils.context_builder import build_context
@@ -24,10 +23,8 @@ class RAGPipeline:
             "data/faiss_index.bin"
         )
 
-        self.reranker = Reranker()
-
         self.retrieve_top_k = 15
-        self.rerank_top_k = 5
+        self.final_top_k = 5
 
         self.products = self.load_products()
 
@@ -112,6 +109,13 @@ class RAGPipeline:
         return docs
 
     # -------------------------
+    # Select top K
+    # -------------------------
+    def select_top_k(self, docs):
+
+        return docs[:self.final_top_k]
+
+    # -------------------------
     # Main ask
     # -------------------------
     def ask(self, query, history=None):
@@ -165,13 +169,11 @@ class RAGPipeline:
         )
 
         # -------------------------
-        # Rerank
+        # Top K selection
         # -------------------------
-        docs = self.reranker.rerank(
-            rewritten,
-            docs,
-            k=self.rerank_top_k
-        )
+        docs = self.select_top_k(docs)
+
+        logger.info(f"Final docs: {len(docs)}")
 
         # -------------------------
         # Context
