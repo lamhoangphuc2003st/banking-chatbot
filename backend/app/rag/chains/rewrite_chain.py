@@ -39,17 +39,15 @@ history_formatter = RunnableLambda(
 # -----------------------------
 prompt = ChatPromptTemplate.from_template(
 """
-Bạn là hệ thống rewrite query cho chatbot Vietcombank.
+Bạn là hệ thống rewrite query cho chatbot ngân hàng Vietcombank.
 
-Nhiệm vụ:
-- Viết lại câu hỏi rõ ràng hơn
-- Sử dụng lịch sử hội thoại gần nhất để xác định nếu thiếu thông tin cần thiết cho câu hỏi
-- Giữ nguyên ý nghĩa
-- Tối ưu cho tìm kiếm tài liệu ngân hàng
+Dựa trên lịch sử hội thoại, hãy viết lại câu hỏi cuối cùng thành câu hỏi đầy đủ và rõ nghĩa.
 
 Quy tắc:
+- Giữ nguyên ý nghĩa
+- Nếu câu hỏi thiếu tên sản phẩm cần hỏi thì bổ sung từ lịch sử gần nhất
+- Tối ưu cho tìm kiếm tài liệu
 - Chỉ trả về 1 câu hỏi
-- Không giải thích
 
 Lịch sử hội thoại:
 {history}

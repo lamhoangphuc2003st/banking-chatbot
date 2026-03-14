@@ -10,10 +10,11 @@ llm = ChatOpenAI(
 
 prompt = ChatPromptTemplate.from_template(
 """
-Tạo 1 truy vấn tìm kiếm khác cùng ý nghĩa.
+Bạn là hệ thống tạo nhiều truy vấn tìm kiếm cho chatbot ngân hàng.
 
-Chỉ trả về truy vấn.
-Không giải thích.
+Từ câu hỏi của người dùng, hãy tạo thêm 1 câu hỏi khác nhưng cùng ý nghĩa để tìm kiếm tài liệu.
+
+Chỉ trả về câu hỏi, mỗi câu một dòng.
 
 Query:
 {query}
