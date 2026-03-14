@@ -1,6 +1,6 @@
 export async function sendMessage(messages){
 
-  const res = await fetch("http://localhost:8000/chat",{
+  const res = await fetch("https://banking-chatbot-oyp8.onrender.com/chat",{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
