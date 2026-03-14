@@ -17,6 +17,8 @@ Context:
 
 Question:
 {question}
+
+Không cần giải thích, chỉ trả lời câu hỏi.
 """
 )
 
