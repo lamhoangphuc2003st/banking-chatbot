@@ -5,8 +5,13 @@ from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from dotenv import load_dotenv
 
-# from app.rag.rag_pipeline import RAGPipeline
+
+# -----------------------------
+# Load environment variables
+# -----------------------------
+load_dotenv()
 
 
 # -----------------------------
@@ -31,8 +36,12 @@ def get_pipeline():
 
     if pipeline is None:
         logger.info("Initializing RAGPipeline...")
-        from app.rag.rag_pipeline import RAGPipeline
+
+        # IMPORT PIPELINE MỚI
+        from app.rag.pipeline import RAGPipeline
+
         pipeline = RAGPipeline()
+
         logger.info("RAG pipeline loaded")
 
     return pipeline
@@ -92,30 +101,42 @@ def chat(req: ChatRequest):
 
     logger.info("Chat request received")
 
-    # lấy câu hỏi cuối
-    last_user_message = None
+    try:
 
-    for m in reversed(req.messages):
-        if m.role == "user":
-            last_user_message = m.content
-            break
+        # lấy câu hỏi cuối
+        last_user_message = None
 
-    if not last_user_message:
-        return {"answer": "Không tìm thấy câu hỏi."}
+        for m in reversed(req.messages):
 
-    # history (trừ message cuối)
-    history = [m.model_dump() for m in req.messages[:-1]]
+            if m.role == "user":
+                last_user_message = m.content
+                break
 
-    start = time.time()
+        if not last_user_message:
+            return {"answer": "Không tìm thấy câu hỏi."}
 
-    pipeline_instance = get_pipeline()
+        # history (trừ message cuối)
+        history = [m.model_dump() for m in req.messages[:-1]]
 
-    answer = pipeline_instance.ask(last_user_message, history)
+        start = time.time()
 
-    latency = time.time() - start
+        pipeline_instance = get_pipeline()
 
-    logger.info(f"Latency: {latency:.2f}s")
+        answer = pipeline_instance.ask(
+            last_user_message,
+            history
+        )
 
-    return {
-        "answer": answer
-    }
+        latency = time.time() - start
+
+        logger.info(f"Latency: {latency:.2f}s")
+
+        return {"answer": answer}
+
+    except Exception as e:
+
+        logger.error(f"Chat error: {e}")
+
+        return {
+            "answer": "Hệ thống đang gặp lỗi."
+        }
