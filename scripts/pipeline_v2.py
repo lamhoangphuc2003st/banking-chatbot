@@ -7,7 +7,7 @@ from app.rag.chains.rewrite_chain import rewrite_chain
 from app.rag.chains.multi_query_chain import multi_query_chain
 from app.rag.chains.generator_chain import generator_chain
 
-from app.rag.retrieval.qdrant_retriever import QdrantRetriever
+from app.rag.retrieval.hybrid_retriever import HybridRetriever
 from app.rag.retrieval.reranker import Reranker
 from app.rag.retrieval.compression import ContextCompressor
 
@@ -27,7 +27,10 @@ class RAGPipeline:
     def __init__(self):
         logger.info("Initializing Async RAGPipeline")
 
-        self.retriever = QdrantRetriever()
+        self.retriever = HybridRetriever(
+            "data/vietcombank_chunks.json",
+            "data/faiss_index.bin"
+        )
 
         self.reranker = Reranker()
         self.compressor = ContextCompressor()
@@ -48,15 +51,15 @@ class RAGPipeline:
         return products
 
     # -------------------------
-    async def retrieve_async(self, queries, products):
+    async def retrieve_async(self, queries):
 
         logger.info(f"Retrieving {len(queries)} queries...")
         t0 = time.time()
 
-        loop = asyncio.get_running_loop()
+        loop = asyncio.get_event_loop()
 
         tasks = [
-            loop.run_in_executor(None, self.retriever.search, q, self.retrieve_top_k, products)
+            loop.run_in_executor(None, self.retriever.search, q)
             for q in queries
         ]
 
@@ -75,6 +78,24 @@ class RAGPipeline:
         logger.info(f"Retrieved {len(docs)} unique docs in {(time.time()-t0):.2f}s")
         return docs
 
+    # -------------------------
+    def filter_products(self, docs, products):
+
+        if not products:
+            return docs
+
+        filtered = []
+
+        for d in docs:
+            name = (d.get("product_name") or "").lower()
+
+            for p in products:
+                if p.lower() in name:
+                    filtered.append(d)
+                    break
+
+        logger.info(f"Product filter: {len(filtered)}/{len(docs)} docs kept")
+        return filtered if filtered else docs
 
     # -------------------------
     def rerank(self, query, docs):
@@ -95,7 +116,7 @@ class RAGPipeline:
     # -------------------------
     async def async_pipeline(self, query, history):
 
-        loop = asyncio.get_running_loop()
+        loop = asyncio.get_event_loop()
 
         # Rewrite
         t0 = time.time()
@@ -118,12 +139,13 @@ class RAGPipeline:
 
         queries = list(dict.fromkeys([rewritten] + multi_queries))
 
+        # Retrieve
+        docs = await self.retrieve_async(queries)
+        retrieved_docs = docs.copy()
+
         # Product filter
         products = detect_product(rewritten, self.products)
-
-        # Retrieve
-        docs = await self.retrieve_async(queries, products)
-        retrieved_docs = docs.copy()
+        docs = self.filter_products(docs, products)
 
         # Rerank
         docs = await loop.run_in_executor(

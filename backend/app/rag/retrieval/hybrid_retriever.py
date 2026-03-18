@@ -14,6 +14,9 @@ class HybridRetriever:
         with open(chunks_path, "r", encoding="utf-8") as f:
             self.chunks = json.load(f)
 
+        # NEW: map doc_id -> chunk
+        self.doc_map = {c["doc_id"]: c for c in self.chunks}
+
         texts = [c["text"] for c in self.chunks]
 
         tokenized = [t.split() for t in texts]
@@ -68,20 +71,18 @@ class HybridRetriever:
 
         return docs
 
-    def search(self, query):
+    def search(self, query, k=20):
 
-        vec = self.vector_search(query)
+        vec = self.vector_search(query, k)
+        bm = self.bm25_search(query, k)
 
-        bm = self.bm25_search(query)
-
-        fused_ids = rrf_fusion([vec,bm])
+        fused_ids = rrf_fusion([vec, bm])
 
         docs = []
 
-        for i in fused_ids[:20]:
+        for doc_id in fused_ids[:k]:
 
-            for c in self.chunks:
-                if c["doc_id"] == i:
-                    docs.append(c)
+            if doc_id in self.doc_map:
+                docs.append(self.doc_map[doc_id])
 
         return docs

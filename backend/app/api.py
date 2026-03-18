@@ -4,6 +4,7 @@ from typing import List
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -75,7 +76,7 @@ class Message(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: List[Message]
-
+    session_id: str | None = None
 
 # -----------------------------
 # Root
@@ -107,7 +108,6 @@ def chat(req: ChatRequest):
         last_user_message = None
 
         for m in reversed(req.messages):
-
             if m.role == "user":
                 last_user_message = m.content
                 break
@@ -115,23 +115,25 @@ def chat(req: ChatRequest):
         if not last_user_message:
             return {"answer": "Không tìm thấy câu hỏi."}
 
-        # history (trừ message cuối)
         history = [m.model_dump() for m in req.messages[:-1]]
-
-        start = time.time()
 
         pipeline_instance = get_pipeline()
 
-        answer = pipeline_instance.ask(
-            last_user_message,
-            history
+        def event_stream():
+            
+            session_id = req.session_id
+
+            for token in pipeline_instance.stream(
+                last_user_message,
+                history,
+                session_id=session_id
+            ):
+                yield token
+
+        return StreamingResponse(
+            event_stream(),
+            media_type="text/event-stream"
         )
-
-        latency = time.time() - start
-
-        logger.info(f"Latency: {latency:.2f}s")
-
-        return {"answer": answer}
 
     except Exception as e:
 

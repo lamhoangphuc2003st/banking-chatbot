@@ -1,25 +1,35 @@
-from sentence_transformers import CrossEncoder
+import os
+import cohere
 
 
 class Reranker:
 
     def __init__(self):
 
-        self.model = CrossEncoder(
-            "BAAI/bge-reranker-base"
+        self.client = cohere.Client(
+            os.getenv("COHERE_API_KEY")
         )
 
     def rerank(self, query, docs, k=5):
 
-        pairs = [[query, d["text"]] for d in docs]
+        if not docs:
+            return []
 
-        scores = self.model.predict(pairs)
+        documents = [d["text"] for d in docs]
 
-        ranked = list(zip(docs, scores))
-
-        ranked.sort(
-            key=lambda x: x[1],
-            reverse=True
+        response = self.client.rerank(
+            model="rerank-v3.5",
+            query=query,
+            documents=documents,
+            top_n=k
         )
 
-        return [d for d,_ in ranked[:k]]
+        ranked_docs = []
+
+        for r in response.results:
+
+            ranked_docs.append(
+                docs[r.index]
+            )
+
+        return ranked_docs

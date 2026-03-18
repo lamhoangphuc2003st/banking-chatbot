@@ -46,7 +46,8 @@ function ChatBox({
 
       await sendMessage([...messages,userMessage],(token)=>{
 
-        if(!token) return;
+        // token rỗng thì bỏ
+        if(!token || !token.trim()) return;
 
         // token đầu tiên
         if(firstToken){
@@ -81,8 +82,6 @@ function ChatBox({
 
       console.error("Chat error:",err);
 
-      setTyping(false);
-
       setMessages(prev => [
         ...prev,
         {
@@ -94,6 +93,7 @@ function ChatBox({
     }
 
     streamingRef.current = false;
+    setTyping(false);
 
   };
 
