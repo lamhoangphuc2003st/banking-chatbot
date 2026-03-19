@@ -6,23 +6,6 @@ def save_rag_log(data):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
-        CREATE TABLE IF NOT EXISTS rag_logs (
-            id SERIAL PRIMARY KEY,
-            session_id TEXT,
-            query TEXT,
-            rewritten TEXT,
-            intent TEXT,
-            products JSONB,
-            queries JSONB,
-            retrieved_docs JSONB,
-            reranked_docs JSONB,
-            final_docs JSONB,
-            response TEXT,
-            latency_ms INT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );
-        """)
-    cur.execute("""
         INSERT INTO rag_logs (
             session_id, query, rewritten, intent,
             products, queries, retrieved_docs,

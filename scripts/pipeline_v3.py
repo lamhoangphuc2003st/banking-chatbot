@@ -1,6 +1,7 @@
 from typing import Generator
 import time
 import uuid
+import asyncio
 
 from app.rag.chains.rewrite_chain import rewrite_chain
 from app.rag.chains.multi_query_chain import multi_query_chain
@@ -47,17 +48,24 @@ class RAGPipeline:
         return products
 
     # -------------------------
-    def retrieve(self, queries, products):
+    async def retrieve_async(self, queries, products):
 
         logger.info(f"Retrieving {len(queries)} queries...")
         t0 = time.time()
 
+        loop = asyncio.get_running_loop()
+
+        tasks = [
+            loop.run_in_executor(None, self.retriever.search, q, self.retrieve_top_k, products)
+            for q in queries
+        ]
+
+        results_list = await asyncio.gather(*tasks)
+
         docs = []
         seen = set()
 
-        for q in queries:
-            results = self.retriever.search(q, self.retrieve_top_k, products)
-
+        for results in results_list:
             for d in results:
                 doc_id = d["doc_id"]
                 if doc_id not in seen:
@@ -66,6 +74,7 @@ class RAGPipeline:
 
         logger.info(f"Retrieved {len(docs)} unique docs in {(time.time()-t0):.2f}s")
         return docs
+
 
     # -------------------------
     def rerank(self, query, docs):
@@ -84,19 +93,27 @@ class RAGPipeline:
         return results
 
     # -------------------------
-    def pipeline(self, query, history):
+    async def async_pipeline(self, query, history):
+
+        loop = asyncio.get_running_loop()
 
         # Rewrite
         t0 = time.time()
-        rewritten = rewrite_chain.invoke({
-            "query": query,
-            "history": history
-        })
+        rewritten = await loop.run_in_executor(
+            None,
+            lambda: rewrite_chain.invoke({
+                "query": query,
+                "history": history
+            })
+        )
         logger.info(f"Rewrite: {rewritten} ({(time.time()-t0):.2f}s)")
 
         # Multi-query
         t0 = time.time()
-        multi_queries = multi_query_chain.invoke({"query": rewritten})
+        multi_queries = await loop.run_in_executor(
+            None,
+            lambda: multi_query_chain.invoke({"query": rewritten})
+        )
         logger.info(f"Multi-query: {multi_queries} ({(time.time()-t0):.2f}s)")
 
         queries = list(dict.fromkeys([rewritten] + multi_queries))
@@ -105,11 +122,14 @@ class RAGPipeline:
         products = detect_product(rewritten, self.products)
 
         # Retrieve
-        docs = self.retrieve(queries, products)
+        docs = await self.retrieve_async(queries, products)
         retrieved_docs = docs.copy()
 
         # Rerank
-        docs = self.rerank(rewritten, docs)
+        docs = await loop.run_in_executor(
+            None,
+            lambda: self.rerank(rewritten, docs)
+        )
         reranked_docs = docs.copy()
 
         # Compress
@@ -160,7 +180,9 @@ class RAGPipeline:
                 return
 
             # RUN PIPELINE
-            context, rewritten, queries, products, retrieved_docs, reranked_docs, docs = self.pipeline(query, history)
+            context, rewritten, queries, products, retrieved_docs, reranked_docs, docs = asyncio.run(
+                self.async_pipeline(query, history)
+            )
 
             trace["rewritten"] = rewritten
             trace["queries"] = queries

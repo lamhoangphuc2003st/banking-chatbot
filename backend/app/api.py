@@ -3,6 +3,7 @@ import logging
 from typing import List
 
 from fastapi import FastAPI
+from app.database.init_db import init_db
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
@@ -52,6 +53,10 @@ def get_pipeline():
 # FastAPI
 # -----------------------------
 app = FastAPI(title="Vietcombank RAG Chatbot")
+
+@app.on_event("startup")
+def startup():
+    init_db()
 
 
 # -----------------------------
