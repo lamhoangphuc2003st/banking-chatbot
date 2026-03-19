@@ -7,6 +7,9 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 from langchain_openai import OpenAIEmbeddings
 
+from dotenv import load_dotenv
+load_dotenv()
+
 COLLECTION_NAME = "vietcombank"
 
 # -------------------------
@@ -16,7 +19,7 @@ print("Waking up Qdrant...")
 
 for i in range(10):
     try:
-        res = requests.get(QDRANT_URL, timeout=10)
+        res = requests.get(url=os.getenv("QDRANT_URL"), timeout=10)
         if res.status_code == 200:
             print("Qdrant is awake!")
             break

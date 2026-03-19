@@ -1,16 +1,17 @@
 def build_context(docs):
+    if not docs:
+        return "Không có dữ liệu."
 
-    blocks = []
+    context_parts = []
 
-    for d in docs:
+    for i, d in enumerate(docs, 1):
+        text = (d.get("text") or "").strip()
+        product = d.get("product_name") or "Không rõ"
 
-        block = f"""
-Sản phẩm: {d.get("product_name","")}
-
-Thông tin:
-{d.get("text","")}
+        part = f"""[Tài liệu {i}]
+Sản phẩm: {product}
+Nội dung: {text}
 """
+        context_parts.append(part)
 
-        blocks.append(block)
-
-    return "\n\n".join(blocks)
+    return "\n\n".join(context_parts)

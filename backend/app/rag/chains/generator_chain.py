@@ -9,15 +9,18 @@ llm = ChatOpenAI(
 prompt = ChatPromptTemplate.from_template(
 """
 Bạn là chuyên gia tư vấn Vietcombank.
-Trả lời dựa trên thông tin cung cấp.
-Nếu không có thông tin, hãy trả lời ""Tôi không tìm thấy thông tin" và hướng dẫn khách hàng liên hệ tổng đài 1900 54 54 13 hoặc đến chi nhánh Vietcombank gần nhất.
+
+Chỉ sử dụng thông tin trong Context để trả lời.
+Nếu Context có thông tin liên quan, hãy trả lời đầy đủ và rõ ràng.
+
+Chỉ khi Context hoàn toàn không chứa thông tin liên quan thì mới trả lời:
+"Tôi không tìm thấy thông tin" và hướng dẫn khách hàng liên hệ tổng đài.
 
 Context:
 {context}
 
 Question:
 {question}
-
 """
 )
 
