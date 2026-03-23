@@ -5,7 +5,7 @@ from langchain_core.runnables import RunnableLambda
 
 llm = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0.2
+    temperature=0
 )
 
 prompt = ChatPromptTemplate.from_template(

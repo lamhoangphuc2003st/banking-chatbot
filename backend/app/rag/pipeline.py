@@ -5,6 +5,7 @@ import uuid
 from app.rag.chains.rewrite_chain import rewrite_chain
 from app.rag.chains.multi_query_chain import multi_query_chain
 from app.rag.chains.generator_chain import generator_chain
+from app.rag.chains.decompose_chain import decompose_chain
 
 from app.rag.retrieval.qdrant_retriever import QdrantRetriever
 from app.rag.retrieval.reranker import Reranker
@@ -39,11 +40,26 @@ class RAGPipeline:
     # -------------------------
     def load_products(self):
         import json
+
         with open("data/vietcombank_chunks.json", "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        products = list({d.get("product_name") for d in data if d.get("product_name")})
+        products = set()
+
+        for d in data:
+            name = d.get("metadata", {}).get("product_name")
+
+            if name:
+                name = name.strip()  # remove space
+                name = " ".join(name.split())  # normalize whitespace
+
+                products.add(name)
+
+        products = sorted(list(products))  # 🔥 FIX: stable order
+
         logger.info(f"Loaded {len(products)} products")
+        logger.info(f"Products: {products}")  # debug
+
         return products
 
     # -------------------------
@@ -68,17 +84,19 @@ class RAGPipeline:
         return docs
 
     # -------------------------
-    def rerank(self, query, docs):
+    def rerank(self, query, docs, top_k=None):
 
         if not docs:
             return docs
 
         docs = docs[:30]
 
+        k = top_k or self.final_top_k
+
         logger.info(f"Reranking {len(docs)} docs...")
         t0 = time.time()
 
-        results = self.reranker.rerank(query, docs, k=self.final_top_k)
+        results = self.reranker.rerank(query, docs, k=k)
 
         logger.info(f"Reranked to {len(results)} docs in {(time.time()-t0):.2f}s")
         return results
@@ -94,32 +112,85 @@ class RAGPipeline:
         })
         logger.info(f"Rewrite: {rewritten} ({(time.time()-t0):.2f}s)")
 
-        # Multi-query
-        t0 = time.time()
-        multi_queries = multi_query_chain.invoke({"query": rewritten})
-        logger.info(f"Multi-query: {multi_queries} ({(time.time()-t0):.2f}s)")
+        # Decompose
+        t0
+        decomposed = decompose_chain.invoke({
+            "query": rewritten
+        })
+        logger.info(f"Decomposed: {decomposed} ({(time.time()-t0):.2f}s)")
 
-        queries = list(dict.fromkeys([rewritten] + multi_queries))
+        if not isinstance(decomposed, list):
+            decomposed = [rewritten]
 
-        # Product filter
-        products = detect_product(rewritten, self.products)
+        # =========================
+        # CASE 1: KHÔNG DECOMPOSE
+        # =========================
+        if len(decomposed) <= 1:
 
-        # Retrieve
-        docs = self.retrieve(queries, products)
-        retrieved_docs = docs.copy()
+            # Multi-query
+            t0 = time.time()
+            multi_queries = multi_query_chain.invoke({"query": rewritten})
+            queries = list(dict.fromkeys([rewritten] + multi_queries))
 
-        # Rerank
-        docs = self.rerank(rewritten, docs)
-        reranked_docs = docs.copy()
+            logger.info(f"Multi-query: {queries} ({(time.time()-t0):.2f}s)")
 
-        # Compress
-        t0 = time.time()
-        docs = self.compressor.compress(docs)
-        logger.info(f"Compressed to {len(docs)} docs ({(time.time()-t0):.2f}s)")
+            # Product filter
+            t0 = time.time()
+            products = detect_product(rewritten, self.products)
+            
+            if products == []:
+                products = None
 
-        context = build_context(docs)
+            logger.info(f"Detected products: {products} ({(time.time()-t0):.2f}s)")
 
-        return context, rewritten, queries, products, retrieved_docs, reranked_docs, docs
+            # Retrieve
+            docs = self.retrieve(queries, products)
+            retrieved_docs = docs.copy()
+
+            # Rerank
+            docs = self.rerank(rewritten, docs)
+            reranked_docs = docs.copy()
+
+            # Compress
+            docs = self.compressor.compress(docs)
+            context = build_context(docs)
+
+            return context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, docs
+
+        # =========================
+        # CASE 2: CÓ DECOMPOSE
+        # =========================
+        queries = []
+        retrieved_docs = []
+        reranked_docs = []
+        final_docs = []
+
+        for sub_q in decomposed:
+
+            t0 = time.time()
+            multi = multi_query_chain.invoke({"query": sub_q})
+            sub_queries = list(dict.fromkeys([sub_q] + multi))
+            queries.extend(sub_queries)
+            logger.info(f"Sub-query: {sub_queries} ({(time.time()-t0):.2f}s)")
+
+            t0 = time.time()
+            products = detect_product(sub_q, self.products)
+            if products == []:
+                products = None
+            logger.info(f"Detected products: {products} ({(time.time()-t0):.2f}s)")
+
+            docs = self.retrieve(sub_queries, products)
+            retrieved_docs.extend(docs)
+
+        top_k = len(decomposed)*8
+
+        reranked_docs = self.rerank(" ".join(decomposed), retrieved_docs, top_k=top_k)
+
+        final_docs = self.compressor.compress(reranked_docs, max_docs= len(decomposed) * 5)
+
+        context = build_context(final_docs)
+
+        return context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, final_docs
 
     # -------------------------
     def stream(self, query, history=None, session_id=None) -> Generator[str, None, None]:
@@ -160,9 +231,10 @@ class RAGPipeline:
                 return
 
             # RUN PIPELINE
-            context, rewritten, queries, products, retrieved_docs, reranked_docs, docs = self.pipeline(query, history)
+            context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, docs = self.pipeline(query, history)
 
             trace["rewritten"] = rewritten
+            trace["decomposed"] = decomposed
             trace["queries"] = queries
             trace["products"] = products
             trace["retrieved_docs"] = [d["doc_id"] for d in retrieved_docs]
@@ -174,7 +246,7 @@ class RAGPipeline:
             # Generate
             stream = generator_chain.stream({
                 "context": context,
-                "question": query
+                "question": rewritten
             })
 
             for chunk in stream:

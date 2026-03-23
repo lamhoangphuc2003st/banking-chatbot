@@ -9,7 +9,6 @@ llm = ChatOpenAI(
     temperature=0
 )
 
-
 prompt = ChatPromptTemplate.from_template("""
 Bạn là bộ định tuyến sản phẩm cho chatbot Vietcombank.
 
@@ -17,37 +16,64 @@ Danh sách sản phẩm:
 {products}
 
 Nhiệm vụ:
-Xác định khách hàng đang hỏi về sản phẩm nào trong danh sách.
+Kiểm tra câu hỏi có thể liên quan đến sản phẩm nào trong danh sách không.
 
-Nếu câu hỏi liên quan nhiều sản phẩm → trả nhiều.
+QUY TẮC QUAN TRỌNG:
+
+1. Nếu câu hỏi mang tính LIỆT KÊ / TỔNG HỢP 
+(ví dụ: "có những loại nào", "các gói vay gì", "bao nhiêu loại"...)
+→ trả []
+
+2. Nếu câu hỏi có dạng:
+- "ngoài ... còn ..."
+- "khác ..."
+- "còn gói nào"
+- "thêm gói nào"
+- "những gói nào khác"
+→ đây là câu hỏi LIỆT KÊ
+→ trả []
+
+3. Nếu câu hỏi KHÔNG nhắc đến sản phẩm cụ thể
+→ trả []
+
+4. Chỉ khi user hỏi trực tiếp về sản phẩm cụ thể
+→ trả về đúng tên sản phẩm trong danh sách
+
 
 Chỉ trả về JSON list, không thêm bất kỳ văn bản nào khác.
 
 Format:
 ["product1","product2"]
 
-Nếu không có sản phẩm nào phù hợp thì trả về:
-[]
+---
 
 Ví dụ:
 
-Câu hỏi: tôi muốn vay mua xe
+Câu hỏi: Vietcombank có những gói vay nào?
+Output:
+[]
+
+Câu hỏi: Có những thẻ tín dụng nào của Vietcombank?
+Output:
+[]
+
+Câu hỏi: Ngoài gói vay An tâm kinh doanh, còn gói nào khác?
+Output:
+[]
+                                          
+Câu hỏi: Tôi muốn vay mua ô tô
 Output:
 ["Vay mua ô tô"]
 
-Câu hỏi: mở thẻ visa cần điều kiện gì
+Câu hỏi: Lợi ích của thẻ Vietcombank Vibe Platinum là gì?
 Output:
-["Thẻ tín dụng"]
+["Vietcombank Vibe Platinum"]
 
-Câu hỏi: lãi suất gửi tiết kiệm là bao nhiêu
+Câu hỏi: Các đặc quyền khi mở thẻ Vibe Platinum
 Output:
-["Tiết kiệm"]
+["Vietcombank Vibe Platinum"]
 
-Câu hỏi: vay mua nhà và vay mua xe khác gì nhau
-Output:
-["Vay mua nhà","Vay mua ô tô"]
-
-Bây giờ hãy phân loại câu hỏi sau.
+---
 
 Câu hỏi:
 {query}
@@ -79,4 +105,4 @@ def detect_product(query, products):
     except:
         result = []
 
-    return result or None
+    return result

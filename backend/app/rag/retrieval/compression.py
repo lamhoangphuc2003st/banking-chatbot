@@ -1,3 +1,4 @@
+import time
 from app.rag.utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -8,14 +9,19 @@ class ContextCompressor:
     def __init__(self):
 
         self.max_docs = 8
-        self.min_length = 30
+        self.min_length = 20
 
-    def compress(self, docs):
+    def compress(self, docs, max_docs=None):
+        
+        limit = max_docs or self.max_docs
+
+        t0 = time.time()
 
         if not docs:
             return docs
 
-        compressed = []
+        compressed = []  
+
         seen_text = set()
 
         for d in docs:
@@ -34,8 +40,8 @@ class ContextCompressor:
             compressed.append(d)
 
         # limit number of docs
-        compressed = compressed[:self.max_docs]
+        compressed = compressed[:limit]  
 
-        logger.info(f"Context compressed: {len(docs)} → {len(compressed)}")
+        logger.info(f"Compressed to {len(compressed)} docs ({(time.time()-t0):.2f}s)")
 
         return compressed

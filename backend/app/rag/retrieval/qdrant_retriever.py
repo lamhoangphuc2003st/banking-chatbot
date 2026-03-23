@@ -75,8 +75,6 @@ class QdrantRetriever:
                 "product_name": payload.get("product_name")
             })
 
-        logger.info(f"[Qdrant] Retrieved {len(docs)} docs")
-
         return docs
 
     # -------------------------

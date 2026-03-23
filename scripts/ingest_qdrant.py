@@ -112,16 +112,11 @@ points = []
 
 for i, (c, vector) in enumerate(zip(chunks, vectors)):
 
-    meta = c.get("metadata", {})
-
     payload = {
-        "doc_id": c.get("id"),
+        "doc_id": c.get("doc_id"),
         "text": c.get("text"),
-        "type": meta.get("type"),
-        "product_name": meta.get("product_name"),
-        "loan_type": meta.get("loan_type"),
-        "card_type": meta.get("card_type"),
-        "section": meta.get("section"),
+        "product_name": c.get("product_name"),
+        "product_type": c.get("product_type"),
     }
 
     points.append(
