@@ -51,7 +51,7 @@ Quy tắc:
   - "các sản phẩm này"
   - "những gói vay đó"
   - "các khoản vay trên"
-  => PHẢI thay bằng tên sản phẩm cụ thể từ lịch sử hội thoại gần nhất của bạn và người dùng
+  => PHẢI thay bằng tên sản phẩm cụ thể được nhắc đến gần nhất của bạn và người dùng
 - Tối ưu cho tìm kiếm tài liệu
 - Chỉ trả về 1 câu hỏi
 

@@ -1,11 +1,12 @@
+import time
 import logging
 from typing import List
 
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
+from dotenv import load_dotenv
 
 
 # -----------------------------
@@ -36,8 +37,12 @@ def get_pipeline():
 
     if pipeline is None:
         logger.info("Initializing RAGPipeline...")
+
+        # IMPORT PIPELINE MỚI
         from app.rag.pipeline import RAGPipeline
+
         pipeline = RAGPipeline()
+
         logger.info("RAG pipeline loaded")
 
     return pipeline
@@ -47,7 +52,6 @@ def get_pipeline():
 # FastAPI
 # -----------------------------
 app = FastAPI(title="Vietcombank RAG Chatbot")
-
 
 # -----------------------------
 # CORS
@@ -73,7 +77,6 @@ class ChatRequest(BaseModel):
     messages: List[Message]
     session_id: str | None = None
 
-
 # -----------------------------
 # Root
 # -----------------------------
@@ -94,10 +97,13 @@ def health():
 # Chat endpoint
 # -----------------------------
 @app.post("/chat")
-async def chat(req: ChatRequest):
+def chat(req: ChatRequest):
+
     logger.info("Chat request received")
 
     try:
+
+        # lấy câu hỏi cuối
         last_user_message = None
 
         for m in reversed(req.messages):
@@ -106,30 +112,32 @@ async def chat(req: ChatRequest):
                 break
 
         if not last_user_message:
-            async def empty_stream():
-                yield "Không tìm thấy câu hỏi."
-            return StreamingResponse(empty_stream(), media_type="text/plain")
+            return {"answer": "Không tìm thấy câu hỏi."}
 
         history = [m.model_dump() for m in req.messages[:-1]]
+
         pipeline_instance = get_pipeline()
 
-        async def event_stream():
-            async for token in pipeline_instance.stream(
+        def event_stream():
+            
+            session_id = req.session_id
+
+            for token in pipeline_instance.stream(
                 last_user_message,
                 history,
-                session_id=req.session_id
+                session_id=session_id
             ):
                 yield token
 
         return StreamingResponse(
             event_stream(),
-            media_type="text/plain; charset=utf-8"
+            media_type="text/event-stream"
         )
 
     except Exception as e:
-        logger.exception(f"Chat error: {e}")
 
-        async def error_stream():
-            yield "Hệ thống đang gặp lỗi."
+        logger.error(f"Chat error: {e}")
 
-        return StreamingResponse(error_stream(), media_type="text/plain")
+        return {
+            "answer": "Hệ thống đang gặp lỗi."
+        }

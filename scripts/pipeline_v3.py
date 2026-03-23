@@ -33,7 +33,7 @@ class RAGPipeline:
         self.compressor = ContextCompressor()
 
         self.retrieve_top_k = 15
-        self.final_top_k = 10
+        self.final_top_k = 5
 
         self.products = self.load_products()
 
@@ -84,17 +84,19 @@ class RAGPipeline:
         return docs
 
     # -------------------------
-    def rerank(self, query, docs):
+    def rerank(self, query, docs, top_k=None):
 
         if not docs:
             return docs
 
         docs = docs[:30]
 
+        k = top_k or self.final_top_k
+
         logger.info(f"Reranking {len(docs)} docs...")
         t0 = time.time()
 
-        results = self.reranker.rerank(query, docs, k=self.final_top_k)
+        results = self.reranker.rerank(query, docs, k=k)
 
         logger.info(f"Reranked to {len(results)} docs in {(time.time()-t0):.2f}s")
         return results
@@ -111,49 +113,84 @@ class RAGPipeline:
         logger.info(f"Rewrite: {rewritten} ({(time.time()-t0):.2f}s)")
 
         # Decompose
-        t0 = time.time()
+        t0
         decomposed = decompose_chain.invoke({
             "query": rewritten
         })
+        logger.info(f"Decomposed: {decomposed} ({(time.time()-t0):.2f}s)")
 
         if not isinstance(decomposed, list):
             decomposed = [rewritten]
 
-        logger.info(f"Decompose: {decomposed} ({(time.time()-t0):.2f}s)")
+        # =========================
+        # CASE 1: KHÔNG DECOMPOSE
+        # =========================
+        if len(decomposed) <= 1:
 
-        # Multi-query
-        t0 = time.time()
+            # Multi-query
+            t0 = time.time()
+            multi_queries = multi_query_chain.invoke({"query": rewritten})
+            queries = list(dict.fromkeys([rewritten] + multi_queries))
+
+            logger.info(f"Multi-query: {queries} ({(time.time()-t0):.2f}s)")
+
+            # Product filter
+            t0 = time.time()
+            products = detect_product(rewritten, self.products)
+            
+            if products == []:
+                products = None
+
+            logger.info(f"Detected products: {products} ({(time.time()-t0):.2f}s)")
+
+            # Retrieve
+            docs = self.retrieve(queries, products)
+            retrieved_docs = docs.copy()
+
+            # Rerank
+            docs = self.rerank(rewritten, docs)
+            reranked_docs = docs.copy()
+
+            # Compress
+            docs = self.compressor.compress(docs)
+            context = build_context(docs)
+
+            return context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, docs
+
+        # =========================
+        # CASE 2: CÓ DECOMPOSE
+        # =========================
         queries = []
-        for q in decomposed:
-            multi = multi_query_chain.invoke({"query": q})
-            queries.extend([q] + multi)
+        retrieved_docs = []
+        reranked_docs = []
+        final_docs = []
 
-        queries = list(dict.fromkeys(queries))
+        for sub_q in decomposed:
 
-        logger.info(f"Multi-query: {queries} ({(time.time()-t0):.2f}s)")
+            t0 = time.time()
+            multi = multi_query_chain.invoke({"query": sub_q})
+            sub_queries = list(dict.fromkeys([sub_q] + multi))
+            queries.extend(sub_queries)
+            logger.info(f"Sub-query: {sub_queries} ({(time.time()-t0):.2f}s)")
 
-        # Product filter
-        products = detect_product(rewritten, self.products)
-        logger.info(f"Detected products: {products}")
-        if products == []:
-            products = None
+            t0 = time.time()
+            products = detect_product(sub_q, self.products)
+            if products == []:
+                products = None
+            logger.info(f"Detected products: {products} ({(time.time()-t0):.2f}s)")
 
-        # Retrieve
-        docs = self.retrieve(queries, products)
-        retrieved_docs = docs.copy()
+            docs = self.retrieve(sub_queries, products)
+            retrieved_docs.extend(docs)
 
-        # Rerank
-        docs = self.rerank(rewritten, docs)
-        reranked_docs = docs.copy()
+        top_k = len(decomposed)*8
 
-        # Compress
-        t0 = time.time()
-        docs = self.compressor.compress(docs)
-        logger.info(f"Compressed to {len(docs)} docs ({(time.time()-t0):.2f}s)")
+        reranked_docs = self.rerank(" ".join(decomposed), retrieved_docs, top_k=top_k)
 
-        context = build_context(docs)
+        final_docs = self.compressor.compress(reranked_docs, max_docs= len(decomposed) * 5)
 
-        return context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, docs
+        context = build_context(final_docs)
+
+        return context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, final_docs
 
     # -------------------------
     def stream(self, query, history=None, session_id=None) -> Generator[str, None, None]:

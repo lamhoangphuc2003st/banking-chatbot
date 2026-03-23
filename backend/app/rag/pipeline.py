@@ -1,6 +1,10 @@
-from typing import Generator
+from typing import AsyncGenerator
+import asyncio
+import json
 import time
 import uuid
+
+from starlette.concurrency import run_in_threadpool
 
 from app.rag.chains.rewrite_chain import rewrite_chain
 from app.rag.chains.multi_query_chain import multi_query_chain
@@ -23,12 +27,10 @@ logger = get_logger(__name__)
 
 
 class RAGPipeline:
-
     def __init__(self):
-        logger.info("Initializing Async RAGPipeline")
+        logger.info("Initializing RAGPipeline")
 
         self.retriever = QdrantRetriever()
-
         self.reranker = Reranker()
         self.compressor = ContextCompressor()
 
@@ -38,9 +40,9 @@ class RAGPipeline:
         self.products = self.load_products()
 
     # -------------------------
+    # INIT / STATIC DATA
+    # -------------------------
     def load_products(self):
-        import json
-
         with open("data/vietcombank_chunks.json", "r", encoding="utf-8") as f:
             data = json.load(f)
 
@@ -48,31 +50,97 @@ class RAGPipeline:
 
         for d in data:
             name = d.get("metadata", {}).get("product_name")
-
             if name:
-                name = name.strip()  # remove space
-                name = " ".join(name.split())  # normalize whitespace
-
+                name = " ".join(name.strip().split())
                 products.add(name)
 
-        products = sorted(list(products))  # 🔥 FIX: stable order
+        products = sorted(list(products))
 
         logger.info(f"Loaded {len(products)} products")
-        logger.info(f"Products: {products}")  # debug
-
         return products
 
     # -------------------------
-    def retrieve(self, queries, products):
+    # SAFE WRAPPERS
+    # -------------------------
+    async def _call_in_thread(self, fn, *args, **kwargs):
+        return await run_in_threadpool(fn, *args, **kwargs)
 
+    async def _save_log_safe(self, trace: dict):
+        try:
+            await run_in_threadpool(save_rag_log, trace)
+        except Exception:
+            logger.exception("Failed to save rag log")
+
+    async def _invoke_rewrite(self, query, history):
+        t0 = time.time()
+        result = await self._call_in_thread(
+            rewrite_chain.invoke,
+            {
+                "query": query,
+                "history": history
+            }
+        )
+        logger.info(f"Rewrite: {result} ({(time.time() - t0):.2f}s)")
+        return result
+
+    async def _invoke_decompose(self, query):
+        t0 = time.time()
+        result = await self._call_in_thread(
+            decompose_chain.invoke,
+            {
+                "query": query
+            }
+        )
+        logger.info(f"Decomposed: {result} ({(time.time() - t0):.2f}s)")
+        return result
+
+    async def _invoke_multi_query(self, query):
+        t0 = time.time()
+        result = await self._call_in_thread(
+            multi_query_chain.invoke,
+            {
+                "query": query
+            }
+        )
+        logger.info(f"Multi-query for '{query}': {result} ({(time.time() - t0):.2f}s)")
+        return result
+
+    async def _detect_intent(self, query):
+        t0 = time.time()
+        result = await self._call_in_thread(detect_intent, query)
+        logger.info(f"Intent: {result} ({(time.time() - t0):.2f}s)")
+        return result
+
+    async def _detect_product(self, query):
+        t0 = time.time()
+        result = await self._call_in_thread(detect_product, query, self.products)
+        if result == []:
+            result = None
+        logger.info(f"Detected products for '{query}': {result} ({(time.time() - t0):.2f}s)")
+        return result
+
+    async def _retrieve_one(self, query, products):
+        return await self._call_in_thread(
+            self.retriever.search,
+            query,
+            self.retrieve_top_k,
+            products
+        )
+
+    async def retrieve(self, queries, products):
         logger.info(f"Retrieving {len(queries)} queries...")
         t0 = time.time()
+
+        tasks = [self._retrieve_one(q, products) for q in queries]
+        all_results = await asyncio.gather(*tasks, return_exceptions=True)
 
         docs = []
         seen = set()
 
-        for q in queries:
-            results = self.retriever.search(q, self.retrieve_top_k, products)
+        for i, results in enumerate(all_results):
+            if isinstance(results, Exception):
+                logger.exception(f"Retrieve failed for query: {queries[i]}")
+                continue
 
             for d in results:
                 doc_id = d["doc_id"]
@@ -80,121 +148,178 @@ class RAGPipeline:
                     seen.add(doc_id)
                     docs.append(d)
 
-        logger.info(f"Retrieved {len(docs)} unique docs in {(time.time()-t0):.2f}s")
+        logger.info(f"Retrieved {len(docs)} unique docs in {(time.time() - t0):.2f}s")
         return docs
 
-    # -------------------------
-    def rerank(self, query, docs, top_k=None):
-
+    async def rerank(self, query, docs, top_k=None):
         if not docs:
             return docs
 
         docs = docs[:30]
-
         k = top_k or self.final_top_k
 
         logger.info(f"Reranking {len(docs)} docs...")
         t0 = time.time()
 
-        results = self.reranker.rerank(query, docs, k=k)
+        results = await self._call_in_thread(
+            self.reranker.rerank,
+            query,
+            docs,
+            k
+        )
 
-        logger.info(f"Reranked to {len(results)} docs in {(time.time()-t0):.2f}s")
+        logger.info(f"Reranked to {len(results)} docs in {(time.time() - t0):.2f}s")
         return results
 
-    # -------------------------
-    def pipeline(self, query, history):
-
-        # Rewrite
+    async def compress(self, docs, max_docs=None):
         t0 = time.time()
-        rewritten = rewrite_chain.invoke({
-            "query": query,
-            "history": history
-        })
-        logger.info(f"Rewrite: {rewritten} ({(time.time()-t0):.2f}s)")
+        if max_docs is not None:
+            results = await self._call_in_thread(
+                self.compressor.compress,
+                docs,
+                max_docs=max_docs
+            )
+        else:
+            results = await self._call_in_thread(
+                self.compressor.compress,
+                docs
+            )
+        logger.info(f"Compressed to {len(results)} docs in {(time.time() - t0):.2f}s")
+        return results
+
+    async def build_context_async(self, docs):
+        t0 = time.time()
+        context = await self._call_in_thread(build_context, docs)
+        logger.info(f"Context built in {(time.time() - t0):.2f}s")
+        return context
+
+    async def _stream_generator(self, payload) -> AsyncGenerator[str, None]:
+        iterator = await self._call_in_thread(generator_chain.stream, payload)
+        def next_chunk(it):
+            try:
+                return next(it)
+            except StopIteration:
+                return None
+        while True:
+            chunk = await self._call_in_thread(next_chunk, iterator)
+            if chunk is None:
+                break
+            content = getattr(chunk, "content", None)
+            if content:
+                yield content
+
+    # -------------------------
+    # MAIN PIPELINE
+    # -------------------------
+    async def pipeline(self, query, history):
+        # Rewrite
+        rewritten = await self._invoke_rewrite(query, history)
 
         # Decompose
-        t0
-        decomposed = decompose_chain.invoke({
-            "query": rewritten
-        })
-        logger.info(f"Decomposed: {decomposed} ({(time.time()-t0):.2f}s)")
+        decomposed = await self._invoke_decompose(rewritten)
 
         if not isinstance(decomposed, list):
             decomposed = [rewritten]
 
         # =========================
-        # CASE 1: KHÔNG DECOMPOSE
+        # CASE 1: NO DECOMPOSE
         # =========================
         if len(decomposed) <= 1:
-
-            # Multi-query
-            t0 = time.time()
-            multi_queries = multi_query_chain.invoke({"query": rewritten})
+            multi_queries = await self._invoke_multi_query(rewritten)
             queries = list(dict.fromkeys([rewritten] + multi_queries))
 
-            logger.info(f"Multi-query: {queries} ({(time.time()-t0):.2f}s)")
+            products = await self._detect_product(rewritten)
 
-            # Product filter
-            t0 = time.time()
-            products = detect_product(rewritten, self.products)
-            
-            if products == []:
-                products = None
-
-            logger.info(f"Detected products: {products} ({(time.time()-t0):.2f}s)")
-
-            # Retrieve
-            docs = self.retrieve(queries, products)
+            docs = await self.retrieve(queries, products)
             retrieved_docs = docs.copy()
 
-            # Rerank
-            docs = self.rerank(rewritten, docs)
+            docs = await self.rerank(rewritten, docs)
             reranked_docs = docs.copy()
 
-            # Compress
-            docs = self.compressor.compress(docs)
-            context = build_context(docs)
+            docs = await self.compress(docs)
+            context = await self.build_context_async(docs)
 
-            return context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, docs
+            return (
+                context,
+                rewritten,
+                decomposed,
+                queries,
+                products,
+                retrieved_docs,
+                reranked_docs,
+                docs,
+            )
 
         # =========================
-        # CASE 2: CÓ DECOMPOSE
+        # CASE 2: WITH DECOMPOSE
         # =========================
         queries = []
         retrieved_docs = []
-        reranked_docs = []
-        final_docs = []
 
-        for sub_q in decomposed:
-
-            t0 = time.time()
-            multi = multi_query_chain.invoke({"query": sub_q})
+        async def process_subquery(sub_q):
+            multi = await self._invoke_multi_query(sub_q)
             sub_queries = list(dict.fromkeys([sub_q] + multi))
-            queries.extend(sub_queries)
-            logger.info(f"Sub-query: {sub_queries} ({(time.time()-t0):.2f}s)")
 
-            t0 = time.time()
-            products = detect_product(sub_q, self.products)
-            if products == []:
-                products = None
-            logger.info(f"Detected products: {products} ({(time.time()-t0):.2f}s)")
+            products = await self._detect_product(sub_q)
+            docs = await self.retrieve(sub_queries, products)
 
-            docs = self.retrieve(sub_queries, products)
-            retrieved_docs.extend(docs)
+            return {
+                "sub_q": sub_q,
+                "sub_queries": sub_queries,
+                "products": products,
+                "docs": docs,
+            }
 
-        top_k = len(decomposed)*8
+        # Chạy các sub-query song song
+        results = await asyncio.gather(*(process_subquery(sub_q) for sub_q in decomposed))
 
-        reranked_docs = self.rerank(" ".join(decomposed), retrieved_docs, top_k=top_k)
+        all_products = []
 
-        final_docs = self.compressor.compress(reranked_docs, max_docs= len(decomposed) * 5)
+        for item in results:
+            queries.extend(item["sub_queries"])
+            retrieved_docs.extend(item["docs"])
+            if item["products"]:
+                all_products.extend(item["products"])
 
-        context = build_context(final_docs)
+        # dedupe products
+        products = sorted(list(set(all_products))) if all_products else None
 
-        return context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, final_docs
+        # dedupe retrieved docs
+        unique_docs = []
+        seen = set()
+        for d in retrieved_docs:
+            doc_id = d["doc_id"]
+            if doc_id not in seen:
+                seen.add(doc_id)
+                unique_docs.append(d)
+        retrieved_docs = unique_docs
+
+        top_k = len(decomposed) * 8
+
+        reranked_docs = await self.rerank(" ".join(decomposed), retrieved_docs, top_k=top_k)
+        final_docs = await self.compress(reranked_docs, max_docs=len(decomposed) * 5)
+        context = await self.build_context_async(final_docs)
+
+        return (
+            context,
+            rewritten,
+            decomposed,
+            queries,
+            products,
+            retrieved_docs,
+            reranked_docs,
+            final_docs,
+        )
 
     # -------------------------
-    def stream(self, query, history=None, session_id=None) -> Generator[str, None, None]:
-
+    # STREAM
+    # -------------------------
+    async def stream(
+        self,
+        query,
+        history=None,
+        session_id=None
+    ) -> AsyncGenerator[str, None]:
         start_time = time.time()
         session_id = session_id or str(uuid.uuid4())
 
@@ -207,31 +332,35 @@ class RAGPipeline:
         full_response = ""
 
         try:
-            logger.info(f"\nNEW QUERY: {query}")
+            logger.info(f"NEW QUERY: {query}")
 
-            intent = detect_intent(query)
+            intent = await self._detect_intent(query)
             trace["intent"] = intent
 
-            logger.info(f"Intent: {intent}")
-
             if intent == "CHAT":
-                stream = generator_chain.stream({
+                async for token in self._stream_generator({
                     "context": "",
                     "question": query
-                })
-
-                for chunk in stream:
-                    if chunk.content:
-                        full_response += chunk.content
-                        yield chunk.content
+                }):
+                    full_response += token
+                    yield token
 
                 trace["response"] = full_response
                 trace["latency_ms"] = int((time.time() - start_time) * 1000)
-                save_rag_log(trace)
+
+                asyncio.create_task(self._save_log_safe(trace))
                 return
 
-            # RUN PIPELINE
-            context, rewritten, decomposed, queries, products, retrieved_docs, reranked_docs, docs = self.pipeline(query, history)
+            (
+                context,
+                rewritten,
+                decomposed,
+                queries,
+                products,
+                retrieved_docs,
+                reranked_docs,
+                docs,
+            ) = await self.pipeline(query, history)
 
             trace["rewritten"] = rewritten
             trace["decomposed"] = decomposed
@@ -241,28 +370,28 @@ class RAGPipeline:
             trace["reranked_docs"] = [d["doc_id"] for d in reranked_docs]
             trace["final_docs"] = [d["doc_id"] for d in docs]
 
-            logger.info(f"Retrieved: {len(retrieved_docs)} | Reranked: {len(reranked_docs)} | Final: {len(docs)}")
+            logger.info(
+                f"Retrieved: {len(retrieved_docs)} | "
+                f"Reranked: {len(reranked_docs)} | "
+                f"Final: {len(docs)}"
+            )
 
-            # Generate
-            stream = generator_chain.stream({
+            async for token in self._stream_generator({
                 "context": context,
                 "question": rewritten
-            })
-
-            for chunk in stream:
-                if chunk.content:
-                    full_response += chunk.content
-                    yield chunk.content
+            }):
+                full_response += token
+                yield token
 
             trace["response"] = full_response
             trace["latency_ms"] = int((time.time() - start_time) * 1000)
 
             logger.info(f"Total latency: {trace['latency_ms']} ms")
 
-            save_rag_log(trace)
+            asyncio.create_task(self._save_log_safe(trace))
 
         except Exception as e:
             logger.exception("Pipeline error")
             trace["error"] = str(e)
-            save_rag_log(trace)
+            asyncio.create_task(self._save_log_safe(trace))
             raise
