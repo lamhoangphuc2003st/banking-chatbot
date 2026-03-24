@@ -3,3 +3,8 @@ docker rmi bank-chatbot
 docker build -t bank-chatbot .
 docker run -p 8000:8000 --env-file .env bank-chatbot
 curl http://localhost:8000/health
+
+
+docker ps -a
+docker start 1cab35c8ad1d
+docker exec -it 1cab35c8ad1d bash
