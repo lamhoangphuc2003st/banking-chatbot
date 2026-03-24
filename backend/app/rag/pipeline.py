@@ -36,27 +36,33 @@ class RAGPipeline:
 
         self.retrieve_top_k = 15
         self.final_top_k = 5
-
         self.products = self.load_products()
 
     # -------------------------
     # INIT / STATIC DATA
     # -------------------------
     def load_products(self):
-        with open("data/vietcombank_chunks.json", "r", encoding="utf-8") as f:
-            data = json.load(f)
-
+        logger.info("Loading products from Qdrant...")
+        
         products = set()
-
-        for d in data:
-            name = d.get("metadata", {}).get("product_name")
-            if name:
-                name = " ".join(name.strip().split())
-                products.add(name)
-
+        offset = None
+        while True:
+            results, next_offset = self.retriever.client.scroll(
+                collection_name=self.retriever.collection,
+                with_payload=["product_name"],
+                limit=1000,
+                offset=offset
+            )
+            for point in results:
+                name = point.payload.get("product_name")
+                if name:
+                    name = " ".join(name.strip().split())
+                    products.add(name)
+            if next_offset is None:
+                break
+            offset = next_offset
         products = sorted(list(products))
-
-        logger.info(f"Loaded {len(products)} products")
+        logger.info(f"Loaded {len(products)} products from Qdrant")
         return products
 
     # -------------------------
