@@ -122,14 +122,12 @@ async def chat(req: ChatRequest):
         pipeline_instance = get_pipeline()
 
         async def event_stream():
-            yield ": keepalive\n\n"
-
             async for token in pipeline_instance.stream(
                 last_user_message,
                 history,
                 session_id=req.session_id
             ):
-                yield f"data: {token}\n\n"
+                yield token
 
         return StreamingResponse(
             event_stream(),
