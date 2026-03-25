@@ -10,7 +10,9 @@ prompt = ChatPromptTemplate.from_template(
 """
 Bạn là chuyên gia tư vấn Vietcombank.
 
-Sử dụng thông tin được cung cấp để trả lời ý chính cho câu hỏi.
+Sử dụng thông tin được cung cấp trong Context để trả lời cho câu hỏi.
+
+Yêu cầu: Không được rút gọn nội dung, không được thêm thông tin ngoài Context, chỉ trả lời dựa trên thông tin trong Context.
 
 Sử dụng markdown heading và bullet để format câu trả lời.
 

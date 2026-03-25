@@ -2,6 +2,7 @@ import logging
 from typing import List
 
 from dotenv import load_dotenv
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -26,28 +27,35 @@ logger = logging.getLogger(__name__)
 
 
 # -----------------------------
-# Lazy Init RAG
+# Init RAG at startup
 # -----------------------------
 pipeline = None
 
-
-def get_pipeline():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     global pipeline
 
-    if pipeline is None:
-        logger.info("Initializing RAGPipeline...")
-        from app.rag.pipeline import RAGPipeline
-        pipeline = RAGPipeline()
-        logger.info("RAG pipeline loaded")
+    logger.info("Initializing RAGPipeline...")
 
-    return pipeline
+    from app.rag.pipeline import RAGPipeline
+    pipeline = RAGPipeline()
 
+    logger.info("RAG pipeline loaded")
+
+    yield
 
 # -----------------------------
 # FastAPI
 # -----------------------------
-app = FastAPI(title="Vietcombank RAG Chatbot")
+app = FastAPI(
+    title="Vietcombank RAG Chatbot",
+    lifespan=lifespan
+)
 
+def get_pipeline():
+    if pipeline is None:
+        raise RuntimeError("Pipeline not initialized yet")
+    return pipeline
 
 # -----------------------------
 # CORS
@@ -114,12 +122,14 @@ async def chat(req: ChatRequest):
         pipeline_instance = get_pipeline()
 
         async def event_stream():
+            yield ": keepalive\n\n"
+
             async for token in pipeline_instance.stream(
                 last_user_message,
                 history,
                 session_id=req.session_id
             ):
-                yield token
+                yield f"data: {token}\n\n"
 
         return StreamingResponse(
             event_stream(),
