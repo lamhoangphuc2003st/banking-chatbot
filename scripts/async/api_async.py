@@ -108,7 +108,7 @@ async def chat(req: ChatRequest):
         if not last_user_message:
             async def empty_stream():
                 yield "Không tìm thấy câu hỏi."
-            return StreamingResponse(empty_stream(), media_type="text/plain")
+            return StreamingResponse(empty_stream(), media_type="text/event-stream")
 
         history = [m.model_dump() for m in req.messages[:-1]]
         pipeline_instance = get_pipeline()
@@ -123,7 +123,7 @@ async def chat(req: ChatRequest):
 
         return StreamingResponse(
             event_stream(),
-            media_type="text/plain; charset=utf-8",
+            media_type="text/event-stream",
             headers={
                 "Cache-Control": "no-cache",
                 "Connection": "keep-alive",
@@ -137,4 +137,4 @@ async def chat(req: ChatRequest):
         async def error_stream():
             yield "Hệ thống đang gặp lỗi."
 
-        return StreamingResponse(error_stream(), media_type="text/plain")
+        return StreamingResponse(error_stream(), media_type="text/event-stream")
