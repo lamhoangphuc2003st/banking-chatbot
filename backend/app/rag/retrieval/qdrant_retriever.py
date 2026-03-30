@@ -1,6 +1,5 @@
 import os
 from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, FieldCondition, MatchValue
 
 from langchain_openai import OpenAIEmbeddings
 
@@ -15,8 +14,8 @@ class QdrantRetriever:
 
         self.client = QdrantClient(
             url=os.getenv("QDRANT_URL"),
-            port=None,              
-            prefer_grpc=False,      
+            port=None,
+            prefer_grpc=False,
             timeout=60
         )
         self.collection = "vietcombank"
@@ -30,38 +29,18 @@ class QdrantRetriever:
         return self.embeddings.embed_query(query)
 
     # -------------------------
-    def build_filter(self, products):
-        """
-        Build Qdrant filter cho multi-product
-        """
-        if not products:
-            return None
-
-        return Filter(
-            should=[
-                FieldCondition(
-                    key="product_name",
-                    match=MatchValue(value=p)
-                )
-                for p in products
-            ]
-        )
-
-    # -------------------------
-    def vector_search(self, query, k=10, products=None):
+    def vector_search(self, query, k=10, collection=None):
 
         vector = self.embed(query)
 
-        query_filter = self.build_filter(products)
-
         logger.info(f"[Qdrant] Query: {query}")
-        logger.info(f"[Qdrant] Products filter: {products}")
 
         results = self.client.query_points(
-            collection_name=self.collection,
+            collection_name=collection or self.collection,
             query=vector,
             limit=k,
-            query_filter=query_filter
+            with_payload=True,
+            with_vectors=False
         )
 
         docs = []
@@ -70,25 +49,20 @@ class QdrantRetriever:
             payload = r.payload or {}
 
             docs.append({
-                "doc_id": payload.get("doc_id", "unknown"),
-                "text": payload.get("text", ""),
-                "product_name": payload.get("product_name")
-            })
+            "score": r.score,
+            "doc_id": payload.get("doc_id", "unknown"),
+            "text": payload.get("text"),
+            "context": payload.get("context"),
+            "answer": payload.get("answer"),
+        })
 
         return docs
 
     # -------------------------
-    def search(self, query, k=20, products=None):
-        """
-        Main search entry
-        """
+    def search(self, query, k=20, collection=None):
 
         try:
-            docs = self.vector_search(
-                query,
-                k=k,
-                products=products
-            )
+            docs = self.vector_search(query, k=k, collection=collection)
 
             return docs
 

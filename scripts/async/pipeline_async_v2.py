@@ -354,13 +354,23 @@ class RAGPipeline:
                     "context": "",
                     "question": query
                 }):
-                    full_response += token
                     yield token
+                return
 
-                trace["response"] = full_response
-                trace["latency_ms"] = int((time.time() - start_time) * 1000)
+            if intent == "FAQ":
+                async for token in self._stream_generator({
+                    "context": "",
+                    "question": query
+                }):
+                    yield token
+                return
 
-                asyncio.create_task(self._save_log_safe(trace))
+            if intent == "OUT_OF_SCOPE":
+                async for token in self._stream_generator({
+                    "context": "",
+                    "question": "Xin lỗi, tôi chỉ hỗ trợ thông tin ngân hàng Vietcombank."
+                }):
+                    yield token
                 return
 
             (

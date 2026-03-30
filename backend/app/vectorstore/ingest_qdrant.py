@@ -44,7 +44,7 @@ client = QdrantClient(
 try:
     print(client.get_collections())
 except Exception as e:
-    print("⚠️ Cannot get collections:", e)
+    print("Cannot get collections:", e)
 
 # -------------------------
 # EMBEDDING

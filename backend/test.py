@@ -1,15 +1,51 @@
-import redis
 import os
-from dotenv import load_dotenv
+import json
+import redis
 
-load_dotenv()
 
-r = redis.from_url(os.getenv("REDIS_URL"), decode_responses=True)
+class RedisCache:
+    def __init__(self):
+        self.client = redis.Redis.from_url(
+            os.getenv("REDIS_URL"),
+            decode_responses=True
+        )
+        self.ttl = 3600
+        self.prefix = "rag:cache:"
 
-# SET
-r.set("test_key", "hello_redis", ex=60)
+    # -------------------------
+    def _key(self, query):
+        return f"{self.prefix}{query}"
 
-# GET
-value = r.get("test_key")
+    # -------------------------
+    def get(self, query):
+        data = self.client.get(self._key(query))
 
-print("Value:", value)
+        if not data:
+            return None
+
+        return json.loads(data)
+
+    # -------------------------
+    def set(self, query, value):
+        self.client.setex(
+            self._key(query),
+            self.ttl,
+            json.dumps(value)
+        )
+
+    # -------------------------
+    def delete(self, query):
+        self.client.delete(self._key(query))
+
+    # -------------------------
+    def clear(self):
+        """Xóa toàn bộ cache RAG (không ảnh hưởng redis khác)"""
+        keys = self.client.keys(f"{self.prefix}*")
+
+        if keys:
+            self.client.delete(*keys)
+
+    # -------------------------
+    def clear_all(self):
+        """Xóa toàn bộ Redis (danger)"""
+        self.client.flushall()

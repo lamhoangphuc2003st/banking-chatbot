@@ -7,25 +7,34 @@ llm = ChatOpenAI(
 )
 
 prompt = ChatPromptTemplate.from_template("""
-Bạn là hệ thống phân loại intent cho chatbot ngân hàng Vietcombank.
+Bạn là hệ thống phân loại intent chatbot ngân hàng Vietcombank.
 
-Phân loại câu hỏi thành 2 loại:
+Phân loại câu hỏi thành 3 loại:
 
 CHAT
 - chào hỏi
 - cảm ơn
-- hỏi chatbot là ai
-- nói chuyện chung
+- nói chuyện xã giao
+- chatbot là ai
 
 KNOWLEDGE
-- hỏi về sản phẩm Vietcombank
-- hỏi phí
+- hỏi sản phẩm cụ thể
+- có tên thẻ / gói / dịch vụ
+- ví dụ: visa platinum, digibank, vay mua nhà
+- hỏi chung về phí
 - hỏi lãi suất
-- hỏi điều kiện mở thẻ
-- hỏi thông tin dịch vụ
+- điều kiện
+- chính sách
+- không rõ sản phẩm cụ thể
+
+OUT_OF_SCOPE
+- không liên quan ngân hàng
+- hỏi linh tinh
+- thời tiết
+- toán học
 
 Chỉ trả về một từ:
-CHAT hoặc KNOWLEDGE
+CHAT / KNOWLEDGE / OUT_OF_SCOPE
 
 Câu hỏi:
 {query}
@@ -35,16 +44,19 @@ chain = prompt | llm
 
 
 def detect_intent(query):
-
     try:
+        result = chain.invoke({"query": query})
+        intent = result.content.strip().upper()
 
-        result = chain.invoke({
-            "query": query
-        })
+        valid = [
+            "CHAT",
+            "FAQ",
+            "PRODUCT",
+            "KNOWLEDGE",
+            "OUT_OF_SCOPE"
+        ]
 
-        intent = result.content.strip().upper().replace(".", "")
-
-        if intent not in ["CHAT", "KNOWLEDGE"]:
+        if intent not in valid:
             intent = "KNOWLEDGE"
 
         return intent
