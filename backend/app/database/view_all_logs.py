@@ -36,7 +36,7 @@ for r in rows:
     print("Intent:", r[4])
     print("Products:", shorten(r[5], 300))
     print("Queries:", shorten(r[6], 300))
-    print("Retrieved:", shorten(r[7], 300))
+    print("Retrieved:", shorten(r[7], 1000))
     print("Reranked:", shorten(r[8], 300))
     print("Final Docs:", shorten(r[9], 300))
     print("Response:", shorten(r[10], 300))

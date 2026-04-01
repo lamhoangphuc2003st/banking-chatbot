@@ -1,26 +1,29 @@
 import os
-import redis
 import json
 import hashlib
 
+import redis.asyncio as aioredis
+
+
 class RedisCache:
     def __init__(self):
-        self.client = redis.from_url(
+        # redis-py >= 4.2 ships redis.asyncio — no extra package needed
+        self.client = aioredis.from_url(
             os.environ["REDIS_URL"],
             decode_responses=True
         )
         self.ttl = 86400
         self.prefix = "rag:cache:"
 
-    def _key(self, query):
+    def _key(self, query: str) -> str:
         return self.prefix + hashlib.md5(query.encode()).hexdigest()
 
-    def get(self, query):
-        val = self.client.get(self._key(query))
+    async def get(self, query: str):
+        val = await self.client.get(self._key(query))
         return json.loads(val) if val else None
 
-    def set(self, query, value):
-        self.client.setex(
+    async def set(self, query: str, value):
+        await self.client.setex(
             self._key(query),
             self.ttl,
             json.dumps(value)

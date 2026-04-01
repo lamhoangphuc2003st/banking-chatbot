@@ -15,23 +15,15 @@ CHAT
 - chào hỏi
 - cảm ơn
 - nói chuyện xã giao
-- chatbot là ai
 
 KNOWLEDGE
-- hỏi sản phẩm cụ thể
-- có tên thẻ / gói / dịch vụ
-- ví dụ: visa platinum, digibank, vay mua nhà
-- hỏi chung về phí
-- hỏi lãi suất
-- điều kiện
-- chính sách
-- không rõ sản phẩm cụ thể
+- thông tin chung về ngân hàng
+- các dịch vụ, sản phẩm, gói vay, thẻ tín dụng, v.v.
+- hướng dẫn sử dụng dịch vụ, sản phẩm
+- chỉ cần có liên quan đến kiến thức ngân hàng
 
 OUT_OF_SCOPE
 - không liên quan ngân hàng
-- hỏi linh tinh
-- thời tiết
-- toán học
 
 Chỉ trả về một từ:
 CHAT / KNOWLEDGE / OUT_OF_SCOPE

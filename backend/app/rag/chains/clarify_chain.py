@@ -84,8 +84,10 @@ def _is_discovery_or_list(query: str) -> bool:
 # ============================================================
 
 _DETAIL_KEYWORDS = [
-    # Điều kiện / yêu cầu
+    # Điều kiện / yêu cầu / đối tượng
     "điều kiện", "yêu cầu", "tiêu chuẩn", "tiêu chí",
+    "đối tượng", "đối tượng vay", "ai được vay", "ai có thể vay",
+    "đối tượng khách hàng",
     # Hồ sơ / giấy tờ
     "hồ sơ", "giấy tờ", "tài liệu", "chứng từ",
     "cần gì", "cần những gì", "cần có gì", "cần chuẩn bị",
@@ -167,65 +169,39 @@ _FILLER_WORDS = [
 ]
 
 
-def _has_specific_product(query: str) -> bool:
-    """
-    Sau khi strip hết DETAIL_KEYWORDS + GENERIC_CATEGORIES + FILLER_WORDS (normalized),
-    nếu còn > 3 ký tự → có tên sản phẩm cụ thể.
-    """
-    q = _normalize(query)
-    all_strip = (
-        [_normalize(k) for k in _DETAIL_KEYWORDS]
-        + [_normalize(k) for k in _GENERIC_CATEGORIES]
-        + [_normalize(k) for k in _FILLER_WORDS]
-    )
-    # Sắp xếp từ dài nhất trước để tránh partial match
-    all_strip.sort(key=len, reverse=True)
-    for kw in all_strip:
-        q = q.replace(kw, " ")
-    remaining = re.sub(r'[^\w]', ' ', q)
-    remaining = re.sub(r'\s+', ' ', remaining).strip()
-    return len(remaining) > 3
-
-
-# ============================================================
-# LAYER 1D: KHÔNG MƠ HỒ nếu user đang chọn sản phẩm (trả lời clarify)
-# ============================================================
-
-# Từ hỏi — nếu KHÔNG có những từ này, khả năng user đang chọn/trả lời
-_QUESTION_WORDS = [
-    "là gì", "bao nhiêu", "thế nào", "như thế nào",
-    "không", "có không", "ra sao", "ở đâu",
-    "bao lâu", "khi nào", "tại sao", "làm sao",
-    "la gi", "bao nhieu", "the nao", "nhu the nao",
-    "khong", "co khong",
+# Whitelist tên sản phẩm cụ thể — cập nhật khi có sản phẩm mới
+# Đồng bộ với danh sách trong _extract_prompt bên dưới
+_SPECIFIC_PRODUCTS = [
+    # Vay tiêu dùng
+    "vay tín chấp theo lương", "vay cầm cố giấy tờ có giá",
+    "vay tiêu dùng có tài sản bảo đảm",
+    # Vay kinh doanh
+    "an tâm kinh doanh", "kinh doanh tài lộc",
+    "vay xây mới cơ sở lưu trú du lịch",
+    "vay nâng cấp cơ sở lưu trú du lịch",
+    # Vay bất động sản
+    "vay xây sửa nhà ở", "nhà mới thành đạt",
+    "vay mua nhà dự án", "vay mua nhà ở đất ở",
+    "vay mua nhà ở", "vay mua đất ở",
+    # Thẻ
+    "visa platinum", "visa classic", "visa infinite",
+    "mastercard platinum", "mastercard world",
+    "vcb digicard", "jcb platinum",
 ]
 
-def _is_user_selecting(query: str, history) -> bool:
+
+def _has_specific_product(query: str) -> bool:
     """
-    Heuristic: nếu câu không có từ hỏi VÀ bot vừa hỏi clarify → user đang chọn sản phẩm.
+    Whitelist-based: khớp trực tiếp với tên sản phẩm cụ thể.
+    Chính xác hơn approach strip-keyword, không có false-positive.
     """
     q = _normalize(query)
-    has_question = any(_normalize(w) in q for w in _QUESTION_WORDS)
-    if has_question:
-        return False
+    return any(_normalize(p) in q for p in _SPECIFIC_PRODUCTS)
 
-    # Kiểm tra bot vừa hỏi clarification
-    if history and len(history) >= 1:
-        last_bot = next(
-            (h["content"] for h in reversed(history) if h["role"] == "assistant"),
-            ""
-        )
-        clarify_signals = [
-            "bạn muốn hỏi về sản phẩm",
-            "ban muon hoi ve san pham",
-            "bạn muốn tìm hiểu về sản phẩm",
-            "muốn hỏi về",
-            "sản phẩm nào",
-        ]
-        if any(s in _normalize(last_bot) for s in clarify_signals):
-            return True
 
-    return False
+# NOTE: Layer 1D (_is_user_selecting) đã được chuyển vào pipeline.py
+# dưới dạng RAGPipeline._last_bot_was_clarification() — check ở đó trước khi
+# gọi _invoke_clarify, giữ logic ở một chỗ duy nhất.
 
 
 # ============================================================
@@ -236,10 +212,10 @@ def is_ambiguous_by_rule(query: str, history=None) -> bool:
     """
     Trả về True CHỈ KHI:
     1. Không phải câu khám phá / liệt kê
-    2. Có từ khóa chi tiết
-    3. Không có tên sản phẩm cụ thể
-    4. User không đang chọn sản phẩm
-    (Điều kiện đủ cần thêm: history có ≥2 sản phẩm — check ở pipeline)
+    2. Có từ khóa chi tiết (điều kiện, phí, lãi suất, hồ sơ, đối tượng...)
+    3. Không có tên sản phẩm cụ thể trong whitelist
+    (Layer 0: user đang trả lời clarify → check bởi pipeline._last_bot_was_clarification)
+    (Layer 2: history có ≥2 sản phẩm → check bởi pipeline._invoke_clarify)
     """
     if _is_discovery_or_list(query):
         return False
@@ -248,9 +224,6 @@ def is_ambiguous_by_rule(query: str, history=None) -> bool:
         return False
 
     if _has_specific_product(query):
-        return False
-
-    if _is_user_selecting(query, history or []):
         return False
 
     return True

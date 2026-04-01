@@ -1,58 +1,71 @@
 import uuid
-from app.rag.retrieval.qdrant_retriever import QdrantRetriever
+
 from qdrant_client.models import VectorParams, Distance
 
+from app.rag.retrieval.qdrant_retriever import QdrantRetriever
+
+
 class SemanticCache:
+
     def __init__(self):
         self.retriever = QdrantRetriever()
         self.threshold = 0.92
         self.collection = "faq_cache"
+        # Lazy init — _ensure_collection() được gọi lần đầu khi search/add
+        self._ready = False
 
-        self._ensure_collection()
+    async def _ensure_collection(self):
+        """Tạo collection nếu chưa tồn tại. Chỉ chạy 1 lần."""
+        if self._ready:
+            return
 
-    def _ensure_collection(self):
-
-        collections = self.retriever.client.get_collections().collections
-        names = [c.name for c in collections]
+        collections = await self.retriever.client.get_collections()
+        names = [c.name for c in collections.collections]
 
         if self.collection not in names:
-
-            self.retriever.client.create_collection(
+            await self.retriever.client.create_collection(
                 collection_name=self.collection,
                 vectors_config=VectorParams(
-                    size=3072,  # text-embedding-3-large
+                    size=3072,
                     distance=Distance.COSINE
                 )
             )
 
-    def search(self, query):
+        self._ready = True
 
-        results = self.retriever.search(
-            query,
-            k=1,
-            collection=self.collection
-        )
-
+    def _extract_hit(self, results: list):
+        """Lấy context từ kết quả tìm kiếm nếu vượt threshold."""
         if not results:
             return None
-
         hit = results[0]
-
         if hit["score"] < self.threshold:
             return None
-
-        # payload nằm trong text / answer / context tùy retriever
         return (
             hit.get("context")
             or hit.get("answer")
             or hit.get("text")
         )
 
-    def add(self, query, context):
+    async def search(self, query: str):
+        """Tìm kiếm bằng text — tự embed query."""
+        await self._ensure_collection()
+        results = await self.retriever.search(query, k=1, collection=self.collection)
+        return self._extract_hit(results)
 
-        vector = self.retriever.embed(query)
+    async def search_with_vector(self, vector: list):
+        """Tìm kiếm bằng vector đã embed sẵn — tránh gọi OpenAI lần 2."""
+        await self._ensure_collection()
+        results = await self.retriever.search_with_vector(
+            vector, k=1, collection=self.collection
+        )
+        return self._extract_hit(results)
 
-        self.retriever.client.upsert(
+    async def add(self, query: str, context: str):
+        await self._ensure_collection()
+
+        vector = await self.retriever.embed(query)
+
+        await self.retriever.client.upsert(
             collection_name=self.collection,
             points=[{
                 "id": str(uuid.uuid4()),

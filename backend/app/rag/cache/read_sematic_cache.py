@@ -8,10 +8,11 @@ load_dotenv()
 QDRANT_URL = os.getenv("QDRANT_URL")
 
 client = QdrantClient(
-    url=QDRANT_URL,
-    port=None,
+    url=os.getenv("QDRANT_CLOUD_URL"),
+    api_key=os.getenv("QDRANT_CLOUD_API_KEY"),
     prefer_grpc=False,
-    timeout=60
+    timeout=60,
+    check_compatibility=False
 )
 
 COLLECTION = "faq_cache"

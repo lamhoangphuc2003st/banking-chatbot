@@ -33,10 +33,11 @@ else:
 # INIT CLIENT
 # -------------------------
 client = QdrantClient(
-    url=os.getenv("QDRANT_URL"),
-    port=None,              # đừng set port
-    prefer_grpc=False,      # cực kỳ quan trọng
-    timeout=60
+    url=os.getenv("QDRANT_CLOUD_URL"),
+    api_key=os.getenv("QDRANT_CLOUD_API_KEY"),
+    prefer_grpc=False,
+    timeout=60,
+    check_compatibility=False
 )
 
 
