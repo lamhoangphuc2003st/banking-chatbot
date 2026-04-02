@@ -3,11 +3,7 @@ import unicodedata
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-
-llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0
-)
+from app.rag.llm_client import llm
 
 
 # ============================================================

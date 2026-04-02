@@ -1,11 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-
-llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0,
-    streaming=True
-)
+from app.rag.llm_client import llm
 
 prompt = ChatPromptTemplate.from_template(
 """

@@ -2,13 +2,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
-
-
-llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0
-)
-
+from app.rag.llm_client import llm
 
 # -----------------------------
 # Convert history to text
@@ -64,6 +58,19 @@ Phân loại câu hỏi theo thứ tự ưu tiên dưới đây:
 
   ❌ TUYỆT ĐỐI KHÔNG được tự thêm tên sản phẩm không có trong lịch sử
   ❌ Nếu lịch sử không có sản phẩm nào → xử lý như LOẠI C
+
+      Câu CHUYỂN CHỦ ĐỀ sang sản phẩm/danh mục mới
+  Dấu hiệu: bắt đầu bằng "còn", "vậy còn", "thế còn" VÀ ngay sau đó là tên sản phẩm/danh mục
+             VÍ DỤ: "Còn vay nhu cầu bất động sản thì sao"
+                    "Thế còn thẻ tín dụng thì sao"
+                    "Vậy còn vay mua xe?"
+  Hành động: ưu tiên tên sản phẩm/danh mục TRONG CÂU HIỆN TẠI,
+             KHÔNG lấy sản phẩm từ history
+             Kết hợp với ý của câu hỏi (hỏi điều kiện? phí? hay chỉ hỏi có/không?)
+  Ví dụ:
+    [History: đang nói về vay tiêu dùng]
+    "Còn vay nhu cầu bất động sản thì sao" → "Vietcombank có cho vay nhu cầu bất động sản không?"
+    "Thế còn thẻ Visa Platinum phí bao nhiêu" → "Phí thẻ Visa Platinum tại Vietcombank là bao nhiêu?"
 
 [LOẠI C] Câu THIẾU ĐỐI TƯỢNG — không có tên sản phẩm trong câu lẫn trong lịch sử
   Dấu hiệu: hỏi về điều kiện/phí/lãi suất/thủ tục/hồ sơ... mà không có tên sản phẩm

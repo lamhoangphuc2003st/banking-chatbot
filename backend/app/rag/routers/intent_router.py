@@ -1,9 +1,19 @@
+import httpx
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
+http_client = httpx.Client(
+    timeout=30,
+    limits=httpx.Limits(
+        max_connections=100,
+        max_keepalive_connections=20
+    )
+)
+
 llm = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0
+    temperature=0,
+    http_client=http_client
 )
 
 prompt = ChatPromptTemplate.from_template("""

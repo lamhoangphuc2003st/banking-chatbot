@@ -1,11 +1,7 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-
-llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0
-)
+from app.rag.llm_client import llm
 
 prompt = ChatPromptTemplate.from_template("""
 Bạn là hệ thống tách câu hỏi cho chatbot ngân hàng Vietcombank.
