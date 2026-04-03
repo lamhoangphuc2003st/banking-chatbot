@@ -26,6 +26,8 @@ from app.rag.retrieval.compression import ContextCompressor
 from app.rag.routers.intent_router import detect_intent
 
 from app.rag.utils.context_builder import build_context
+import re
+
 from app.rag.utils.logger import get_logger
 
 from app.database.database_logger import save_rag_log
@@ -42,7 +44,8 @@ class RAGPipeline:
         self.compressor = ContextCompressor()
 
         self.redis_cache = RedisCache()
-        self.semantic_cache = SemanticCache()
+        # FIX: share retriever → dùng chung connection pool, tránh cold TCP
+        self.semantic_cache = SemanticCache(retriever=self.retriever)
 
         self.retrieve_top_k = 15
         self.final_top_k = 5
@@ -56,7 +59,6 @@ class RAGPipeline:
         Handles cases where user copies bot bullet suggestions like:
         "• Kinh doanh tai loc" or "* Vay tin chap"
         """
-        import re
         query = re.sub(r'[•\*\-]\s*', ' ', query)
         query = re.sub(r'\s+', ' ', query).strip()
         return query
@@ -239,26 +241,10 @@ class RAGPipeline:
                 yield content
 
     async def _stream_chat(self, query: str) -> AsyncGenerator[str, None]:
-        """Tương tự _stream_generator — fix asyncio.run() → run_coroutine_threadsafe."""
-        loop = asyncio.get_event_loop()
-        queue: asyncio.Queue = asyncio.Queue()
-
-        def worker():
-            try:
-                for chunk in chat_generator_chain.stream({"question": query}):
-                    content = getattr(chunk, "content", None)
-                    if content:
-                        asyncio.run_coroutine_threadsafe(queue.put(content), loop)
-            finally:
-                asyncio.run_coroutine_threadsafe(queue.put(None), loop)
-
-        threading.Thread(target=worker, daemon=True).start()
-
-        while True:
-            token = await queue.get()
-            if token is None:
-                break
-            yield token
+        async for chunk in chat_generator_chain.astream({"question": query}):
+            content = getattr(chunk, "content", None)
+            if content:
+                yield content
 
     # -------------------------
     # PIPELINE (public — legacy, gọi từ non-stream context)
@@ -271,12 +257,22 @@ class RAGPipeline:
     # -------------------------
     # PIPELINE (from rewritten query — skip rewrite step)
     # -------------------------
-    async def _pipeline_from_rewritten(self, rewritten: str, history, query_vector: list = None):
+    async def _pipeline_from_rewritten(
+        self, rewritten: str, history,
+        query_vector: list = None,
+        decompose_task=None
+    ):
         should_decompose = self._should_decompose_rule(rewritten)
 
         if should_decompose:
-            decomposed = await self._invoke_decompose(rewritten)
+            if decompose_task is not None:
+                # Task đã chạy ngầm từ Bước 2 — chỉ await kết quả, không gọi LLM lại
+                decomposed = await decompose_task
+            else:
+                decomposed = await self._invoke_decompose(rewritten)
         else:
+            if decompose_task is not None:
+                decompose_task.cancel()
             decomposed = [rewritten]
 
         if not isinstance(decomposed, list):
@@ -299,33 +295,97 @@ class RAGPipeline:
 
             return (context, rewritten, decomposed, queries, retrieved_docs, reranked_docs, docs)
 
-        # CASE 2: WITH DECOMPOSE — sub-queries chạy song song
-        async def process_subquery(sub_q: str):
-            docs = await self.retrieve([sub_q])
-            return {"sub_q": sub_q, "docs": docs}
+        # CASE 2: WITH DECOMPOSE
+        # Mỗi sub_query: check cache → nếu miss mới retrieve → rerank top5 → build_context
+        # Cache theo từng sub_query, không cache theo rewritten
 
-        results = await asyncio.gather(*(process_subquery(sub_q) for sub_q in decomposed))
+        async def process_subquery(sub_q: str) -> dict:
+            """
+            Pipeline cho 1 sub_query:
+            1. Check Redis cache
+            2. Check Semantic cache (nếu redis miss)
+            3. Retrieve → rerank top5 → build_context (nếu cả 2 đều miss)
+            4. Lưu cache fire-and-forget
+            """
+            # --- Redis check ---
+            sub_cached = await self.redis_cache.get(sub_q)
+            if sub_cached:
+                sub_context = sub_cached.get("context") or sub_cached.get("response") or sub_cached
+                logger.info(f"[Decompose] Redis hit: {sub_q[:50]}")
+                return {
+                    "sub_q": sub_q,
+                    "context": sub_context,
+                    "retrieved_docs": [],
+                    "reranked_docs": [],
+                    "final_docs": [],
+                    "cache_hit": "redis",
+                }
 
-        queries = []
+            # --- Semantic cache check ---
+            sub_vector = await self.retriever.embed(sub_q)
+            sub_cached_context = await self.semantic_cache.search_with_vector(sub_vector)
+            if sub_cached_context:
+                logger.info(f"[Decompose] Semantic hit: {sub_q[:50]}")
+                asyncio.create_task(
+                    self.redis_cache.set(sub_q, {"context": sub_cached_context})
+                )
+                return {
+                    "sub_q": sub_q,
+                    "context": sub_cached_context,
+                    "retrieved_docs": [],
+                    "reranked_docs": [],
+                    "final_docs": [],
+                    "cache_hit": "semantic",
+                }
+
+            # --- Cache miss: full retrieval pipeline ---
+            docs = await self.retriever.search_with_vector(sub_vector, self.retrieve_top_k)
+            retrieved = docs.copy()
+
+            reranked = await self.rerank(sub_q, docs, top_k=self.final_top_k)
+            final = await self.compress(reranked)
+            sub_context = await self.build_context_async(final)
+
+            # Lưu cache fire-and-forget — dùng sub_vector đã tính, không re-embed
+            asyncio.create_task(self.redis_cache.set(sub_q, {"context": sub_context}))
+            asyncio.create_task(self.semantic_cache.add_with_vector(sub_q, sub_context, sub_vector))
+
+            logger.info(f"[Decompose] Cache miss, retrieved {len(retrieved)} docs: {sub_q[:50]}")
+            return {
+                "sub_q": sub_q,
+                "context": sub_context,
+                "retrieved_docs": retrieved,
+                "reranked_docs": reranked,
+                "final_docs": final,
+                "cache_hit": None,
+            }
+
+        # Chạy tất cả sub_queries song song
+        sub_results = await asyncio.gather(
+            *(process_subquery(sub_q) for sub_q in decomposed)
+        )
+
+        # Gộp kết quả
+        queries = [r["sub_q"] for r in sub_results]
         retrieved_docs = []
-        for item in results:
-            queries.append(item["sub_q"])
-            retrieved_docs.extend(item["docs"])
-
-        # dedupe
-        unique_docs = []
+        reranked_docs = []
+        final_docs = []
         seen = set()
-        for d in retrieved_docs:
-            doc_id = d["doc_id"]
-            if doc_id not in seen:
-                seen.add(doc_id)
-                unique_docs.append(d)
-        retrieved_docs = unique_docs
+        for r in sub_results:
+            for d in r["retrieved_docs"]:
+                if d["doc_id"] not in seen:
+                    seen.add(d["doc_id"])
+                    retrieved_docs.append(d)
+            reranked_docs.extend(r["reranked_docs"])
+            final_docs.extend(r["final_docs"])
 
-        top_k = len(decomposed) * 5
-        reranked_docs = await self.rerank(" ".join(decomposed), retrieved_docs, top_k=top_k)
-        final_docs = await self.compress(reranked_docs, max_docs=len(decomposed) * 5)
-        context = await self.build_context_async(final_docs)
+        # Merge context từ tất cả sub_queries (cache hit hoặc fresh)
+        context_parts = [r["context"] for r in sub_results if r["context"]]
+        context = "\n\n---\n\n".join(context_parts)
+
+        cache_hits = [r["cache_hit"] for r in sub_results if r["cache_hit"]]
+        if cache_hits:
+            logger.info(f"[Decompose] Cache hits: {cache_hits}")
 
         return (context, rewritten, decomposed, queries, retrieved_docs, reranked_docs, final_docs)
 
@@ -365,22 +425,36 @@ class RAGPipeline:
             )
 
             # -------------------------
-            # BƯỚC 2: Intent + Redis cache check SONG SONG
-            # Intent dùng rewritten query — câu rõ nghĩa hơn, LLM phân loại nhanh hơn
-            # Redis check không phụ thuộc intent nên chạy song song được
+            # BƯỚC 2: Intent + Redis + Embed SONG SONG (3 tasks độc lập)
+            # - Intent dùng rewritten — chính xác hơn query gốc
+            # - Redis check không phụ thuộc intent
+            # - Embed(rewritten) bắt đầu sớm: dùng lại cho semantic cache và retrieve
             # -------------------------
-            intent, cached = await asyncio.gather(
+            # Nếu cần decompose, bắt đầu ngay sau khi có rewritten (chạy ngầm)
+            # Đến lúc cần sẽ await — thường đã xong hoặc gần xong
+            should_decompose_early = self._should_decompose_rule(rewritten)
+            decompose_task = (
+                asyncio.create_task(self._invoke_decompose(rewritten))
+                if should_decompose_early else None
+            )
+
+            intent, cached, query_vector = await asyncio.gather(
                 self._detect_intent(rewritten),
-                self.redis_cache.get(rewritten)
+                self.redis_cache.get(rewritten),
+                self.retriever.embed(rewritten),   # embed sớm — không còn sequential
             )
             trace["intent"] = intent
 
             if intent == "CHAT":
+                if decompose_task:
+                    decompose_task.cancel()
                 async for token in self._stream_chat(rewritten):
                     yield token
                 return
 
             if intent == "OUT_OF_SCOPE":
+                if decompose_task:
+                    decompose_task.cancel()
                 msg = (
                     "Xin lỗi, tôi chỉ hỗ trợ thông tin ngân hàng Vietcombank. "
                     "Bạn có thể hỏi về sản phẩm, phí, lãi suất hoặc dịch vụ của Vietcombank."
@@ -393,6 +467,8 @@ class RAGPipeline:
             # BƯỚC 3: Clarify TRƯỚC cache (cache không lưu trạng thái hội thoại)
             # -------------------------
             if clarify_result.get("needs_clarification"):
+                if decompose_task:
+                    decompose_task.cancel()
                 mentioned_products = clarify_result.get("mentioned_products", [])
                 clarification_msg = build_clarification_message(mentioned_products)
 
@@ -408,6 +484,8 @@ class RAGPipeline:
 
             # Redis result đã có từ gather ở Bước 2 — dùng lại, không gọi lại
             if cached:
+                if decompose_task:
+                    decompose_task.cancel()
                 retrieval_latency_ms = int((time.time() - start_time) * 1000)
                 trace["retrieval_latency_ms"] = retrieval_latency_ms
                 logger.info(f"Redis cache hit | Retrieval latency: {retrieval_latency_ms} ms")
@@ -424,11 +502,12 @@ class RAGPipeline:
                 logger.info(f"Total latency: {trace['latency_ms']} ms")
                 return
 
-            # FIX: embed một lần, dùng lại cho cả semantic cache và retrieve
-            query_vector = await self.retriever.embed(rewritten)
+            # query_vector đã có từ Bước 2 (không embed lại)
             cached_context = await self.semantic_cache.search_with_vector(query_vector)
 
             if cached_context:
+                if decompose_task:
+                    decompose_task.cancel()
                 retrieval_latency_ms = int((time.time() - start_time) * 1000)
                 trace["retrieval_latency_ms"] = retrieval_latency_ms
                 logger.info(f"Semantic cache hit | Retrieval latency: {retrieval_latency_ms} ms")
@@ -447,9 +526,13 @@ class RAGPipeline:
                 return
 
             # -------------------------
-            # NORMAL RAG PIPELINE — truyền query_vector đã embed sẵn
+            # NORMAL RAG PIPELINE — truyền query_vector và decompose_task đang chạy ngầm
             # -------------------------
-            result = await self._pipeline_from_rewritten(rewritten, history, query_vector=query_vector)
+            result = await self._pipeline_from_rewritten(
+                rewritten, history,
+                query_vector=query_vector,
+                decompose_task=decompose_task
+            )
 
             (
                 context,
@@ -487,9 +570,14 @@ class RAGPipeline:
 
             trace["response"] = full_response
 
-            # save cache (native async)
-            asyncio.create_task(self.redis_cache.set(rewritten, {"context": context}))
-            asyncio.create_task(self.semantic_cache.add(rewritten, context))
+            # Lưu cache:
+            # - DECOMPOSE: cache đã được lưu theo từng sub_query bên trong _pipeline_from_rewritten
+            # - NO DECOMPOSE: lưu theo rewritten query, dùng query_vector đã có — không re-embed
+            if len(decomposed) <= 1:
+                asyncio.create_task(self.redis_cache.set(rewritten, {"context": context}))
+                asyncio.create_task(self.semantic_cache.add_with_vector(rewritten, context, query_vector))
+            else:
+                logger.info(f"[Decompose] Cache lưu theo {len(decomposed)} sub_queries, bỏ qua rewritten cache")
 
             trace["latency_ms"] = int((time.time() - start_time) * 1000)
             logger.info(f"Total latency: {trace['latency_ms']} ms")

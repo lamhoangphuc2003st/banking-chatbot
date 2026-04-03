@@ -95,7 +95,7 @@ Phân loại câu hỏi theo thứ tự ưu tiên dưới đây:
     "Vay tín chấp CBNV" → "Điều kiện vay tín chấp CBNV tại Vietcombank là gì?"
     [Không tìm được câu hỏi gốc]
     "Vay xây mới cơ sở lưu trú du lịch" → "Vay xây mới cơ sở lưu trú du lịch tại Vietcombank là gì?"
-  ❌ KHÔNG được dùng thông tin từ câu trả lời trước của bot để suy ra câu hỏi
+    KHÔNG được dùng thông tin từ câu trả lời trước của bot để suy ra câu hỏi
 
 ---
 BƯỚC 2 — QUY TẮC CHUNG (áp dụng cho cả 3 loại)

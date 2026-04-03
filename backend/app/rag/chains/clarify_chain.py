@@ -249,11 +249,8 @@ Sản phẩm VCB thường gặp (để tham khảo nhận dạng):
 - Thẻ: "Visa Platinum", "Visa Classic", "MasterCard Platinum", "VCB DigiCard"
 
 Quy tắc:
-- Chỉ lấy tên sản phẩm/gói CỤ THỂ — KHÔNG lấy danh mục chung
+- Chỉ lấy tên sản phẩm/gói CỤ THỂ — KHÔNG lấy danh mục chung ("vay tiêu dùng", ""vay bất động sản", "vay kinh doanh", "thẻ tín dụng")
 - Chỉ lấy từ lịch sử hội thoại bên dưới, KHÔNG tự thêm
-- KHÔNG lấy từ các câu trả lời liệt kê danh sách của Trợ lý
-  (ví dụ: bot trả lời "VCB có các thẻ: A, B, C..." → không lấy A, B, C)
-- Chỉ lấy sản phẩm mà NGƯỜI DÙNG đã đề cập hoặc chọn
 - Nếu không có: trả về []
 
 Lịch sử hội thoại:

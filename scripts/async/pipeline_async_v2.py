@@ -233,34 +233,10 @@ class RAGPipeline:
     # STREAMING — fix asyncio.run() → run_coroutine_threadsafe
     # -------------------------
     async def _stream_generator(self, payload) -> AsyncGenerator[str, None]:
-        """
-        FIX: asyncio.run() trong worker thread tạo event loop mới mỗi token.
-        Dùng run_coroutine_threadsafe để đẩy token về đúng event loop đang chạy.
-
-        TODO: nếu generator_chain hỗ trợ .astream(), thay toàn bộ hàm này bằng:
-            async for chunk in generator_chain.astream(payload):
-                if chunk.content:
-                    yield chunk.content
-        """
-        loop = asyncio.get_event_loop()
-        queue: asyncio.Queue = asyncio.Queue()
-
-        def worker():
-            try:
-                for chunk in generator_chain.stream(payload):
-                    content = getattr(chunk, "content", None)
-                    if content:
-                        asyncio.run_coroutine_threadsafe(queue.put(content), loop)
-            finally:
-                asyncio.run_coroutine_threadsafe(queue.put(None), loop)
-
-        threading.Thread(target=worker, daemon=True).start()
-
-        while True:
-            token = await queue.get()
-            if token is None:
-                break
-            yield token
+        async for chunk in generator_chain.astream(payload):
+            content = getattr(chunk, "content", None)
+            if content:
+                yield content
 
     async def _stream_chat(self, query: str) -> AsyncGenerator[str, None]:
         """Tương tự _stream_generator — fix asyncio.run() → run_coroutine_threadsafe."""
@@ -346,7 +322,7 @@ class RAGPipeline:
                 unique_docs.append(d)
         retrieved_docs = unique_docs
 
-        top_k = len(decomposed) * 8
+        top_k = len(decomposed) * 5
         reranked_docs = await self.rerank(" ".join(decomposed), retrieved_docs, top_k=top_k)
         final_docs = await self.compress(reranked_docs, max_docs=len(decomposed) * 5)
         context = await self.build_context_async(final_docs)

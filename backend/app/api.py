@@ -40,6 +40,8 @@ async def lifespan(app: FastAPI):
     from app.rag.pipeline import RAGPipeline
     pipeline = RAGPipeline()
 
+    await pipeline.semantic_cache._ensure_collection()
+
     logger.info("RAG pipeline loaded")
 
     yield
