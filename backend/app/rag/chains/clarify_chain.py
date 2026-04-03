@@ -168,6 +168,7 @@ _FILLER_WORDS = [
 # Whitelist tên sản phẩm cụ thể — cập nhật khi có sản phẩm mới
 # Đồng bộ với danh sách trong _extract_prompt bên dưới
 _SPECIFIC_PRODUCTS = [
+    "vay mua ô tô",
     # Vay tiêu dùng
     "vay tín chấp theo lương", "vay cầm cố giấy tờ có giá",
     "vay tiêu dùng có tài sản bảo đảm",
@@ -177,12 +178,20 @@ _SPECIFIC_PRODUCTS = [
     "vay nâng cấp cơ sở lưu trú du lịch",
     # Vay bất động sản
     "vay xây sửa nhà ở", "nhà mới thành đạt",
-    "vay mua nhà dự án", "vay mua nhà ở đất ở",
-    "vay mua nhà ở", "vay mua đất ở",
-    # Thẻ
-    "visa platinum", "visa classic", "visa infinite",
-    "mastercard platinum", "mastercard world",
-    "vcb digicard", "jcb platinum",
+    "vay mua nhà dự án", "vay mua nhà ở, đất ở",
+    # Thẻ tín dụng — thêm đầy đủ tên sản phẩm thực tế
+    "vietcombank vibe platinum", "vietcombank vibe",
+    "vietcombank cashplus platinum american express",
+    "vietcombank mastercard world", "vietcombank mastercard",
+    "vietcombank visa platinum", "vietcombank visa snack",
+    "vietcombank vietnam airlines platinum american express",
+    "vietcombank vietnam airlines american express",
+    "vietcombank jcb platinum", "vietcombank jcb",
+    "vietcombank american express",
+    "saigon centre takashimaya vietcombank",
+    # Short aliases vẫn giữ để match khi user gõ ngắn
+    "visa platinum", "visa snack", "mastercard world",
+    "jcb platinum", "vcb digicard",
 ]
 
 
@@ -240,8 +249,11 @@ Sản phẩm VCB thường gặp (để tham khảo nhận dạng):
 - Thẻ: "Visa Platinum", "Visa Classic", "MasterCard Platinum", "VCB DigiCard"
 
 Quy tắc:
-- Chỉ lấy tên sản phẩm/gói CỤ THỂ — KHÔNG lấy danh mục chung ("vay tiêu dùng", "thẻ tín dụng")
+- Chỉ lấy tên sản phẩm/gói CỤ THỂ — KHÔNG lấy danh mục chung
 - Chỉ lấy từ lịch sử hội thoại bên dưới, KHÔNG tự thêm
+- KHÔNG lấy từ các câu trả lời liệt kê danh sách của Trợ lý
+  (ví dụ: bot trả lời "VCB có các thẻ: A, B, C..." → không lấy A, B, C)
+- Chỉ lấy sản phẩm mà NGƯỜI DÙNG đã đề cập hoặc chọn
 - Nếu không có: trả về []
 
 Lịch sử hội thoại:
