@@ -156,6 +156,39 @@ async def flush_semantic_cache():
     await client.close()
     return {"flushed": True, "points_deleted": count}
 
+async def flush_redis():
+    client = aioredis.from_url(os.environ["REDIS_URL"], decode_responses=True)
+
+    keys = []
+    async for key in client.scan_iter("rag:cache:*"):
+        keys.append(key)
+
+    if keys:
+        await client.delete(*keys)
+
+    await client.aclose()
+    return len(keys)
+
+@cache_router.delete("/flush-all")
+async def flush_all():
+    redis_deleted = await flush_redis()
+
+    client = AsyncQdrantClient(
+        url=os.getenv("QDRANT_CLOUD_URL"),
+        api_key=os.getenv("QDRANT_CLOUD_API_KEY"),
+    )
+
+    info = await client.get_collection("faq_cache")
+    count = info.points_count
+
+    await client.delete_collection("faq_cache")
+    await client.close()
+
+    return {
+        "redis_deleted": redis_deleted,
+        "qdrant_deleted": count
+    }
+
 
 # -------------------------
 # CLI usage
@@ -163,13 +196,33 @@ async def flush_semantic_cache():
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python cache_admin.py \"<rewritten query>\"")
-        print("Example: python cache_admin.py \"Điều kiện vay xây sửa nhà ở tại Vietcombank là gì?\"")
+        print("Usage:")
+        print("  python cache_admin.py <query>")
+        print("  python cache_admin.py flush-redis")
+        print("  python cache_admin.py flush-qdrant")
+        print("  python cache_admin.py flush-all")
         sys.exit(1)
 
-    query = sys.argv[1]
-    result = asyncio.run(invalidate(query))
+    cmd = sys.argv[1]
 
-    print(f"\nQuery    : {result['query']}")
-    print(f"Redis    : {'✓ đã xóa' if result['redis_deleted'] else '✗ không có'}")
-    print(f"Semantic : {result['semantic_deleted']} điểm đã xóa")
+    if cmd == "flush-all":
+        result = asyncio.run(flush_all())
+        print("\nFLUSH ALL")
+        print(f"Redis deleted  : {result['redis_deleted']}")
+        print(f"Qdrant deleted : {result['qdrant_deleted']}")
+
+    elif cmd == "flush-redis":
+        count = asyncio.run(flush_redis())
+        print(f"\nRedis deleted: {count}")
+
+    elif cmd == "flush-qdrant":
+        result = asyncio.run(flush_semantic_cache())
+        print(f"\nQdrant deleted: {result['points_deleted']}")
+
+    else:
+        query = cmd
+        result = asyncio.run(invalidate(query))
+
+        print(f"\nQuery    : {result['query']}")
+        print(f"Redis    : {'✓ đã xóa' if result['redis_deleted'] else '✗ không có'}")
+        print(f"Semantic : {result['semantic_deleted']} điểm đã xóa")

@@ -9,7 +9,7 @@ class SemanticCache:
 
     def __init__(self):
         self.retriever = QdrantRetriever()
-        self.threshold = 0.92
+        self.threshold = 0.95
         self.collection = "faq_cache"
         # Lazy init — _ensure_collection() được gọi lần đầu khi search/add
         self._ready = False

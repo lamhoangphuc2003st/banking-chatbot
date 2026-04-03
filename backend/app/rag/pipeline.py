@@ -322,7 +322,7 @@ class RAGPipeline:
                 unique_docs.append(d)
         retrieved_docs = unique_docs
 
-        top_k = len(decomposed) * 8
+        top_k = len(decomposed) * 5
         reranked_docs = await self.rerank(" ".join(decomposed), retrieved_docs, top_k=top_k)
         final_docs = await self.compress(reranked_docs, max_docs=len(decomposed) * 5)
         context = await self.build_context_async(final_docs)
