@@ -81,10 +81,13 @@ class ChatbotUser(HttpUser):
     def send_message(self):
         message, history = pick_scenario()
 
+        messages = history + [
+            {"role": "user", "content": message}
+        ]
+
         payload = {
-            "message": message,
             "session_id": self.session_id,
-            "history": history,
+            "messages": messages,
         }
 
         request_start = time.perf_counter()

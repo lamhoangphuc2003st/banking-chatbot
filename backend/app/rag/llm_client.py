@@ -6,8 +6,8 @@ from langchain_openai import ChatOpenAI
 _http_client = httpx.AsyncClient(
     timeout=httpx.Timeout(connect=5.0, read=60.0, write=10.0, pool=5.0),
     limits=httpx.Limits(
-        max_connections=50,
-        max_keepalive_connections=20,
+        max_connections=200,
+        max_keepalive_connections=200,
         keepalive_expiry=30.0
     )
 )
