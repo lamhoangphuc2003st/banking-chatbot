@@ -27,21 +27,18 @@ cur.execute("""
 
 rows = cur.fetchall()
 
-for r in rows:
+cur.execute("SELECT * FROM rag_logs ORDER BY created_at DESC")
+
+cols = [desc[0] for desc in cur.description]
+
+rows = cur.fetchall()
+
+for row in rows:
     print("\n====================")
-    print("ID:", r[0])
-    print("Session:", shorten(r[1], 300))
-    print("Query:", shorten(r[2], 300))
-    print("Rewrite:", shorten(r[3], 300))
-    print("Intent:", r[4])
-    print("Products:", shorten(r[5], 300))
-    print("Queries:", shorten(r[6], 300))
-    print("Retrieved:", shorten(r[7], 1000))
-    print("Reranked:", shorten(r[8], 300))
-    print("Final Docs:", shorten(r[9], 300))
-    print("Response:", shorten(r[10], 300))
-    print("Latency:", r[11], "ms")
-    print("Time:", r[12])
+    for col, val in zip(cols, row):
+        print(f"{col}: {shorten(val, 300)}")
+
+
 
 cur.close()
 conn.close()

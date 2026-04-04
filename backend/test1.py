@@ -1,9 +1,9 @@
 import requests
 import threading
 
-URL = "http://127.0.0.1:8000/chat"
+URL = "https://banking-chatbot-1-081l.onrender.com/chat"
 
-QUESTION = "Các gói vay tiêu dùng của VCB?"
+QUESTION = "Lợi ích của thẻ Vietcombank Cashplus Platinum American Express® là gì?"
 
 def call(i):
     with requests.post(
@@ -30,7 +30,7 @@ def call(i):
 
 threads = []
 
-for i in range(20):   # test 3 user concurrent
+for i in range(40):   # test 3 user concurrent
     t = threading.Thread(target=call, args=(i,))
     t.start()
     threads.append(t)

@@ -29,6 +29,7 @@ from app.rag.utils.context_builder import build_context
 import re
 
 from app.rag.utils.logger import get_logger
+from app.rag.utils.latency_tracker import LatencyTracker
 
 from app.database.database_logger import save_rag_log
 
@@ -401,6 +402,7 @@ class RAGPipeline:
 
         start_time = time.time()
         session_id = session_id or str(uuid.uuid4())
+        tracker = LatencyTracker(session_id)
 
         trace = {
             "session_id": session_id,
@@ -423,6 +425,7 @@ class RAGPipeline:
                 self._invoke_rewrite(query, history),
                 self._invoke_clarify(query, history)
             )
+            tracker.mark("rewrite_clarify")
 
             # -------------------------
             # BƯỚC 2: Intent + Redis + Embed SONG SONG (3 tasks độc lập)
@@ -443,6 +446,7 @@ class RAGPipeline:
                 self.redis_cache.get(rewritten),
                 self.retriever.embed(rewritten),   # embed sớm — không còn sequential
             )
+            tracker.mark("intent_redis_embed")
             trace["intent"] = intent
 
             if intent == "CHAT":
@@ -488,28 +492,37 @@ class RAGPipeline:
                     decompose_task.cancel()
                 retrieval_latency_ms = int((time.time() - start_time) * 1000)
                 trace["retrieval_latency_ms"] = retrieval_latency_ms
+                trace["cache_type"] = "redis"
                 logger.info(f"Redis cache hit | Retrieval latency: {retrieval_latency_ms} ms")
                 context = cached.get("context") or cached.get("response") or cached
-
                 async for token in self._stream_generator({
                     "context": context,
                     "history": history,
                     "question": rewritten
                 }):
+                    full_response += token
                     yield token
 
+                tracker.mark("generation")
+                tracker.log_summary()
+                trace["latency_breakdown"] = tracker.to_dict()
+                trace["rewritten"] = rewritten
+                trace["response"] = full_response
                 trace["latency_ms"] = int((time.time() - start_time) * 1000)
                 logger.info(f"Total latency: {trace['latency_ms']} ms")
+                asyncio.create_task(self._save_log_safe(trace))
                 return
 
             # query_vector đã có từ Bước 2 (không embed lại)
             cached_context = await self.semantic_cache.search_with_vector(query_vector)
 
+            tracker.mark("semantic_cache")
             if cached_context:
                 if decompose_task:
                     decompose_task.cancel()
                 retrieval_latency_ms = int((time.time() - start_time) * 1000)
                 trace["retrieval_latency_ms"] = retrieval_latency_ms
+                trace["cache_type"] = "semantic"
                 logger.info(f"Semantic cache hit | Retrieval latency: {retrieval_latency_ms} ms")
 
                 asyncio.create_task(self.redis_cache.set(rewritten, {"context": cached_context}))
@@ -519,10 +532,16 @@ class RAGPipeline:
                     "history": history,
                     "question": rewritten
                 }):
+                    full_response += token
                     yield token
-
+                tracker.mark("generation")
+                tracker.log_summary()
+                trace["latency_breakdown"] = tracker.to_dict()
+                trace["rewritten"] = rewritten
+                trace["response"] = full_response
                 trace["latency_ms"] = int((time.time() - start_time) * 1000)
                 logger.info(f"Total latency: {trace['latency_ms']} ms")
+                asyncio.create_task(self._save_log_safe(trace))
                 return
 
             # -------------------------
@@ -558,6 +577,7 @@ class RAGPipeline:
                 f"Final: {len(docs)} | "
                 f"Retrieval latency: {retrieval_latency_ms} ms"
             )
+            tracker.mark("retrieval")
             trace["retrieval_latency_ms"] = retrieval_latency_ms
 
             async for token in self._stream_generator({
@@ -568,7 +588,20 @@ class RAGPipeline:
                 full_response += token
                 yield token
 
+            tracker.mark("generation")
             trace["response"] = full_response
+
+            trace["latency_breakdown"] = tracker.to_dict()
+            tracker.log_summary()
+
+            trace["latency_ms"] = int((time.time() - start_time) * 1000)
+            if trace["latency_ms"] > 15000:
+                logger.warning(
+                    f"SLOW_REQUEST session={session_id} "
+                    f"latency={trace['latency_ms']}ms "
+                    f"intent={trace.get('intent')} "
+                    f"subqueries={len(decomposed)}"
+                )
 
             # Lưu cache:
             # - DECOMPOSE: cache đã được lưu theo từng sub_query bên trong _pipeline_from_rewritten
