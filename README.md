@@ -61,8 +61,7 @@ Hệ thống chatbot hỗ trợ khách hàng ngân hàng Vietcombank, xây dựn
 ### 1. Clone repo
 
 ```bash
-git clone https://github.com/your-username/bank-chatbot.git
-cd bank-chatbot
+git clone https://github.com/lamhoangphuc2003st/banking-chatbot.git
 ```
 
 ### 2. Tạo virtual environment
