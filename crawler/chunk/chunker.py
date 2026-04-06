@@ -94,7 +94,7 @@ def process_loan_faq(data):
 
             full_text = f"Câu hỏi: {q} Trả lời: {a}"
 
-            # ✅ chỉ 1 chunk
+            # Chỉ 1 chunk
             results.append({
                 "id": make_id(),
                 "text": full_text,
@@ -134,7 +134,7 @@ def process_loans(data):
             text = f"{loan_name}: {section_name}: " + " | ".join(parts)
             text = clean_text(text)
 
-            # ✅ chỉ 1 chunk
+            #Chỉ 1 chunk
             results.append({
                 "id": make_id(),
                 "text": text,
@@ -189,7 +189,7 @@ def process_cards(data):
             text = f"Thẻ {name}: {section}: " + " | ".join(parts)
             text = clean_text(text)
 
-            # ✅ chỉ 1 chunk
+            #Chỉ 1 chunk
             results.append({
                 "id": make_id(),
                 "text": text,
@@ -290,8 +290,8 @@ def main():
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(all_chunks, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ Done! Total chunks: {len(all_chunks)}")
-    print(f"📁 Saved to: {output_path}")
+    print(f"Done! Total chunks: {len(all_chunks)}")
+    print(f"Saved to: {output_path}")
 
 
 if __name__ == "__main__":

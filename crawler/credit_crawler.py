@@ -134,7 +134,7 @@ def get_card_detail(url):
 
             if label_tag:
 
-                # 1️⃣ Ưu tiên li
+                #Ưu tiên li
                 li_tags = label_tag.select("li")
                 if li_tags:
                     for li in li_tags:
@@ -143,7 +143,7 @@ def get_card_detail(url):
                             values.append(text)
 
                 else:
-                    # 2️⃣ Nếu không có li thì lấy p
+                    #Nếu không có li thì lấy p
                     p_tags = label_tag.select("p")
                     if p_tags:
                         for p in p_tags:
@@ -151,7 +151,7 @@ def get_card_detail(url):
                             if text:
                                 values.append(text)
                     else:
-                        # 3️⃣ Nếu không có p/li thì lấy document
+                        #Nếu không có p/li thì lấy document
                         doc_tags = label_tag.select(".document")
                         for doc in doc_tags:
                             text = clean_text(doc.get_text(" ", strip=True))
