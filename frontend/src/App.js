@@ -1,12 +1,12 @@
+import "./App.css";
 import ChatWidget from "./components/ChatWidget";
 
 function App() {
-
   return (
-    <div>
+    <div style={{ minHeight: "100vh", background: "#f5f6fa" }}>
 
       <div style={{
-        height: "100vh",
+        minHeight: "100vh",
         background: "#f5f6fa",
         display: "flex",
         alignItems: "center",
@@ -17,11 +17,14 @@ function App() {
         Banking AI Assistant
       </div>
 
-      <ChatWidget/>
+      <ChatWidget />
+
+      <footer className="footer">
+        © 2026 Lam Hoang Phuc • Banking RAG Chatbot
+      </footer>
 
     </div>
   );
-
 }
 
 export default App;

@@ -27,7 +27,7 @@ Chatbot có thể trả lời các câu hỏi về:
 - Vietcombank Vietnam Airlines Platinum American Express®, Vietcombank JCB Platinum, Vietcombank Vibe, Vietcombank Vietnam Airlines American Express®
 - Vietcombank JCB, Vietcombank American Express®, Vietcombank Mastercard®, Vietcombank Visa Snack, Saigon Centre Takashimaya Vietcombank
 
-**Thông tin hỗ trợ:** điều kiện, đối tượng khách hàng, hồ sơ cần chuẩn bị, lãi suất, biểu phí, quy trình vay, thông tin thẻ, lợi ích thẻ, điều kiện mở thẻ, biểu phí thẻ.
+**Thông tin hỗ trợ:** điều kiện, đối tượng khách hàng, hồ sơ cần chuẩn bị, biểu phí, quy trình vay, ngày trả nợ, thông tin thẻ, lợi ích thẻ, điều kiện mở thẻ, biểu phí thẻ.
 
 > ⚠️ Chatbot **không hỗ trợ** giao dịch trực tiếp, tra cứu số dư tài khoản, hoặc các sản phẩm ngoài danh sách trên.
 
