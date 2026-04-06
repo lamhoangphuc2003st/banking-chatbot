@@ -3,7 +3,7 @@ import unicodedata
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-from app.rag.llm_client import llm
+from app.rag.utils.llm_client import llm
 
 
 # ============================================================
@@ -83,7 +83,7 @@ _DETAIL_KEYWORDS = [
     # Điều kiện / yêu cầu / đối tượng
     "điều kiện", "yêu cầu", "tiêu chuẩn", "tiêu chí",
     "đối tượng", "đối tượng vay", "ai được vay", "ai có thể vay",
-    "đối tượng khách hàng",
+    "đối tượng khách hàng", "thông tin",
     # Hồ sơ / giấy tờ
     "hồ sơ", "giấy tờ", "tài liệu", "chứng từ",
     "cần gì", "cần những gì", "cần có gì", "cần chuẩn bị",

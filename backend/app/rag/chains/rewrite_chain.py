@@ -2,7 +2,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
-from app.rag.llm_client import llm
+from app.rag.utils.llm_client import llm
 
 # -----------------------------
 # Convert history to text

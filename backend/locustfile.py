@@ -9,8 +9,7 @@ Chạy Web UI:
     # Mở http://localhost:8089
 
 Chạy headless (CI):
-    locust -f locustfile.py --host=http://localhost:8000 \
-      --users=20 --spawn-rate=2 --run-time=5m --headless --csv=results/normal
+    locust -f locustfile.py --host=https://banking-chatbot-1-081l.onrender.com --users=100 --spawn-rate=10 --run-time=5m --headless --csv=results/stress
 
 Các scenario theo thứ tự tăng dần:
     Baseline : 5 users   → latency bình thường
@@ -81,25 +80,25 @@ class ChatbotUser(HttpUser):
     def send_message(self):
         message, history = pick_scenario()
 
-        messages = history + [
-            {"role": "user", "content": message}
-        ]
+        # api.py nhận messages: List[{role, content}]
+        # history là các turn trước, message là turn hiện tại
+        messages = history + [{"role": "user", "content": message}]
 
         payload = {
-            "session_id": self.session_id,
             "messages": messages,
+            "session_id": self.session_id,
         }
 
         request_start = time.perf_counter()
         first_token_ms = None
-        response_length = 0
+        chunks = []
 
         with self.client.post(
             "/chat",
             json=payload,
             stream=True,
             catch_response=True,
-            name="/chat",
+            name="/chat [total]",   # tên metric — đo total time
             timeout=60,
         ) as resp:
             if resp.status_code != 200:
@@ -107,22 +106,38 @@ class ChatbotUser(HttpUser):
                 return
 
             try:
+                # Consume TOÀN BỘ stream trước khi đánh dấu xong
                 for chunk in resp.iter_content(chunk_size=None):
                     if chunk:
                         if first_token_ms is None:
+                            # Đo time-to-first-token riêng
                             first_token_ms = (time.perf_counter() - request_start) * 1000
-                        response_length += len(chunk)
+                        chunks.append(chunk)
 
-                if first_token_ms is None:
+                if not chunks:
                     resp.failure("Empty response — no tokens received")
                     return
 
-                # Log time-to-first-token như 1 metric riêng
+                total_ms = (time.perf_counter() - request_start) * 1000
+                total_bytes = sum(len(c) for c in chunks)
+
+                # Metric 1: TTFT (time to first token)
+                if first_token_ms:
+                    events.request.fire(
+                        request_type="TTFT",
+                        name="/chat [first_token]",
+                        response_time=first_token_ms,
+                        response_length=total_bytes,
+                        exception=None,
+                        context={},
+                    )
+
+                # Metric 2: Total response time (ghi đè Locust default)
                 events.request.fire(
-                    request_type="TTFT",
-                    name="/chat [time_to_first_token]",
-                    response_time=first_token_ms,
-                    response_length=response_length,
+                    request_type="POST",
+                    name="/chat [total]",
+                    response_time=total_ms,
+                    response_length=total_bytes,
                     exception=None,
                     context={},
                 )
@@ -147,6 +162,17 @@ class ChatbotUser(HttpUser):
 
 
 # -------------------------------------------------------
+# StressUser — wait_time ngắn để tạo tải cao
+# Dùng khi muốn test peak/stress nhanh hơn
+# locust -f locustfile.py --host=... --users=50 -u StressUser
+# -------------------------------------------------------
+
+class StressUser(ChatbotUser):
+    """Giống ChatbotUser nhưng không có thinking time — tối đa RPS."""
+    wait_time = between(0, 1)
+
+
+# -------------------------------------------------------
 # Report khi kết thúc
 # -------------------------------------------------------
 
@@ -158,7 +184,7 @@ def on_quitting(environment, **kwargs):
     print("  LOAD TEST SUMMARY")
     print("=" * 60)
 
-    for name in ["/chat", "/chat [time_to_first_token]", "/health"]:
+    for name in ["/chat [total]", "/chat [first_token]", "/health"]:
         for method in ["POST", "GET", "TTFT"]:
             s = stats.get(name, method)
             if s and s.num_requests > 0:
@@ -174,7 +200,7 @@ def on_quitting(environment, **kwargs):
     print("\n" + "=" * 60)
 
     # Đánh giá tự động
-    chat = stats.get("/chat", "POST")
+    chat = stats.get("/chat [total]", "POST")
     if chat and chat.num_requests > 0:
         p95 = chat.get_response_time_percentile(0.95)
         fail = chat.fail_ratio * 100

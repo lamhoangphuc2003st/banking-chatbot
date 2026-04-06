@@ -1,7 +1,88 @@
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# ================================
+# Environment
+# ================================
 .env
-venv
-__pycache__
-node_modules
-logs/
+.env.local
+.env.*.local
+!.env.example
+
+# ================================
+# IDE
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ================================
+# Test & Coverage
+# ================================
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# ================================
+# Load test results (auto-generated)
+# ================================
+results/*.csv
+results/*.html
+# Giữ thư mục results nhưng không commit CSV
+!results/.gitkeep
+
+# ================================
+# Evaluation outputs (auto-generated)
+# ================================
+evaluate/e2e_results.json
+evaluate/retrieval_results.json
+evaluate/retrieval_report.csv
+# Giữ golden_dataset và test cases (manually curated)
+!evaluate/golden_dataset.json
+!evaluate/retrieval_test_cases.json
+!evaluate/retrieval_test_cases.csv
+
+# ================================
+# Data files lớn
+# ================================
+data/faiss_index.bin
+data/vietcombank_chunks_older.json
+# Giữ chunks mới nhất
+!data/vietcombank_chunks.json
+!data/vietcombank_corpus.json
+
+# ================================
+# Logs
+# ================================
 *.log
-backups/
+logs/
+
+# ================================
+# Docker
+# ================================
+.dockerignore
+
+# ================================
+# Misc
+# ================================
+*.docx
+*.pdf
+backup/
+test.py
+test1.py

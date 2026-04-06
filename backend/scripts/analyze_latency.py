@@ -185,7 +185,11 @@ def analyze(logs: list[dict]):
             print(f"    {hour:02d}:00  {p95:>7.0f} ms  {b}  ({len(hourly[hour])} req)")
 
     # --- Slow requests ---
-    slow = [l for l in logs if l.get("latency_ms", 0) > 15000]
+    slow = [
+        l for l in logs
+        if l.get("latency_ms") is not None
+        and l["latency_ms"] > 15000
+    ]
     if slow:
         print(f"\n  Slow Requests (>15s): {len(slow)}")
         for l in slow[:10]:
@@ -224,4 +228,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python scripts/analyze_latency.py --days 7   
+# python scripts/analyze_latency.py --days 7

@@ -28,7 +28,11 @@ def load_stats(results_dir: Path, scenario: str) -> dict | None:
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row.get("Name") == "/chat" and row.get("Type") == "POST":
+            # Locust dùng "Method" (không phải "Type")
+            # Match cả tên cũ "/chat" và tên mới "/chat [total]"
+            name_ok   = row.get("Name") in ("/chat [total]", "/chat")
+            method_ok = row.get("Method", row.get("Type", "")) in ("POST", "")
+            if name_ok and method_ok:
                 total = int(row.get("Request Count", 0) or 0)
                 fails = int(row.get("Failure Count", 0) or 0)
                 return {

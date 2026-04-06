@@ -8,24 +8,30 @@ def load_csv(path: str) -> dict:
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row["Name"] == "/chat":
+            # "/chat [total]" = total response time (đã fix locustfile)
+            # fallback "/chat" cho file CSV cũ
+            if row.get("Name") in ("/chat [total]", "/chat"):
+                total = float(row.get("Request Count") or 0)
+                fails = float(row.get("Failure Count") or 0)
                 results = {
-                    "p50": float(row.get("50%", 0)),
-                    "p95": float(row.get("95%", 0)),
-                    "p99": float(row.get("99%", 0)),
-                    "rps": float(row.get("Requests/s", 0)),
-                    "fail_rate": float(row.get("Failure Count", 0)) /
-                                 max(float(row.get("Request Count", 1)), 1) * 100,
+                    "p50":       float(row.get("50%") or 0),
+                    "p95":       float(row.get("95%") or 0),
+                    "p99":       float(row.get("99%") or 0),
+                    "rps":       float(row.get("Requests/s") or 0),
+                    "fail_rate": fails / max(total, 1) * 100,
                 }
     return results
 
 
 def compare():
+    from pathlib import Path
+    # Tìm results/ relative với vị trí script
+    base = Path(__file__).resolve().parent.parent / "results"
     scenarios = [
-        ("Baseline (5 users)",  "backend/results/baseline_stats.csv"),
-        ("Normal (20 users)",   "backend/results/normal_stats.csv"),
-        ("Peak (50 users)",     "backend/results/peak_stats.csv"),
-        ("Stress (100 users)",  "backend/results/stress_stats.csv"),
+        ("Baseline (5 users)",  base / "baseline_stats.csv"),
+        ("Normal (20 users)",   base / "normal_stats.csv"),
+        ("Peak (50 users)",     base / "peak_stats.csv"),
+        ("Stress (100 users)",  base / "stress_stats.csv"),
     ]
 
     print(f"\n{'Scenario':<22} {'P50':>8} {'P95':>8} {'P99':>8} {'RPS':>8} {'Fail%':>8}")

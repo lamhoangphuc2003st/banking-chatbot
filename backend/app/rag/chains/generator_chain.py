@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from app.rag.llm_client import llm
+from app.rag.utils.llm_client import llm
 
 prompt = ChatPromptTemplate.from_template(
 """

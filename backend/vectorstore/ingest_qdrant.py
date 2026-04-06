@@ -3,6 +3,7 @@ import os
 import time
 import requests
 
+from pathlib import Path
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 from langchain_openai import OpenAIEmbeddings
@@ -57,8 +58,8 @@ emb = OpenAIEmbeddings(
 # -------------------------
 # LOAD DATA
 # -------------------------
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-file_path = os.path.join(BASE_DIR, "data", "vietcombank_chunks.json")
+BASE_DIR = Path(__file__).resolve().parents[1]
+file_path = BASE_DIR / "data" / "vietcombank_chunks.json"
 
 with open(file_path, "r", encoding="utf-8") as f:
     chunks = json.load(f)
